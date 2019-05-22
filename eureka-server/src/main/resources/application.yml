@@ -1,0 +1,37 @@
+server:
+  port: 8762
+spring:
+#  application:
+#    name: eureka-server1
+  profiles:
+    active: @profileActive@
+#eureka:
+#  instance:
+#    hostname: eureka-server #鼠标放上去显示主机信息（）
+#    instance-id: eureka-server-8761 #status上的服务名
+#    prefer-ip-address: true
+#    non-secure-port-enabled: true
+#    secure-port-enabled: false
+#    secure-port: ${server.port}
+#    status-page-url: http://${eureka.instance.hostname}:${server.port}/info
+#    health-check-url: http://${eureka.instance.hostname}:${server.port}/health
+#    home-page-url: http://${eureka.instance.hostname}:${server.port}/
+#  client:
+#    register-with-eureka: true #做集群时可以设为true
+#    fetch-registry: true #做集群时可以设为true
+#    service-url:
+#      defaultZone: http://mumu:66@127.0.0.1:8762/eureka/ #http://mumu:66@47.112.26.145:8761/eureka/,http://mumu:66@47.112.26.145:8762/eureka/ #http://127.0.0.1:8761直接访问
+#--------开启安全模块-------#
+security:
+#  require-ssl: true
+  basic:
+    enabled: true
+  user:
+    name: mumu
+    password: 66
+#---------安全模块------------#
+#------开启配置文件密文显示------#
+jasypt:
+  encryptor:
+    password: 2p62GjAru5IRZ8l9 #msgservice 使用
+#------配置文件密文显示------#
