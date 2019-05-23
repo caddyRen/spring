@@ -21,6 +21,7 @@
 
     <modules>
         <module>eureka-server</module>
+        <module>config-server</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->

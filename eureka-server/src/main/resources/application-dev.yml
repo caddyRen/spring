@@ -1,63 +1,81 @@
+server:
+  port: 8762
+#--------开启安全模块-------#
+security: #开启服务注册认证机制
+  basic:
+    enabled: true #确认开启认证，默认true
+  user:
+    name: mumu
+    password: 66
+#---------安全模块------------#
+#------开启配置文件密文显示------#
+jasypt:
+  encryptor:
+    password: 2p62GjAru5IRZ8l9 #msgservice 使用
+#------配置文件密文显示------#
+#eureka配置
 eureka:
   instance:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
     app-group-name: mumu #注册在Eureka服务中的应用组名
     appname: eureka-server #注册在的Eureka服务中的应用名称
-    instance-id: eureka-server-8762 #该实例注册到服务中心的唯一ID
-    ip-address: 127.0.0.1 #该实例的IP地址
+    instance-id: eureka-server-${server.port} #该实例注册到服务中心的唯一ID
+#    ip-address: 127.0.0.1 #该实例的IP地址,一台机启动多个eureka server 设置后不能组集群
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
-#    a-s-g-name: #用于AWS平台（亚马逊云平台）自动扩展的与此实例关联的组名，
-#    data-center-info: #部署此实例的数据中心
-#    default-address-resolution-order: #默认的地址解析顺序
-#    environment: #该实例的环境配置
-    initial-status: up #初始化该实例，注册到服务中心的初始状态
-    instance-enabled-onit: true #表明是否只要此实例注册到服务中心，立马就进行通信
-    namespace: eureka #该服务实例的命名空间,用于查找属性
-#    metadata-map:
-#      test: test #该服务实例的子定义元数据，可以被服务中心接受到
     lease-renewal-interval-in-seconds: 12 #该实例给服务中心发送心跳的间隔时间，用于表明该服务实例可用
     lease-expiration-duration-in-seconds: 36 #服务中心删除此服务实例的等待时间(秒为单位),时间间隔为最后一次服务中心接受到的心跳时间
     registry:
       default-open-for-traffic-count: 6 #该实例，注册服务中心，默认打开的通信数量
       expected-number-of-renews-per-min: 6  #每分钟续约次数
-    home-page-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/ #该实例的主页url,绝对路径
-    health-check-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/health #该实例健康检查url,绝对路径
-    status-page-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/info #该实例的状态呈现url,绝对路径
+    home-page-url: http://${eureka.instance.ip-address}:${server.port}/ #该实例的主页url,绝对路径
+    health-check-url: http://${eureka.instance.hostname}:${server.port}/health #该实例健康检查url,绝对路径
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/info #该实例的状态呈现url,绝对路径
     home-page-url-path: / #该实例的主页url,相对路径
     health-check-url-path: /health #该实例健康检查url,相对路径
     status-page-url-path: /info #该实例的状态呈现url,相对路径
+    non-secure-port-enabled: true #http通信端口是否启用
+    non-secure-port: ${server.port} #http通信端口
+    initial-status: up #初始化该实例，注册到服务中心的初始状态
+    instance-enabled-onit: true #表明是否只要此实例注册到服务中心，立马就进行通信
+#    namespace: eureka #该服务实例的命名空间,用于查找属性
+#    a-s-g-name: #用于AWS平台（亚马逊云平台）自动扩展的与此实例关联的组名，
+#    data-center-info: #部署此实例的数据中心
+#    default-address-resolution-order: #默认的地址解析顺序
+#    environment: #该实例的环境配置
+#    metadata-map:
+#      zone: gz #该服务实例的子定义元数据，可以被服务中心接受到
 #    secure-health-check-url: #该实例的安全健康检查url,绝对路径
 #    secure-port-enabled: false #https通信端口是否启用
 #    secure-virtual-host-name: #该实例的安全虚拟主机名称(https)
 #    secure-port: 443 #https通信端口
-    non-secure-port-enabled: true #http通信端口是否启用
-    non-secure-port: 8762 #http通信端口
   client: #eureka客户端配置
     healthcheck:
-      enabled: true #开启健康检查
+      enabled: true #开启健康检查，没有服务注册进去会异常
     enabled: true #是否可用
-    register-with-eureka: true #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
-#    fetch-registry: true #此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+    register-with-eureka: false #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
+    fetch-registry: false #此客户端是否获取eureka服务器注册表上的注册信息，默认为true
     filter-only-up-instances: true #是否过滤掉，非UP的实例。默认为true
+    region: guangdong #获取实例所在的地区。默认为us-east-1
+    prefer-same-zone-eureka: true #实例是否使用同一zone里的eureka服务器，默认为true，理想状态下，eureka客户端与服务端是在同一zone下
+    availability-zones: #只会注册到可用区域的注册中心
+      guangdong: gz,sz # 获取实例所在的地区下可用性的区域列表，用逗号隔开。（AWS）
     service-url:
-      defaultZone: http://mumu:66@127.0.0.1:8762/eureka/ #与Eureka注册服务中心的通信zone和url地址
-    eureka-connection-idle-timeout-seconds: 36 #client连接Eureka服务端后的空闲等待时间，默认为30 秒
-    eureka-server-connect-timeout-seconds: 6 #client连接eureka服务端的连接超时时间，默认为5秒
-    eureka-server-read-timeout-seconds: 12 #client对服务端的读超时时长
-    eureka-server-total-connections-per-host: 50 #client连接eureka服务端的单机连接数量，默认50
-    eureka-server-total-connections: 200 #client连接all eureka服务端的总连接数，默认200
+      gz: http://mumu:66@127.0.0.1:8761/eureka/
+      sz: http://mumu:66@127.0.0.1:8761/eureka/
+#    eureka-connection-idle-timeout-seconds: 36 #client连接Eureka服务端后的空闲等待时间，默认为30 秒
+#    eureka-server-connect-timeout-seconds: 6 #client连接eureka服务端的连接超时时间，默认为5秒
+#    eureka-server-read-timeout-seconds: 12 #client对服务端的读超时时长
+#    eureka-server-total-connections-per-host: 50 #client连接eureka服务端的单机连接数量，默认50
+#    eureka-server-total-connections: 200 #client连接all eureka服务端的总连接数，默认200
+#    heartbeat-executor-thread-pool-size: 6 #心跳执行程序线程池的大小,默认为5
+#    heartbeat-executor-exponential-back-off-bound: 10 #心跳执行程序回退相关的属性，是重试延迟的最大倍数值，默认为10
+#    eureka-service-url-poll-interval-seconds: 300 # 询问Eureka服务url信息变化的频率（s），默认为300秒
+#    initial-instance-info-replication-interval-seconds: 36 #最初复制实例信息到eureka服务器所需的时间（s），默认为40秒
+#    instance-info-replication-interval-seconds: 36 #间隔多长时间再次复制实例信息到eureka服务器，默认为30秒
+#    registry-fetch-interval-seconds: 36  #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
 #    cache-refresh-executor-exponential-back-off-bound: 12 #执行程序指数回退刷新的相关属性，是重试延迟的最大倍数值，默认为10
 #    cache-refresh-executor-thread-pool-size: 2 #执行程序缓存刷新线程池的大小，默认为5
-    heartbeat-executor-thread-pool-size: 6 #心跳执行程序线程池的大小,默认为5
-    heartbeat-executor-exponential-back-off-bound: 10 #心跳执行程序回退相关的属性，是重试延迟的最大倍数值，默认为10
-    eureka-service-url-poll-interval-seconds: 300 # 询问Eureka服务url信息变化的频率（s），默认为300秒
-    initial-instance-info-replication-interval-seconds: 36 #最初复制实例信息到eureka服务器所需的时间（s），默认为40秒
-    instance-info-replication-interval-seconds: 36 #间隔多长时间再次复制实例信息到eureka服务器，默认为30秒
-    registry-fetch-interval-seconds: 36  #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
-#    region: cn-south-1 # 获取实例所在的地区。默认为us-east-1
-#    prefer-same-zone-eureka: true #实例是否使用同一zone里的eureka服务器，默认为true，理想状态下，eureka客户端与服务端是在同一zone下
-#    availability-zones:
-#      china: defaultZone,defaultZone1,defaultZone2  # 获取实例所在的地区下可用性的区域列表，用逗号隔开。（AWS）
+#      defaultZone: http://mumu:66@127.0.0.1:8762/eureka/ #与Eureka注册服务中心的通信zone和url地址
 #    fetch-remote-regions-registry: #eureka服务注册表信息里的以逗号隔开的地区名单，如果不这样返回这些地区名单，则客户端启动将会出错。默认为null
 #    allow-redirects: false #服务器是否能够重定向客户端请求到备份服务器。 如果设置为false，服务器将直接处理请求，如果设置为true，它可能发送HTTP重定向到客户端。默认为false
 #    client-data-accept: #客户端数据接收
@@ -81,7 +99,7 @@ eureka:
 #    eureka-server-port: #获取eureka服务器的端口，此配置只有在eureka服务器ip地址列表是在DNS中才会用到。默认为null
 #    eureka-server-u-r-l-context: #表示eureka注册中心的路径，如果配置为eureka，则为http://x.x.x.x:x/eureka/，在eureka的配置文件中加入此配置表示eureka作为客户端向注册中心注册，从而构成eureka集群。此配置只有在eureka服务器ip地址列表是在DNS中才会用到，默认为null
   server:
-    enable-self-preservation: true #服务端开启自我保护模式。无论什么情况，服务端都会保持一定数量的服务。避免client与server的网络问题，而出现大量的服务被清除。
+    enable-self-preservation: false #服务端开启自我保护模式。无论什么情况，服务端都会保持一定数量的服务。避免client与server的网络问题，而出现大量的服务被清除。本地开发设为false
     eviction-interval-timer-in-ms: 30000 #开启清除无效服务的定时任务，时间间隔。默认1分钟
 #    delta-retention-timer-interval-in-ms: 0 #间隔多长时间，清除过期的delta数据
 #    disable-delta: false #过期数据，是否也提供给client

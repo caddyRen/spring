@@ -15,3 +15,7 @@
 #spring cloud Archaius 配置管理api 提供动态类型化属性，贤臣安全配置操作，轮询框架，回调机制。实现动态获取配置
 #docker
 
+#关于
+- eureka server port：8761，8762
+- config server port：9999
+
