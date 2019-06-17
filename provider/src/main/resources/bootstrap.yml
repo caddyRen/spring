@@ -1,24 +1,19 @@
 server:
-  port: 9999
-security:
-  basic:
-    enabled: true
-  user:
-    name: configServer
-    password: 9999
+  port: 9997
 spring:
   application:
-    name: config-server
+    name: provider
   cloud:
-    inetutils:
-      timeout-seconds: 10
     config:
-      server:
-        git:
-          uri: https://gitee.com/renqiankun/config
-          #basedir: D:\secret\gitee\config\config #此处加上会变成访问本地机器http://caddy-pc:9999....
-          username: renqiankun
-          password: qiankun415
+      discovery:
+        enabled: true
+        service-id: config-server
+      username: configServer
+      password: 9999
+      name: test
+      profile: dev
+#      label: master
+      fail-fast: true
   rabbitmq:
     host: 127.0.0.1
     port: 5672
@@ -28,8 +23,8 @@ eureka:
   instance:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
     app-group-name: mumu #注册在Eureka服务中的应用组名
-    #    appname: config-server #注册在的Eureka服务中的应用名称
-    instance-id: config-server-${server.port} #该实例注册到服务中心的唯一ID
+#    appname: config-client #注册在的Eureka服务中的应用名称
+    instance-id: config-client-9997 #该实例注册到服务中心的唯一ID
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
     initial-status: up #初始化该实例，注册到服务中心的初始状态
     lease-renewal-interval-in-seconds: 12 #该实例给服务中心发送心跳的间隔时间，用于表明该服务实例可用
@@ -44,7 +39,7 @@ eureka:
     health-check-url-path: /admin/health #该实例健康检查url,相对路径
     status-page-url-path: /admin/info #该实例的状态呈现url,相对路径
     non-secure-port-enabled: true #http通信端口是否启用
-    non-secure-port: 9999 #http通信端口
+    non-secure-port: 9997 #http通信端口
   client: #eureka客户端配置
     region: guangdong # 获取实例所在的地区。默认为us-east-1
     prefer-same-zone-eureka: true #实例是否使用同一zone里的eureka服务器，默认为true，理想状态下，eureka客户端与服务端是在同一zone下
@@ -53,11 +48,11 @@ eureka:
     service-url:
       gz: http://mumu:66@127.0.0.1:8762/eureka/
       sz: http://mumu:66@127.0.0.1:8761/eureka/
-    healthcheck:
-      enabled: true #开启健康检查
+#    healthcheck:
+#      enabled: false #开启健康检查eureka.client.healthcheck.enabled=true should only be set in application.yml. Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status
     enabled: true #是否可用
     register-with-eureka: true #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
-    fetch-registry: true #此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+    fetch-registry: true #此客户端是否获取eureka服务器注册表上的注册信息，默认为true.设为false无法通过服务名调用服务
     filter-only-up-instances: true #是否过滤掉，非UP的实例。默认为true
     eureka-connection-idle-timeout-seconds: 36 #client连接Eureka服务端后的空闲等待时间，默认为30 秒
     eureka-server-connect-timeout-seconds: 6 #client连接eureka服务端的连接超时时间，默认为5秒
@@ -72,6 +67,9 @@ eureka:
     initial-instance-info-replication-interval-seconds: 36 #最初复制实例信息到eureka服务器所需的时间（s），默认为40秒
     instance-info-replication-interval-seconds: 36 #间隔多长时间再次复制实例信息到eureka服务器，默认为30秒
     registry-fetch-interval-seconds: 36  #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
+security:
+  basic:
+    enabled: false #引入security 不用的化就需要配置为false
 management:
   security:
     enabled: false
