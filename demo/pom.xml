@@ -12,7 +12,7 @@
     <artifactId>spring-cloud.demo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>just for test demo model</description>
+    <description>springboot 功能示例</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

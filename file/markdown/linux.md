@@ -1,0 +1,158 @@
+#Linux基础命令教程
+##Shell:即工作环境
+1. user通过shell操作硬件,windows操作系统只是把shell封装成可视化界面进行与硬件交互
+2. 用户登陆 ~ 表示当前位置/用户名；/ 表示根目录；pwd查看当前路径。#为root提示符号；$为普通用户
+2. 命令
+    1. command 【option】命令选项 【arguments】命令参数  例如ls -l / 查看/目录下的目录详细信息
+3. 关机命令
+    1. shutdown -h 关机 -r 重启 -f 快速重启
+        1. hh:mm执行时间 21:23 21点23分执行
+        2. +m  m分钟后执行
+        3. now 即+0 立即执行
+        4. shutdown -h +10 'the system will shutdown'还可以加广播提示其他用户
+    2. centos arch可以执行poweroff关机
+4. 显示文件系统内容
+    1. ls -l 显示当前目录更多文件信息
+    2. ls -a 显示当前目录隐藏文件
+    3. ls -al 显示当前目录全部文件+文件信息
+    4. ls -a -l /  显示/目录下的文件
+    5. ls -F 列出目录下文件名及其目录类型（后跟*号表示可执行文件，@表示符号连接/表示目录名）
+    6. ls -t 按照最后修改文件时间列出文件名
+    7. ls -R 列出当前目录及其子目录的文件名
+5. 操作目录和文件
+    1. mkdir myfile 在当前目录下创建目录myfile
+    2. rmdir myfile 删除当前目录下的myfile目录（myfile目录下必须为空才能删除成功）
+    3. cd .. 返回上级目录   . 表示当前目录 .. 表示上级目录
+    4. cp XX.log ./one 复制当前目录下的XX.log文件到 ./ 目录下的one目录内 即当前目录下的one目录内
+    5. cp -r one two 当前目录下将目录one复制到two内 -r表示可以复制目录及目录内的所有文件（递归）
+    6. cp xx.log xx.log.bak 当前目录内复制xx.log并将新复制的文件改名为xx.log.bak
+    7. mv xx.log ./one 将当前目录下的xx.log文件移到当前目录下的one目录内
+    7. mv xx.log xx.syslog 将当前目录下的xx.log移到当前目录下，并改名为xx.syslog（改名字）
+    7. touch 1.txt 在当前目录下创建1.txt文件
+    7. file 1.txt 查看文件类型
+    7. rm -f 1.txt 删除当前目录下的1.txt文件，强制删除不是递归
+    7. rm -r 循环删除目录，直到该目录下内容全部被删除，即递归
+    7. rm -f 1*.txt 删除当前目录下所有1开头的.txt文件 *号匹配任意字符和字符串
+    7. rm -f 1?.txt 删除当前目录下1开头的.txt文件 ？号匹配一个字符
+    7. rm -f 11[1-3].txt 删除当前目录下以11开头1，2，3结尾的.txt文件[abc]表示a,b,c任一字符[a-x]a到x的任一字符[1-9]1到9任一数字
+    7. rm -f 1[!1]*.txt 删除当前目录下第二个字符不是1的.txt文件 与上一条含义相反
+    7. locate xx.log 搜索xx.log文件；此操作需要数据库支持，默认7天更新一次，也可以手动更新执行updatedb需耗时
+    7. pwd 打印当前所在目录print working directory
+6. 用户：只有root可以设置其他用户密码，其他用户只能修改自己的密码
+    1. useradd caddy  增加caddy用户（root）
+    2. passwd caddy 修改caddy密码（root）
+    1. passwd 修改自己密码，不用跟用户名（caddy）
+7. 显示文件内容
+    1. cat xx.log 适合显示内容少的，如果太多行，只会显示后面的部分（看不全）
+    2. more xx.log 解决cat显示不全的问题   按space翻页 q键退出（不能倒退查看已经看过的内容）
+    3. less xx.log 解决more不能上下翻页的问题  PageUp PageDown翻页 q退出
+    4. head xx.log显示文件前几行（默认10行）
+    5. tail xx.log显示文件最后几行（默认10行）
+    6. head/tail -10 xx.log 显示前/后10行
+8. vi编辑器:linux下全屏幕文本编辑，特殊按键esc退出编辑模式进入命令模式，字母I进入编辑模式，符号：进入末行模式；输入字母q直接退出，w保存，wq保存退出
+    1. 如异常退出编辑（比如Ctrl+c）,会有临时文件在内存中，直接找到文件(一般都是.开头的隐藏文件) rm -rf xxx.swp
+    1. vi 不加文件显示vi版本信息
+    2. 保存文件时如果有文件名则直接保存，没有则使用w xxx保存，xxx代表文件名
+    3. Ctrl+F向前翻整页；Ctrl+B向后翻整页；Ctrl+U向前翻半页；Ctrl+D向后翻半页
+    4. ^移到行首；$移到行尾
+    5. 末行模式 set nu显示行号，set nonu取消行号
+    6. 命令模式 1G到首行，G到尾行，#G到#行
+    7. 命令模式下删除操作
+        1. x删除光标处的单个字符
+        2. dd删除光标所在行
+        3. dw删除当前字符到单词尾包括空格的所有字符
+        4. 3x删除光标初向右的三个字符
+        4. 3dd删除从当前行向下三行
+        5. u小写撤销最近一次操作
+        5. U大写撤销所有操作
+        6. Ctrl+R恢复u小写的撤销操作
+    8. 命令模式下复制操作
+        1. yy复制当前行到vi缓冲区
+        1. yw复制当前光标所在位置到单词尾字符内容到vi缓冲区（复制一个单词）
+        1. y$复制光标到行尾内容
+        1. y^复制光标到行首内容
+        1. 6yy复制5行
+        1. 2yw复制两个单词
+    9. 末行模式复制指定行 3，5y复制第三行到第5行内容
+
+
+
+#centos7
+##网络问题
+1. vitualbox之间网络不通,
+    1. 获取ip
+        ```
+        dhclient 
+    2. 释放ip
+        ```
+        dhclient -r
+    1. 设置两个网卡，一个网络地址转换，一个本机Host-only
+    2. vi /etc/sysconfig/network-scripts/ifcfg-enp0s3 修改ONBOOT=yes
+    3. service network restart 重启网络服务
+    4. cat /etc/resolv.conf 查看IP和dns
+    5. ping www.badu.com 测试
+2. vi编辑方式类似是vim
+    1. 如异常退出编辑,会有临时文件在内存中，直接找到文件(一般都是.开头的隐藏文件) rm -rf xxx.swp
+3. 安装docker
+    1. yum install -y yum-utils device-mapper-persistent-data lvm2 安装需要的软件包
+    2. yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  设置源
+    3. yum list docker-ce --showduplicates | sort -r 查看仓库里的docker
+    4. yum install docker-ce  #由于repo中默认只开启stable仓库，故这里安装的是最新稳定版\
+       yum install <FQPN>  # 选择版本安装：sudo yum install docker-ce-17.12.0.ce
+    5. systemctl start docker 启动
+    6. systemctl enable docker 开机启动,可以不设置
+4. 镜像加速
+	/etc/docker/daemon.json
+	```json
+	{
+	 "registry-mirrors":["https://rjm3pmfv.mirror.aliyuncs.com"]
+	}
+	```
+	重启docker
+	```linux
+	systemctl stop docker
+	systemctl start docker	
+	```
+5. docker pull java:8-alpine 下载镜像
+6. (Dockerfile,jar包,start.sh在同一级目录)
+   1. start.sh
+      ```jshelllanguage
+        #!/bin/bash
+        java $CMDVAR -jar ./jgpush-service-1.0-SNAPSHOT.jar
+      ```
+   1. Dockerfile  有待完善
+      ```Dockerfile
+      FROM java:8-alpine
+       
+      WORKDIR /home/apps/
+      ADD target/jgpush-service.jar .
+      ADD start.sh .
+      EXPOSE 8888
+      ENTRYPOINT ["sh", "/home/apps/start.sh"]
+      ```
+   2. build镜像命令
+      ```
+       docker build -t imagename:imagetag .
+      ```
+   3. save 迁移镜像 
+      ```
+      docker save imageID | gzip > filename.tar.gz
+      docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
+      docker load -i filename.tar.gz
+      ```
+   4. docker ps -a 查看所有容器（运行or停止）
+   5. docker stop containerID 关闭容器
+   6. docker rm -f containerID 删除容器 -f表示强制，能删除在运行的容器
+   7. docker rmi -f imageID 删除镜像 -f 表示强制，能删除有正在运行容器的镜像，否则需要先停容器
+   8. docker tag hello hello:1.0 修改tag
+   9. docker ps | grep hello 查看指定进程
+   1. docker images | grep hello 查看指定镜像
+   2. docker exec -it containerID /bin/bash 进入正在运行的容器（退出后容器不会停止）
+   3. docker attach containerID 进入正在运行的容器（退出后容器stop）
+   4. exit 退出容器，Ctrl+C退出容器
+   5. 先ctrl+p后ctrl+q 退出容器伪终端不关闭容器
+   6. exit 或者ctrl+d 退出容器伪终端并关闭容器
+   7.
+    
+
+

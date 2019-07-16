@@ -3,7 +3,6 @@ server:
 spring:
   application:
     name: spring boot demo
-
 #-------系统监控工具相关,需要手动定制 在启动日志下可以看到很多端点 安全问题--------------------------#
 management:
   security:
@@ -28,3 +27,4 @@ endpoints:
 jasypt:
   encryptor:
     password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
+debug: true
