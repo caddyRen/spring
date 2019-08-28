@@ -17,7 +17,7 @@ public class DemoController {
     private final String PREFIX="pages/";
 
     @GetMapping("/")
-    public String index(){return PREFIX+"admin/admin";}
+    public String index(){return "welcome";}
     @GetMapping("/level1/{path}")
     public String level1(@PathVariable("path") String path){return PREFIX+"level1/"+path;}
     @GetMapping("/admin/{path}")

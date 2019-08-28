@@ -1,12 +1,17 @@
 package com.mumu.springcloud.demo.config.filters;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.mumu.springcloud.demo.config.interceptors.BodyReaderHttpServletRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 /**
  * @author renqiankun
@@ -28,11 +33,98 @@ public class TestFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info("过滤器 is running...");
-        chain.doFilter(request,response);
+        ServletRequest servletRequest=null;
+        if(request instanceof HttpServletRequest){
+            servletRequest=new BodyReaderHttpServletRequestWrapper((HttpServletRequest) request);
+        }
+        if(servletRequest==null){
+            chain.doFilter(request,response);
+        }else {
+            log.error(getRequestParameter((HttpServletRequest) request));
+            chain.doFilter(servletRequest,response);
+        }
+        //log.error(getRequestHeaders(httpServletRequest));
+//        chain.doFilter(request,response);
     }
 
     @Override
     public void destroy() {
         log.info("过滤器 destroy...");
+    }
+    /**
+     * 获取请求头
+     */
+    private String getRequestHeaders(HttpServletRequest request) {
+        Map<String, String> map = new HashMap<String, String>();
+        Enumeration headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String key = (String) headerNames.nextElement();
+            String value = request.getHeader(key);
+            map.put(key, value);
+        }
+        return objectToString(map);
+    }
+
+
+    /**
+     * 获取返回头
+     */
+    private String getResponseHeaders(HttpServletResponse response) {
+        Map<String, String> map = new HashMap<String, String>();
+        Collection<String> headerNames = response.getHeaderNames();
+        for (Iterator iter = headerNames.iterator(); iter.hasNext(); ) {
+            String key = (String) iter.next();
+            String value = response.getHeader(key);
+            map.put(key, value);
+        }
+        return objectToString(map);
+    }
+
+
+    /**
+     * 获取请求参数
+     */
+    private String getRequestParameter(HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Enumeration paramNames = request.getParameterNames();
+        while (paramNames.hasMoreElements()) {
+            String key = (String) paramNames.nextElement();
+            String value = request.getParameter(key);
+            map.put(key, value);
+        }
+        if(map.size()>0){
+
+            return objectToString(map);
+        }
+        else{
+            BufferedReader reader=null;
+            String wholeStr="";
+            try {
+                reader=new BufferedReader(new InputStreamReader(request.getInputStream()));
+                String string="";
+                //一行一行读取body体了里面的内容
+                while((string=reader.readLine())!=null){
+                    wholeStr+=string;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return wholeStr;
+            }
+
+        }
+    }
+
+    private String objectToString(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        return JSONObject.toJSONString(obj!=null?obj.toString():"");
     }
 }

@@ -1,6 +1,5 @@
 package com.mumu.springcloud.demo.config.interceptors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(testInterceptor()).addPathPatterns("/api/**");
+        registry.addInterceptor(testInterceptor()).addPathPatterns("/test/**");
         super.addInterceptors(registry);
     }
 

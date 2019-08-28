@@ -1,22 +1,26 @@
-#server:
-#  port: 9996
-#spring:
-#  datasource:
-#    druid: #阿里druid连接池驱动配置信息 http://127.0.0.1:9999/druid/sql.html
+server:
+  port: 9996
+spring:
+  datasource:
+    druid: #阿里druid连接池驱动配置信息 http://127.0.0.1:9999/druid/sql.html
 #      url: jdbc:mysql://localhost:3306/message?useUnicode=true&characterEncoding=utf8&useSSL=false
 #      username: root
 #      password: root
 #      driver-class-name: com.mysql.jdbc.Driver
-#      #连接池的配置信息
-#      initial-size: 10 #初始化大小
-#      min-idle: 10 #最小
-#      max-active: 100 #最大
-#      max-wait: 60000 #获取连接等待超时的时间
-#      time-between-eviction-runs-millis: 60000 #间隔多久进行检测需要关闭的空闲连接单位ms
-#      min-evictable-idle-time-millis: 300000 #一个连接在连接池中最小生存时间单位ms
-#      validation-query: SELECT 1 FROM DUAL
-#      test-while-idle: true
-#      test-on-borrow: false
-#      test-on-return: false
-#      pool-prepared-statements: true
-#      max-pool-prepared-statement-per-connection-size: 20
+      url: jdbc:oracle:thin:@//47.106.85.16:1621/orclpdb.168.1.212
+      username: xcjk
+      password: xcjkxcjkxcjk
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      #连接池的配置信息
+      initial-size: 10 #初始化大小
+      min-idle: 10 #最小
+      max-active: 100 #最大
+      max-wait: 60000 #获取连接等待超时的时间
+      time-between-eviction-runs-millis: 60000 #间隔多久进行检测需要关闭的空闲连接单位ms
+      min-evictable-idle-time-millis: 300000 #一个连接在连接池中最小生存时间单位ms
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20

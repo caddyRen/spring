@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MyServletRequestListerner implements ServletRequestListener {
     @Override
     public void requestDestroyed(ServletRequestEvent sre) {
-        HttpServletRequest request=(HttpServletRequest) sre.getServletRequest();
+//        HttpServletRequest request=(HttpServletRequest) sre.getServletRequest();
         //HttpServletResponse response=(HttpServletResponse) sre.getServletRequest();
         //System.err.println(request.getRequestURI());//
         //System.err.println(request.getRequestURL());//

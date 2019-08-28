@@ -13,21 +13,36 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>commons dependencies</description>
-    <dependencies>
 
+    <properties>
+        <jxl.version>2.6.12</jxl.version>
+        <orika.version>1.4.2</orika.version>
+    </properties>
+    <dependencies>
+        <!-- Bean cope-->
         <dependency>
             <groupId>ma.glasnost.orika</groupId>
             <artifactId>orika-core</artifactId>
-            <version>1.4.2</version><!-- or latest version -->
+            <version>${orika.version}</version><!-- or latest version -->
         </dependency>
-        <!--test-->
+        <!--操作excel文件-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>${jxl.version}</version>
+        </dependency>
+        <!--操作excel文件end--><!--apache-poi-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10-FINAL</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.10-FINAL</version>
         </dependency>
     </dependencies>
-
 
 
 </project>

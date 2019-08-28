@@ -22,7 +22,7 @@ public class TestFilterConfig {
         filterRegistrationBean.setFilter(testFilter);
         List<String> urlPatterns=new ArrayList<>();
         //过滤带特定字符的url
-        urlPatterns.add("/api/*");
+        urlPatterns.add("/test/*");
         filterRegistrationBean.setUrlPatterns(urlPatterns);
         filterRegistrationBean.setName("apiFilter");
         filterRegistrationBean.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);

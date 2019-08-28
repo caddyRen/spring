@@ -11,7 +11,8 @@ security: #开启服务注册认证机制
 #------开启配置文件密文显示------#
 jasypt:
   encryptor:
-    password: 2p62GjAru5IRZ8l9 #msgservice 使用
+    password: SGx2Bre4JveWKFPf #msgservice 使用
+#    password: 2p62GjAru5IRZ8l9 #msgservice 使用
 #------配置文件密文显示------#
 #eureka配置
 eureka:

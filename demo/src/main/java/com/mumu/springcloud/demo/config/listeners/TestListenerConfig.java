@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSessionListener;
  * @Date 2019-07-16 09:51
  * @Version 1.0
  **/
-@Configuration
+//@Configuration
 public class TestListenerConfig {
     @Bean("servletContextListenerRegistrationBean")
     public ServletListenerRegistrationBean<ServletContextListener> servletContextListenerRegistrationBean(){

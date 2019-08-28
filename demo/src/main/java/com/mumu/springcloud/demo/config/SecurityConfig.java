@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  **/
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+//public class SecurityConfig {
     /*
      *@Author caddyR
      *@Description //定义授权规则
@@ -91,7 +92,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.rememberMe();
         //允许自己的页面引用
         httpSecurity.headers().frameOptions().sameOrigin();
-
+        //解决post 403资源不可用问题error
+        httpSecurity.csrf().disable();
 
     }
     /*

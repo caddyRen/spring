@@ -3,55 +3,20 @@
 <head>
     <meta name="viewport"charset="UTF-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>登陆</title>
-    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
 <main>
     <form class="form" th:action="@{/login}" method="post">
-        <div class="form__cover"></div>
-        <div class="form__loader">
-            <div class="spinner active">
-                <svg class="spinner__circular" viewBox="25 25 50 50">
-                    <circle class="spinner__path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"></circle>
-                </svg>
-            </div>
+        <div align="center">
+            <form th:action="@{/userLogin}" method="post">
+                用户名：<input name="userName"/><br>
+                密  码：<input name="password"/><br>
+                <input type="submit" th:value="登陆">
+            </form>
         </div>
-        <div class="form__content">
-            <h1>Authorization</h1>
-            <div class="styled-input">
-                <input type="text" class="styled-input__input" name="userName">
-                <div class="styled-input__placeholder">
-                    <span class="styled-input__placeholder-text">女王大人</span>
-                </div>
-                <div class="styled-input__circle"></div>
-            </div><div class="styled-input">
-            <input type="password" class="styled-input__input" name="password">
-            <div class="styled-input__placeholder">
-                <span class="styled-input__placeholder-text">口令</span>
-            </div>
-            <div class="styled-input__circle"></div>
-        </div>
-            <button type="submit" class="styled-button">
-                    <span class="styled-button__real-text-holder">
-                        <span class="styled-button__real-text">登陆</span>
-                        <span class="styled-button__moving-block face">
-                            <span class="styled-button__text-holder">
-                                <span class="styled-button__text">登陆</span>
-                            </span>
-                        </span><span class="styled-button__moving-block back">
-                            <span class="styled-button__text-holder">
-                                <span class="styled-button__text">登陆</span>
-                            </span>
-                        </span>
-                    </span>
-            </button>
-        </div>
-
     </form>
 </main>
-
-<script  src="js/login.js"></script>
 
 </body>
 </html>

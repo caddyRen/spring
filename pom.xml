@@ -26,6 +26,7 @@
         <module>config-server</module>
         <module>config-client</module>
         <module>provider</module>
+        <module>zuul</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -33,11 +34,16 @@
     </modules>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
         <springfox.version>2.9.2</springfox.version>
         <projectlombok.version>1.16.10</projectlombok.version>
-        <fastjson.version>1.2.56</fastjson.version>
+        <fastjson.version>1.2.58</fastjson.version>
         <gson.version>2.8.5</gson.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
         <mysql.version>5.1.47</mysql.version>
         <mybatis.version>1.3.3</mybatis.version>
         <mapper.version>4.0.2</mapper.version>
@@ -50,13 +56,24 @@
     </properties>
 
     <dependencies>
-        <!--lombok 省略getter setter-->
+        <!--web组件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--StringUtils工具集-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <!--lombok 简化实体类-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${projectlombok.version}</version>
         </dependency>
-        <!--Swagger-->
+        <!--Swagger ui-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -80,24 +97,32 @@
         </dependency>
         <!--json-->
 
-        <!--配置文件加密  -start- -->
+        <!--配置文件密文参考EurekaServerApplicationTests  -start- -->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${jasypt.version}</version>
         </dependency>
         <!--配置文件加密 -end- -->
+
         <!--引入spring security相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
+        <!--引入单元测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--spring boot 热部署不需要重启就能更新target内文件 class和html都可以，方便开发 jdk1.9版本后会报错-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
     <!-- 环境配置 -->
     <profiles>
@@ -133,66 +158,74 @@
         </profile>
     </profiles>
     <!--打包-->
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.gzkit.service.PushServiceApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArgs>
+                        <arg>-XDignore.symbol.file</arg>
+                    </compilerArgs>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
             </plugin>
         </plugins>
-        <!--build/package时将包内xml添加到target内   start-->
-        <!--<resources>-->
-            <!--<resource>-->
-                <!--<directory>src/main/java</directory>-->
-                <!--<includes>-->
-                    <!--<include>**/*.xml</include>-->
-                <!--</includes>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<includes>-->
-                    <!--<include>**/*.xml</include>-->
-                <!--</includes>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-            <!--<resource>-->
-                <!--<directory>src/main/resources</directory>-->
-                <!--<includes>-->
-                    <!--<include>application-${profileActive}.yml</include>-->
-                    <!--<include>application.yml</include>-->
-                    <!--<include>*</include>-->
-                <!--</includes>-->
-                <!--<filtering>true</filtering>-->
-            <!--</resource>-->
-        <!--</resources>-->
-    <!--build/package时将包内xml添加到target内   end-->
-    </build>
 
-        <!--<build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <compilerArgs>
-                            <arg>-XDignore.symbol.file</arg>
-                        </compilerArgs>
-                        <fork>true</fork>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <configuration>
-                        <delimiters>
-                            <delimiter>@</delimiter>
-                        </delimiters>
-                        <useDefaultDelimiters>false</useDefaultDelimiters>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>-->
+        <!--build/package时将包内xml添加到target内   start-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application-${profileActive}.yml</include>
+                    <include>application.yml</include>
+                    <include>*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--build/package时将包内xml添加到target内   end-->
+    </build>
 </project>

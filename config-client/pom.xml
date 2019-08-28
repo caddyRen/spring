@@ -21,6 +21,7 @@
         <pagehelper.version>1.2.5</pagehelper.version>
         <druid.version>1.1.6</druid.version>
         <ojdbc14.version>10.2.0.5.0</ojdbc14.version>
+        <ojdbc7.version>12.1.0.2</ojdbc7.version>
     </properties>
 
     <dependencies>
@@ -46,13 +47,24 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <!--mysql mybatis-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.version}</version>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>${ojdbc14.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc7</artifactId>-->
+            <!--<version>${ojdbc7.version}</version>-->
+        <!--</dependency>-->
+        <!--mysql mybatis-->
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>${mysql.version}</version>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -76,19 +88,10 @@
         </dependency>
         <!--mysql mybatis-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc14</artifactId>-->
-            <!--<version>${ojdbc14.version}</version>-->
-        <!--</dependency>-->
+
     </dependencies>
 
     <dependencyManagement>
@@ -109,6 +112,39 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.mumu.springcloud.configclient.ConfigClientApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <compilerArgs>
+                        <arg>-XDignore.symbol.file</arg>
+                    </compilerArgs>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -120,21 +156,52 @@
                     <verbose>true</verbose>
                 </configuration>
                 <dependencies>
+                    <!--<dependency>-->
+                        <!--<groupId>mysql</groupId>-->
+                        <!--<artifactId>mysql-connector-java</artifactId>-->
+                        <!--<version>5.1.4</version>-->
+                    <!--</dependency>-->
                     <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.4</version>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc14</artifactId>
+                        <version>${ojdbc14.version}</version>
+                        <scope>runtime</scope>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
                         <artifactId>mapper</artifactId>
-                        <version>3.4.4</version>
+                        <version>${mapper.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
         </plugins>
 
+        <!--build/package时将包内xml添加到target内   start-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application-${profileActive}.yml</include>
+                    <include>application.yml</include>
+                    <include>*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--build/package时将包内xml添加到target内   end-->
     </build>
-
-
 </project>

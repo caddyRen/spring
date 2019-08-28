@@ -27,6 +27,8 @@
 
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 
-        <table tableName="t_log_basics" domainObjectName="XWPostSMSBody" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="T_UF_APP_SCORE" domainObjectName="TUFAppScore" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="T_UF_APP_EVALUATION" domainObjectName="TUFAppEvaluation" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="T_UF_USER" domainObjectName="TUFUser" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

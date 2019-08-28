@@ -23,9 +23,6 @@ public class EurekaServerApplicationTests {
      * jasypt:
             encryptor:
                   password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
-
-
-
      *@Date 2019-03-18 17:19
      *@Param []
      *@return void
@@ -38,7 +35,11 @@ public class EurekaServerApplicationTests {
 //        String result=stringEncryptor.encrypt("root");
 //        String result=stringEncryptor.encrypt("root");
         System.err.println(result);
-        System.err.println(stringEncryptor.decrypt("azPzr/f9LSM+a8eQo37Rpou5n4+9Hjck"));
+        //System.err.println(stringEncryptor.decrypt("azPzr/f9LSM+a8eQo37Rpou5n4+9Hjck"));
+        System.err.println("-------------------------------------------------------------------");
+        System.err.println(stringEncryptor.decrypt("LwDq7cVAjj23B7QnBhICXw=="));
+        System.err.println(stringEncryptor.decrypt("6/KHq+EMolIWnE0JJV+LjYm24D4ie8lu"));
+        System.err.println(stringEncryptor.decrypt("yfuirQOwkBtgvXSlD3L5RhshOLO1CDzagqjrdHh3Hk5II0d5d48PyZwNjIusQFTaJvaxQRn28KVOpLcIGbNnpg=="));
         //解密
         //System.err.println(stringEncryptor.decrypt("4DFtps/COWEQB49PoqKefA9iNmEVlaRc2OGfD1RKWDRd/hy/7GPpqQmcnPbpXij3lsUK3gAYOFIeWc/wLoCN04op7T5Ppv3H+/hfmGfcq5rDBNGLCc0qnil82ouliTHI"));
     }

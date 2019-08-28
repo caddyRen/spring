@@ -28,3 +28,11 @@ jasypt:
   encryptor:
     password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
 debug: true
+# swagger配置参数
+swagger:
+  enable: true
+  base-package: com.mumu.springcloud.demo
+  path-regex: /error.*
+  title: demo Service API
+  description: demo springboot
+  version: 1.0.0

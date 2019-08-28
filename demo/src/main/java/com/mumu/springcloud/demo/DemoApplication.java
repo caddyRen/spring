@@ -1,7 +1,9 @@
 package com.mumu.springcloud.demo;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 
 /**
  * @ClassName DemoApplication
@@ -13,6 +15,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class,args);
+        SpringApplicationBuilder builder=new SpringApplicationBuilder(DemoApplication.class);
+        builder.bannerMode(Banner.Mode.OFF).run(args);
+//        FilterRegistrationBean test=SpringUtil.getBean(FilterRegistrationBean.class);
+//        int i=0;
     }
 }
