@@ -5,9 +5,11 @@ import com.mumu.springcloud.demo.service.demo.Company;
 import com.mumu.springcloud.demo.service.demo.DefaultResultBean;
 import com.mumu.springcloud.demo.service.demo.Person;
 import com.mumu.springcloud.demo.service.demo.StatusCodeEnum;
+import com.mumu.springcloud.demo.service.demo.aop.aspect.DemoAnnotation;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("test")
 public class TestController {
 
+    @DemoAnnotation
     @RequestMapping(value = "getToken", method = RequestMethod.POST)
     public String getToken(HttpServletRequest request, HttpServletResponse response,
      @RequestParam() String ciphertext
@@ -46,7 +49,8 @@ public class TestController {
     @PostMapping(value = "/createMessage",
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public DefaultResultBean<String> DefaultCreateMessage(@RequestBody Company messageVo) {
+    @DemoAnnotation
+    public DefaultResultBean<String> DefaultCreateMessage(HttpServletRequest request,HttpServletResponse response,@RequestBody Company messageVo) {
         Person person=Person.builder()
                 .name("qiankun")
                 .age(25)
@@ -56,6 +60,7 @@ public class TestController {
         bean.setCode(StatusCodeEnum.SUCCESS.getCode());
         bean.setMsg("推送任务已提交, 消息会在稍候发送至内网或极光完成推送");
         bean.setData(person.toString());
+        System.err.println(1);
         return bean;
     }
 }

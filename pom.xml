@@ -56,6 +56,11 @@
     </properties>
 
     <dependencies>
+        <!--aop-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

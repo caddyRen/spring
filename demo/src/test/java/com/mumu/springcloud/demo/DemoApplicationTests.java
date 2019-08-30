@@ -4,12 +4,20 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.mumu.springcloud.demo.service.demo.Company;
 import com.mumu.springcloud.demo.service.demo.Person;
+import com.mumu.springcloud.demo.service.demo.aop.service.IUserServ;
+import com.mumu.springcloud.demo.service.demo.aop.service.impl.UserServiceImpl;
+import com.mumu.springcloud.demo.service.demo.aop.service.peoxyClass.ProxyFactory;
+import com.mumu.springcloud.demo.service.demo.aop.service.peoxyClass.ProxyFactory2;
+import com.mumu.springcloud.demo.service.demo.aop.service.proxyimpl.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.awt.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +33,55 @@ import java.util.Map;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
+
+
+
+
+
+    UserServiceImpl userService=new UserServiceImpl();
+    @Test
+    public void testDynamicProxy(){
+        IUserServ proxy=(IUserServ) Proxy.newProxyInstance(
+                userService.getClass().getClassLoader(),
+                userService.getClass().getInterfaces(),
+                new InvocationHandler() {
+                    @Override
+                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                        Object invoke=method.invoke(userService,args);
+                        return null;
+                    }
+                }
+        );
+        proxy.save();
+
+    }
+
+    @Test
+    public void testCglib(){
+        UserServiceImpl userService=new UserServiceImpl();
+
+        UserServiceImpl proxy=(UserServiceImpl)new ProxyFactory(userService).getProxyInstance();
+
+        proxy.save();
+    }
+
+    @Test
+    public void testCglib2(){
+        UserServiceImpl userService=new UserServiceImpl();
+
+        UserServiceImpl proxy=(UserServiceImpl)new ProxyFactory2(userService).getProxyInstance();
+
+        proxy.save();
+    }
+
+    @Test
+    public void testStaticProxy(){
+        UserServiceImpl userService=new UserServiceImpl();
+        UserServiceProxy userServiceProxy=new UserServiceProxy(userService);
+        userServiceProxy.save();
+    }
+
+
     @Test
     public void testJSON(){
         List<String> list=new ArrayList<>();
