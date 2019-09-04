@@ -9,6 +9,7 @@ import com.mumu.springcloud.demo.service.demo.aop.aspect.DemoAnnotation;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  **/
 @RestController
 @RequestMapping("test")
+@Slf4j
 public class TestController {
 
     @DemoAnnotation

@@ -25,6 +25,10 @@
         <skipTests>true</skipTests>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>com.mumu.springcloud</groupId>
+            <artifactId>basic-dependence</artifactId>
+        </dependency>
         <!--引入spring security相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,36 +91,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <!--build/package时将包内xml添加到target内   start-->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>application-${profileActive}.yml</include>
-                    <include>application.yml</include>
-                    <include>*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
-        <!--build/package时将包内xml添加到target内   end-->
     </build>
 </project>

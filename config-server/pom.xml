@@ -18,6 +18,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.mumu.springcloud</groupId>
+            <artifactId>basic-dependence</artifactId>
+        </dependency>
         <!--web组件-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -32,35 +36,12 @@
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <build>
         <finalName>config-server</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.mumu.springcloud.configserver.ConfigServerApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

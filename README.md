@@ -19,3 +19,15 @@
 - eureka server port：8761，8762
 - config server port：9999
 
+#maven架构
+- all：全部都可以引用
+  - parent: pom统一管理jar版本和模块版本
+  - basic-dependence: 包含所有模块所需的jar包
+  - commons: 模块包含所有可共用工具类
+- most：大部分都可以引用
+  - mysql-dependence: mysql相关jar
+  - redis-dependence: redis相关jar
+  - rabbitmq-dependence: rabbitMQ相关jar
+  - spring-cloud-dependence：spring-cloud相关jar
+
+

@@ -25,6 +25,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.mumu.springcloud</groupId>
+            <artifactId>basic-dependence</artifactId>
+        </dependency>
         <!--web组件-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
