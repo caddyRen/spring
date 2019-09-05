@@ -35,7 +35,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <!--<scope>test</scope>-->
         </dependency>
         <!--spring-boot-starter end-->
         <!--aop-->
@@ -50,7 +49,6 @@
             <artifactId>lombok</artifactId>
             <version>${projectlombok.version}</version>
         </dependency>
-
 
         <!--配置文件密文参考EurekaServerApplicationTests  -start- -->
         <dependency>
