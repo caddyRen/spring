@@ -13,21 +13,20 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <!--<properties>-->
-        <!--<spring-cloud.version>Edgware.SR5</spring-cloud.version>-->
-    <!--</properties>-->
-
     <dependencies>
         <dependency>
             <groupId>com.mumu.springcloud</groupId>
-            <artifactId>basic-dependence</artifactId>
+            <artifactId>spring-depency</artifactId>
+            <type>pom</type>
         </dependency>
-
         <dependency>
-            <groupId>com.mumu.springcloud</groupId>
-            <artifactId>spring-cloud-dependence</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -36,16 +35,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.mumu.springcloud.eurekaserver.EurekaServerApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,34 +60,6 @@
                 </configuration>
             </plugin>
         </plugins>
-
-        <!--build/package时将包内xml添加到target内   start-->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>application-${profileActive}.yml</include>
-                    <include>application.yml</include>
-                    <include>*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <!--build/package时将包内xml添加到target内   end-->
     </build>
     
 </project>

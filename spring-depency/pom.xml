@@ -50,17 +50,7 @@
             <artifactId>lombok</artifactId>
             <version>${projectlombok.version}</version>
         </dependency>
-        <!--Swagger ui-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
-        </dependency>
+
 
         <!--配置文件密文参考EurekaServerApplicationTests  -start- -->
         <dependency>
@@ -127,6 +117,6 @@
     </dependencies>
 
     <build>
-        <finalName>basic</finalName>
+        <finalName>spring-depency</finalName>
     </build>
 </project>

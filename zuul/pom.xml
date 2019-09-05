@@ -20,7 +20,8 @@
     <dependencies>
         <dependency>
             <groupId>com.mumu.springcloud</groupId>
-            <artifactId>basic-dependence</artifactId>
+            <artifactId>spring-depency</artifactId>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
