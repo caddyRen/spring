@@ -29,6 +29,7 @@
         <module>zuul</module>
         <module>spring-depency</module>
         <module>database-depency</module>
+        <module>ymldata</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -200,8 +201,25 @@
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
+                <includes>
+                    <include>**/application.yml</include>
+                    <include>**/application.yaml</include>
+                    <include>**/application.properties</include>
+                    <include>**/application-${profileActive}.yml</include>
+                    <include>**/application-${profileActive}.yaml</include>
+                    <include>**/application-${profileActive}.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>**/application*.yml</exclude>
+                    <exclude>**/application*.yaml</exclude>
+                    <exclude>**/application*.properties</exclude>
+                </excludes>
             </resource>
         </resources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -223,7 +241,7 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <encoding>UTF-8</encoding>
-<!--                        <skipTests>true</skipTests>-->
+    <!--                        <skipTests>true</skipTests>-->
                         <compilerArgs>
                             <arg>-XDignore.symbol.file</arg>
                         </compilerArgs>

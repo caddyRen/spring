@@ -1,0 +1,20 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: spring boot ymldata
+  profiles:
+    active: @profileActive@
+#jasypt:
+#  encryptor:
+#    password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
+debug: true
+# swagger配置参数
+swagger:
+  enable: true
+  base-package: com.mumu.springcloud.ymldata
+  path-regex: /error.*
+  title: ymldata Service API
+  description: ymldata springboot
+  version: 1.0.0

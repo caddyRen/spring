@@ -141,66 +141,7 @@
     5. ping www.badu.com 测试
 2. vi编辑方式类似是vim
     1. 如异常退出编辑,会有临时文件在内存中，直接找到文件(一般都是.开头的隐藏文件) rm -rf xxx.swp
-3. 安装docker
-    1. yum install -y yum-utils device-mapper-persistent-data lvm2 安装需要的软件包
-    2. yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo  设置源
-    3. yum list docker-ce --showduplicates | sort -r 查看仓库里的docker
-    4. yum install docker-ce  #由于repo中默认只开启stable仓库，故这里安装的是最新稳定版\
-       yum install <FQPN>  # 选择版本安装：sudo yum install docker-ce-17.12.0.ce
-    5. systemctl start docker 启动
-    6. systemctl enable docker 开机启动,可以不设置
-4. 镜像加速
-	/etc/docker/daemon.json
-	```json
-	{
-	 "registry-mirrors":["https://rjm3pmfv.mirror.aliyuncs.com"]
-	}
-	```
-	重启docker
-	```linux
-	systemctl stop docker
-	systemctl start docker	
-	```
-5. docker pull java:8-alpine 下载镜像
-6. (Dockerfile,jar包,start.sh在同一级目录)
-   1. start.sh
-      ```jshelllanguage
-        #!/bin/bash
-        java $CMDVAR -jar ./jgpush-service-1.0-SNAPSHOT.jar
-      ```
-   1. Dockerfile  有待完善
-      ```Dockerfile
-      FROM java:8-alpine
-       
-      WORKDIR /home/apps/
-      ADD target/jgpush-service.jar .
-      ADD start.sh .
-      EXPOSE 8888
-      ENTRYPOINT ["sh", "/home/apps/start.sh"]
-      ```
-   2. build镜像命令
-      ```
-       docker build -t imagename:imagetag .
-      ```
-   3. save 迁移镜像 
-      ```
-      docker save imageID | gzip > filename.tar.gz
-      docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
-      docker load -i filename.tar.gz
-      ```
-   4. docker ps -a 查看所有容器（运行or停止）
-   5. docker stop containerID 关闭容器
-   6. docker rm -f containerID 删除容器 -f表示强制，能删除在运行的容器
-   7. docker rmi -f imageID 删除镜像 -f 表示强制，能删除有正在运行容器的镜像，否则需要先停容器
-   8. docker tag hello hello:1.0 修改tag
-   9. docker ps | grep hello 查看指定进程
-   1. docker images | grep hello 查看指定镜像
-   2. docker exec -it containerID /bin/bash 进入正在运行的容器（退出后容器不会停止）
-   3. docker attach containerID 进入正在运行的容器（退出后容器stop）
-   4. exit 退出容器，Ctrl+C退出容器
-   5. 先ctrl+p后ctrl+q 退出容器伪终端不关闭容器
-   6. exit 或者ctrl+d 退出容器伪终端并关闭容器
-   7.
+
     
 
 

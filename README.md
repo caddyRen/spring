@@ -6,7 +6,7 @@
 #spring cloud Sleuth 日志收集工具包，封装Dapper和log-based追踪以及Zipkin和HTrace操作，分布式追踪解决方案
 #spring cloud Stream Spring 数据流操作开发包，封装了Redis，Rabbit Kafka等发送接收消息
 #spring cloud OAuth2 基于Spring Security 和OAuth2的安全工具包，提供安全控制
-#spring cloud Zuul网关，所有的客户端请求通过网关访问后台服务，可以使用一定的路由配置来判断某一个URL由哪个服务来处理，并从Eureka获取注册的服务来转发请求
+##spring cloud Zuul网关，不维护了，所有的客户端请求通过网关访问后台服务，可以使用一定的路由配置来判断某一个URL由哪个服务来处理，并从Eureka获取注册的服务来转发请求
 #spring cloud Ribbon 负载均衡
 #spring cloud Feign 服务客户端，服务间访问
 #spring cloud Hystrix 监控和断路器，
