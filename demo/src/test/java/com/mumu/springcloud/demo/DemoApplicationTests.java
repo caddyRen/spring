@@ -2,6 +2,9 @@ package com.mumu.springcloud.demo;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.mumu.springcloud.demo.config.cyclicdpns.StudentA;
+import com.mumu.springcloud.demo.config.cyclicdpns.StudentB;
+import com.mumu.springcloud.demo.config.cyclicdpns.StudentC;
 import com.mumu.springcloud.demo.service.demo.Company;
 import com.mumu.springcloud.demo.service.demo.Person;
 import com.mumu.springcloud.demo.service.demo.aop.service.IUserServ;
@@ -11,7 +14,10 @@ import com.mumu.springcloud.demo.service.demo.aop.service.peoxyClass.ProxyFactor
 import com.mumu.springcloud.demo.service.demo.aop.service.proxyimpl.UserServiceProxy;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.awt.*;
@@ -34,9 +40,32 @@ import java.util.Map;
 @SpringBootTest
 public class DemoApplicationTests {
 
+    @Bean
+    private StudentA getA(){
+        return new StudentA();
+    }
+    @Bean
+    private StudentB getB(){
+        return new StudentB();
+    }
+    @Bean
+    private StudentC getC(){
+        return new StudentC();
+    }
 
+    @Autowired
+    ApplicationContext context;
 
+    @Test
+    public void testCyclicdpns(){
+        StudentA studentA=context.getBean(StudentA.class);
+        studentA.print();
+        StudentB studentB=context.getBean(StudentB.class);
+        studentB.print();
+        StudentC studentC=context.getBean(StudentC.class);
+        studentC.print();
 
+    }
 
     UserServiceImpl userService=new UserServiceImpl();
     @Test
