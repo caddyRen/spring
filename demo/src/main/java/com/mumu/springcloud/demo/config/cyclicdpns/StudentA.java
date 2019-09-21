@@ -1,7 +1,6 @@
 package com.mumu.springcloud.demo.config.cyclicdpns;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * @ClassName StudentA

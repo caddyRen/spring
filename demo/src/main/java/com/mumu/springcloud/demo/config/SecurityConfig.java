@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          **/
         httpSecurity.authorizeRequests().antMatchers("/").permitAll()
                 .antMatchers("/level1/**").hasRole("vip1")
-                .antMatchers("/manage/**").hasRole("admin");
+                .antMatchers("/level2/**").hasRole("vip2")
+                .antMatchers("/manage/**","/admin/**").hasRole("admin");
         /*
          *@Author caddyR
          *@Description 开启自动配置的登陆功能，效果如果没有登陆，没有权限就会来到登陆页面
@@ -109,7 +110,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("mumu").password("0613").roles("admin","vip1")
                 .and()
-                .withUser("caddy").password("123").roles("admin");
+                .withUser("administrator").password("000000").roles("admin")
+                .and()
+                .withUser("renqiankun").password("000000").roles("vip1")
+                .and()
+                .withUser("caddy").password("000000").roles("vip2");
 //        super.configure(auth);
     }
 }

@@ -22,15 +22,23 @@
 <div sec:authorize="hasRole('admin')">
     <h3>admin</h3>
     <ul>
-        <li><a th:href="@{/admin/admin}">admin的链接</a></li>
+        <li><a th:href="@{/admin/admin}">提单</a></li>
     </ul>
 </div>
 <div  sec:authorize="hasRole('vip1')">
     <h3>level1</h3>
     <ul>
-        <li><a th:href="@{/level1/1}">level1-1的链接</a></li>
-        <li><a th:href="@{/level1/2}">level1-2的链接</a></li>
-        <li><a th:href="@{/level1/3}">level1-3的链接</a></li>
+        <li><a th:href="@{/level1/1}">审批1</a></li>
+        <!--<li><a th:href="@{/level1/2}">level1-2的链接</a></li>-->
+        <!--<li><a th:href="@{/level1/3}">level1-3的链接</a></li>-->
+    </ul>
+</div>
+<div  sec:authorize="hasRole('vip2')">
+    <h3>level2</h3>
+    <ul>
+        <!--<li><a th:href="@{/level1/1}">level1-1的链接</a></li>-->
+        <li><a th:href="@{/level2/2}">审批2</a></li>
+        <!--<li><a th:href="@{/level1/3}">level1-3的链接</a></li>-->
     </ul>
 </div>
 </body>

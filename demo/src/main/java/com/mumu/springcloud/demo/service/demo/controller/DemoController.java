@@ -1,8 +1,11 @@
 package com.mumu.springcloud.demo.service.demo.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName DemoController
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Version 1.0
  **/
 @Controller
+@Slf4j
 public class DemoController {
 
     private final String PREFIX="pages/";
@@ -20,8 +24,14 @@ public class DemoController {
     public String index(){return "welcome";}
     @GetMapping("/level1/{path}")
     public String level1(@PathVariable("path") String path){return PREFIX+"level1/"+path;}
+    @GetMapping("/level2/{path}")
+    public String level2(@PathVariable("path") String path){return PREFIX+"level1/"+path;}
+
     @GetMapping("/admin/{path}")
     public String admin(@PathVariable("path") String path){return PREFIX+"admin/"+path;}
     @GetMapping("/userlogin")
     public String login(){return PREFIX+"login";}
+
+
+
 }

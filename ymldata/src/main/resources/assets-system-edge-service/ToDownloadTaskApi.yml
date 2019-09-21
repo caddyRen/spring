@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.edge.biandian.todownloadtask.api.ToDownloadTaskApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.assets_system_edge_service.ToDownloadTaskApi.ToDownloadTaskApiIntf"
+basePath: "/api/v1/biandian"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /getToDownloadTask:
+    post:
+      summary: "获取待下载任务接口"
+      description: "获取作业负责人或者作业成员（包含输入参数中的人员）的工作任务，且工作任务为待执行或者已下载状态(且必须含有作业表单)"
+      operationId: "getToDownloadTask"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "query"
+        required: true
+        schema:
+          $ref: "#/definitions/CommonQuery"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+definitions:
+  CommonQuery:
+    type: "object"
+    properties:
+      account:
+        type: "string"
+        description: "用户账号"
+      password:
+        type: "string"
+        description: "用户密码（Base64 加密）"
+      format:
+        type: "string"
+        description: "正文格式"
+      content:
+        type: "string"
+        description: "终端请求的正文参数字符串，以XML格式呈现（Bae64编码）"
+    x-java-class: "com.gzkit.service.edge.biandian.common.vo.CommonQuery"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"

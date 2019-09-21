@@ -1,0 +1,63 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.edge.jijian.projectpricebillcount.api.ProjectPriceBillCountApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.assets_system_edge_service.ProjectPriceBillCountApi.ProjectPriceBillCountApiIntf"
+basePath: "/api/v1/jijian"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /getProjectPricedBillCount:
+    post:
+      summary: "查询配网工程量清单总数接口"
+      description: "通过项目编码,获取配网查询配网工程量清单总数"
+      operationId: "getProjectPricedBillCount"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "query"
+        required: true
+        schema:
+          $ref: "#/definitions/ProjectPriceBillCountQueryVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+definitions:
+  ProjectPriceBillCountQueryVO:
+    type: "object"
+    properties:
+      projectCode:
+        type: "string"
+        description: "功能位置ID"
+      modifyDate:
+        type: "string"
+        description: "修改时间,格式:yyyy-mm-dd"
+      pageNo:
+        type: "integer"
+        format: "int32"
+        description: "页码，默认1"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页记录数，默认20"
+    x-java-class: "com.gzkit.service.edge.jijian.projectpricebillcount.vo.ProjectPriceBillCountQueryVO"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"

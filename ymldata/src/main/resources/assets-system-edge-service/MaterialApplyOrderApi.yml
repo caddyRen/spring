@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.edge.wlb.order.materialapply.api.MaterialApplyOrderApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.assets_system_edge_service.MaterialApplyOrderApi.MaterialApplyOrderApiIntf"
+basePath: "/api/v1/wlb"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /createMaterialApplyOrder:
+    post:
+      summary: "生成物资系统领料申请接口"
+      description: "物流宝将拣货清单按照仓库发送至物资系统，生成物资系统领料申请"
+      operationId: "createMaterialApplyOrder"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "materialApplyOrderVO"
+        required: true
+        schema:
+          $ref: "#/definitions/MaterialApplyOrderVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+definitions:
+  MaterialApplyOrderItemVO:
+    type: "object"
+    properties:
+      relationItemId:
+        type: "string"
+        description: "领料单明细id"
+      batchId:
+        type: "string"
+        description: "实时库存id"
+      materialId:
+        type: "string"
+        description: "物资品类编码"
+      spec:
+        type: "string"
+        description: "规格型号"
+      reqIssueQty:
+        type: "string"
+        description: "领用数量"
+      warehouseWorkerId:
+        type: "string"
+        description: "仓管员id"
+      unitPrice:
+        type: "string"
+        description: "价格"
+      tax:
+        type: "string"
+        description: "税金"
+      vendorId:
+        type: "string"
+        description: "供应商id"
+    x-java-class: "com.gzkit.service.edge.wlb.order.materialapply.vo.MaterialApplyOrderItemVO"
+  MaterialApplyOrderVO:
+    type: "object"
+    properties:
+      relationBillId:
+        type: "string"
+        description: "领料单id"
+      billType:
+        type: "string"
+        description: "业务类型(1 应急抢修领料，2储备物资仓库领料（对应物流宝的现场到货）3，非储备物资仓库领料（对应物流宝的现场到货）)"
+      projectId:
+        type: "string"
+        description: "项目id"
+      subprojectId:
+        type: "string"
+        description: "单项工程id"
+      issueReason:
+        type: "string"
+        description: "领用原因"
+      creatorId:
+        type: "string"
+        description: "制单人id"
+      warehouseId:
+        type: "string"
+        description: "仓库id"
+      dataArea:
+        type: "string"
+        description: "数据区域"
+      remark:
+        type: "string"
+        description: "备注"
+      receiverId:
+        type: "string"
+        description: "领料申请人id"
+      constructUnit:
+        type: "string"
+        description: "施工单位"
+      issuePlaceId:
+        type: "string"
+        description: "存放地点id"
+      isInstallCost:
+        type: "string"
+        description: "是否有安装费(1表示有，2表示无)"
+      planissueDate:
+        type: "string"
+        description: "计划领料时间"
+      isEmergency:
+        type: "string"
+        description: "是否紧急(1表示紧急,2表示非紧急)"
+      subItemList:
+        type: "array"
+        items:
+          $ref: "#/definitions/MaterialApplyOrderItemVO"
+    x-java-class: "com.gzkit.service.edge.wlb.order.materialapply.vo.MaterialApplyOrderVO"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"

@@ -1,11 +1,14 @@
 server:
   port: 7777
-
 spring:
   application:
     name: spring boot ymldata
   profiles:
     active: @profileActive@
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 #jasypt:
 #  encryptor:
 #    password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
@@ -18,3 +21,8 @@ swagger:
   title: ymldata Service API
   description: ymldata springboot
   version: 1.0.0
+#接口yml文件名
+kpi: assets-system-edge-service,property-ledger-service
+assets-system-edge-service: AcceptanceOrderApi.yml,AgreementStockApi.yml,CurrentTeamUserInfoApi.yml,EmergencyDemandOrderApi.yml,EquipmentLedgerApi.yml,FormBaseDataApi.yml,FrameworkMaterialApi.yml,MaterialApplyOrderApi.yml,MovementOrderApi.yml,NotDispatchingPlanCountApi.yml,NotDispatchPlanApi.yml,NotDispatchPlanListApi.yml,PeiWangTaskApi.yml,PersonalTaskCountApi.yml,ProjectInfoApi.yml,ProjectInfoCountApi.yml,ProjectPriceBillApi.yml,ProjectPriceBillCountApi.yml,SafetyActivityApi.yml,ShipmentOrderApi.yml,ToDownloadTaskApi.yml,TransferBackOrderApi.yml
+property-ledger-service: CompleteLedgerApi.yml,OfficeSpaceApi.yml,PropertyApi.yml,RevolvingRoomApi.yml,SubstationApi.yml
+

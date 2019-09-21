@@ -1,0 +1,343 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.ledger.completeledger.api.CompleteLedgerApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.property_ledger_service.CompleteLedgerApi.CompleteLedgerApiIntf"
+basePath: "/api/completeledger"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /v1/add:
+    post:
+      summary: "新增厂办企业台账、集体企业、租赁物业台账"
+      operationId: "add"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "completeLedgerVO"
+        required: true
+        schema:
+          $ref: "#/definitions/CompleteLedgerVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBeanCompleteLedgerVO"
+  /v1/delete/{id}:
+    delete:
+      summary: "删除厂办企业台账、集体企业、租赁物业台账"
+      operationId: "deleteById"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+  /v1/getByPage:
+    post:
+      summary: "分页查询厂办企业台账、集体企业、租赁物业台账接口"
+      description: "分页查询厂办企业台账、集体企业、租赁物业台账"
+      operationId: "getByPage"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "pageQuery"
+        required: true
+        schema:
+          $ref: "#/definitions/分页查询参数CompleteLedgerQuery"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+  /v1/detail/{id}:
+    get:
+      summary: "厂办企业台账、集体企业台账、租赁物业详情"
+      operationId: "getDetailById"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBeanCompleteLedgerVO"
+  /v1/update:
+    put:
+      summary: "修改厂办企业台账、集体企业、租赁物业台账"
+      operationId: "update"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "completeLedgerVO"
+        required: true
+        schema:
+          $ref: "#/definitions/CompleteLedgerVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBeanCompleteLedgerVO"
+definitions:
+  CompleteLedgerVO:
+    type: "object"
+    properties:
+      ldId:
+        type: "string"
+        description: "主键id"
+      ldName:
+        type: "string"
+        description: "名称"
+      ldRegion:
+        type: "string"
+        description: "地区"
+      ldNoarea:
+        type: "string"
+        description: "面积"
+      ldNumber:
+        type: "string"
+        description: "编号"
+      ldLongitude:
+        type: "number"
+        format: "double"
+        description: "经度"
+      ldLatitude:
+        type: "number"
+        format: "double"
+        description: "纬度"
+      ldNouse:
+        type: "string"
+        description: "用途"
+      ldBuildingfloor:
+        type: "string"
+        description: "楼层"
+      ldAddress:
+        type: "string"
+        description: "地址"
+      ldUseunit:
+        type: "string"
+        description: "使用单位"
+      ldWarrant:
+        type: "string"
+        description: "权证"
+      ldStatus:
+        type: "string"
+        description: "状态"
+      ldLandnumber:
+        type: "string"
+        description: "土地编号"
+      ldPowernumber:
+        type: "string"
+        description: "用电户口"
+      ldBuildingsource:
+        type: "string"
+        description: "建筑来源"
+      ldBuildingstructure:
+        type: "string"
+        description: "建筑结构"
+      ldCompletiondate:
+        type: "string"
+        format: "date-time"
+        description: "竣工日期"
+      ldDateissue:
+        type: "string"
+        format: "date-time"
+        description: "发证日期"
+      ldCertificatenumber:
+        type: "string"
+        description: "证号"
+      ldPersoncharge:
+        type: "string"
+        description: "权属人"
+      ldConstructionunit:
+        type: "string"
+        description: "建筑单位"
+      ldDemo:
+        type: "string"
+        description: "备注"
+      ldAddperson:
+        type: "string"
+        description: "创建人"
+      ldUpdateperson:
+        type: "string"
+        description: "修改人"
+      ldAdddate:
+        type: "string"
+        format: "date-time"
+        description: "创建日期"
+      ldUpdatedate:
+        type: "string"
+        format: "date-time"
+        description: "修改日期"
+      ldFlag:
+        type: "string"
+        description: "标记：1=厂办企业，2=集体企业，3=租赁物业"
+      ldEconomicvalue:
+        type: "string"
+        description: "经济价值（高，中，低）"
+      ldAssetvalue:
+        type: "string"
+        description: "资产价值"
+      ldOperationvalue:
+        type: "string"
+        description: "运营价值"
+      ldRisklevel:
+        type: "string"
+        description: "风险等级（高，中，低）"
+      zlOwner:
+        type: "string"
+        description: "所有者"
+      zlMonthlyRent:
+        type: "number"
+        format: "double"
+        description: "每月租金"
+      zlIncreasingRate:
+        type: "number"
+        format: "double"
+        description: "增长率"
+      zlContractPrice:
+        type: "number"
+        format: "double"
+        description: "合同价格"
+      zlContractNo:
+        type: "string"
+        description: "合同编号"
+      zlStart:
+        type: "string"
+        format: "date-time"
+        description: "租约开始日期"
+      zlEnd:
+        type: "string"
+        format: "date-time"
+        description: "租约结束日期"
+    x-java-class: "com.gzkit.service.ledger.completeledger.vo.CompleteLedgerVO"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"
+  DefaultResultBeanCompleteLedgerVO:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        $ref: "#/definitions/CompleteLedgerVO"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean<com.gzkit.service.ledger.completeledger.vo.CompleteLedgerVO>"
+  CompleteLedgerQuery:
+    type: "object"
+    properties:
+      ldName:
+        type: "string"
+        description: "名称"
+      ldRegion:
+        type: "string"
+        description: "地区"
+      ldAddress:
+        type: "string"
+        description: "地址"
+      ldStatus:
+        type: "string"
+        description: "状态"
+      ldAddperson:
+        type: "string"
+        description: "创建人"
+      ldUpdateperson:
+        type: "string"
+        description: "修改人"
+      startLdAdddate:
+        type: "string"
+        format: "date-time"
+        description: "起始创建日期"
+      endLdAdddate:
+        type: "string"
+        format: "date-time"
+        description: "结束创建日期"
+      startLdUpdatedate:
+        type: "string"
+        format: "date-time"
+        description: "起始修改日期"
+      endLdUpdatedate:
+        type: "string"
+        format: "date-time"
+        description: "结束修改日期"
+      ldFlag:
+        type: "string"
+        description: "标记：1=厂办企业，2=集体企业，3=租赁物业"
+    x-java-class: "com.gzkit.service.ledger.completeledger.vo.CompleteLedgerQuery"
+  分页查询参数:
+    type: "object"
+    properties:
+      pageNo:
+        type: "integer"
+        format: "int32"
+        description: "页码"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页多少条"
+      orderBy:
+        type: "string"
+        description: "排序字段和规则，可为空"
+      condition:
+        type: "object"
+        description: "查询条件"
+    x-java-class: "com.gzkit.service.spring.bean.PageQuery"
+  分页查询参数CompleteLedgerQuery:
+    type: "object"
+    properties:
+      pageNo:
+        type: "integer"
+        format: "int32"
+        description: "页码"
+      pageSize:
+        type: "integer"
+        format: "int32"
+        description: "每页多少条"
+      orderBy:
+        type: "string"
+        description: "排序字段和规则，可为空"
+      condition:
+        description: "查询条件"
+        $ref: "#/definitions/CompleteLedgerQuery"
+    x-java-class: "com.gzkit.service.spring.bean.PageQuery<com.gzkit.service.ledger.completeledger.vo.CompleteLedgerQuery>"

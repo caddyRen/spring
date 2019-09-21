@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.edge.wlb.order.acceptance.api.AcceptanceOrderApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.assets_system_edge_service.AcceptanceOrderApi.AcceptanceOrderApiIntf"
+basePath: "/api/v1/wlb"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /createAcceptanceOrder:
+    post:
+      summary: "生成到货通知和到货验收单接口"
+      description: "物流宝将签收物资明细发送至物资系统生成到货通知和到货验收单"
+      operationId: "createAcceptanceOrder"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "acceptanceOrderVO"
+        required: true
+        schema:
+          $ref: "#/definitions/AcceptanceOrderVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+definitions:
+  AcceptanceOrderItemVO:
+    type: "object"
+    properties:
+      purchaseItemId:
+        type: "string"
+        description: "采购明细id"
+      planSendTime:
+        type: "string"
+        description: "计划到货日期"
+      checkQty:
+        type: "string"
+        description: "验收数量"
+      productionDate:
+        type: "string"
+        description: "出厂日期"
+      deliverDate:
+        type: "string"
+        description: "到货日期"
+      appearanceCheck:
+        type: "string"
+        description: "外观验收是否合格"
+      openboxCheck:
+        type: "string"
+        description: "开箱验收是否合格"
+      qtySpecCheck:
+        type: "string"
+        description: "数量规格验收是否合格"
+      remark:
+        type: "string"
+        description: "备注"
+    x-java-class: "com.gzkit.service.edge.wlb.order.acceptance.vo.AcceptanceOrderItemVO"
+  AcceptanceOrderVO:
+    type: "object"
+    properties:
+      billId:
+        type: "string"
+        description: "到货验收单号"
+      dataArea:
+        type: "string"
+        description: "地市局编码"
+      creatorId:
+        type: "string"
+        description: "制单人ID"
+      vendorId:
+        type: "string"
+        description: "供应商ID"
+      warehouseId:
+        type: "string"
+        description: "收货仓库id"
+      receiverId:
+        type: "string"
+        description: "收货联系人id"
+      receiverPhone:
+        type: "string"
+        description: "收货联系人电话"
+      acceptorId:
+        type: "string"
+        description: "现场验收人id"
+      acceptorPhone:
+        type: "string"
+        description: "现场验收人电话"
+      sendAddress:
+        type: "string"
+        description: "收货地址"
+      remark:
+        type: "string"
+        description: "备注"
+      checkDate:
+        type: "string"
+        description: "验收日期"
+      checkName:
+        type: "string"
+        description: "验收单名称"
+      checkPlace:
+        type: "string"
+        description: "验收地址"
+      eventResult:
+        type: "string"
+        description: "处理情况"
+      subItemList:
+        type: "array"
+        items:
+          $ref: "#/definitions/AcceptanceOrderItemVO"
+    x-java-class: "com.gzkit.service.edge.wlb.order.acceptance.vo.AcceptanceOrderVO"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"

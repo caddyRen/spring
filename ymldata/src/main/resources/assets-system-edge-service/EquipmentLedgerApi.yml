@@ -1,0 +1,56 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.gzkit.service.edge.wlb.equipmentledger.api.EquipmentLedgerApi"
+  x-java-interface: "cse.gen.GZKIT_SHARE_SERVICES.assets_system_edge_service.EquipmentLedgerApi.EquipmentLedgerApiIntf"
+basePath: "/api/v1/wlb"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /getEquipmentLedger:
+    post:
+      summary: "设备台账查询接口"
+      description: "查询设备台账"
+      operationId: "getEquipmentLedger"
+      consumes:
+      - "application/json;charset=UTF-8"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - in: "body"
+        name: "query"
+        required: true
+        schema:
+          $ref: "#/definitions/EquipmentLedgerQueryVO"
+      responses:
+        200:
+          description: "response of 200"
+          schema:
+            $ref: "#/definitions/DefaultResultBean"
+definitions:
+  EquipmentLedgerQueryVO:
+    type: "object"
+    properties:
+      flId:
+        type: "string"
+        description: "功能位置ID"
+      powerGridFlag:
+        type: "integer"
+        format: "int32"
+        description: "主配网标识，1.主网 2.配网"
+    x-java-class: "com.gzkit.service.edge.wlb.equipmentledger.vo.EquipmentLedgerQueryVO"
+  DefaultResultBean:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      msg:
+        type: "string"
+      data:
+        type: "object"
+      extend:
+        type: "object"
+    x-java-class: "com.gzkit.service.core.bean.DefaultResultBean"
