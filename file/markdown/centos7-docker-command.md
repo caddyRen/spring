@@ -1,4 +1,6 @@
-#docker常用命令
+[TOC]
+# docker常用命令
+
 - pull image
 ```
 docker pull java:8-alpine
@@ -9,14 +11,33 @@ docker images
 docker images | grep java
 ```
 - run container
-```
-docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
-docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
-```
+	
+  - nextcloud
+  ```
+  docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
+  ```
+  
+  - mysql
+  ```
+  docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
+  ```
+  
+  - oracle
+  ```
+    chown 1000:1000 /root/oracle/oradata
+    docker run --name oracle11g \
+    --shm-size=1g \
+    -p 1621:1521 -p 8081:8080 \
+    -e ORACLE_PWD=xcjkxcjk \
+    -e ORACLE_CHARACTERSET=AL32UTF8 \
+    -v /root/oracle/oradata:/u01/app/oracle/oradata eb1f68dbe985
+  ```
 - go to container exit container will not stop
 ```
 docker exec -it containerID /bin/bash
 docker exec -it containerID mysql -uroot -ptoor
+docker exec -ti oracle11g sqlplus sys/xcjkxcjk@XE as sysdba
+docker exec -ti oracle11g sqlplus system/xcjkxcjk@XE
 ```
 - go to container exit container will stop
 ```
@@ -33,7 +54,7 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
   
   - java8-base image Dockerfile,build.sh在同一目录下
     - Dockerfile
-      ```
+```
       FROM java:8-alpine
       
       # 更新最新镜像源列表
@@ -47,7 +68,7 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
       # 依次安装命令curl、scp
       RUN apk add curl && \
           apk add openssh-client
-      ```
+```
     - build.sh
       ```
       #!/usr/bin/env bash
@@ -76,7 +97,7 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
       
       service_name="jgpush-service"
       version="1.0.0-release-build-20190711"
-  
+    
       ```
     - build.sh
       ```
@@ -92,7 +113,7 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
       # 构建镜像
       echo -e "\n==> begin build your images of " $service_name
       docker build -t $service_name:$version .
-  
+    
       ```
     - package.sh
       ```
@@ -118,14 +139,14 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
           $RUN_CMD
         fi
       fi 
-  
+    
       ```
     - showlog.sh
       ```
       source ./define.sh
       
       docker logs -f -t --tail 500 $(docker ps | grep $service_name | awk '{print $1}')
-  
+    
       ```
     - shutdown.sh
       ```
@@ -135,8 +156,8 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
       # 关停所有已启动的容器
       echo -e "\n==> begin stop all containers of " $service_name
       docker stop $(docker ps -a | grep $service_name | awk '{print $1}')
-   
-      ```  
+      
+      ```
 - save image
 ```
 docker save imageID | gzip > filename.tar.gz
@@ -161,8 +182,7 @@ docker tag hello hello:1.0
 docker rm -f containerID
 docker rmi -f imageID
 ```
-
-- pull image
+- 
 ```
 
 ```

@@ -25,7 +25,7 @@
     2. ls -a 显示当前目录隐藏文件
     3. ls -al 显示当前目录全部文件+文件信息
        1. drwxr-xr-x.  2 root root     6 Jul 23 10:12 study
-    
+
        |文件权限|链接数|文件所有者|文件所属用户组|文件大小|文件最后修改时间|文件名|
        |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
        |drwxr-xr-x|2|root|root|6|Jul 23 10:12|study|
@@ -122,26 +122,3 @@
         1. 6yy复制5行
         1. 2yw复制两个单词
     9. 末行模式复制指定行 3，5y复制第三行到第5行内容
-
-
-
-#centos7
-##网络问题
-1. vitualbox之间网络不通,
-    1. 获取ip
-        ```
-        dhclient 
-    2. 释放ip
-        ```
-        dhclient -r
-    1. 设置两个网卡，一个网络地址转换，一个本机Host-only
-    2. vi /etc/sysconfig/network-scripts/ifcfg-enp0s3 修改ONBOOT=yes
-    3. service network restart 重启网络服务
-    4. cat /etc/resolv.conf 查看IP和dns
-    5. ping www.badu.com 测试
-2. vi编辑方式类似是vim
-    1. 如异常退出编辑,会有临时文件在内存中，直接找到文件(一般都是.开头的隐藏文件) rm -rf xxx.swp
-
-    
-
-
