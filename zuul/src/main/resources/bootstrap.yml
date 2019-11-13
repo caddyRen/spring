@@ -69,7 +69,7 @@ eureka:
     registry-fetch-interval-seconds: 36  #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
 security:
   basic:
-    enabled: false #引入security 不用的化就需要配置为false
+    enabled: false #引入security 不用的话就需要配置为false
 management:
   security:
     enabled: false

@@ -2,14 +2,14 @@
 # docker常用命令
 
 - pull image
-```
-docker pull java:8-alpine
-```
+    ```
+    docker pull java:8-alpine
+    ```
 - look images
-```
-docker images
-docker images | grep java
-```
+    ```
+    docker images
+    docker images | grep java
+    ```
 - run container
 	
   - nextcloud
@@ -22,9 +22,12 @@ docker images | grep java
   docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
   ```
   
-  - oracle
+  - oracle挂载目录赋权
   ```
     chown 1000:1000 /root/oracle/oradata
+  ```
+  - 启动oracle
+  ```
     docker run --name oracle11g \
     --shm-size=1g \
     -p 1621:1521 -p 8081:8080 \
@@ -33,42 +36,44 @@ docker images | grep java
     -v /root/oracle/oradata:/u01/app/oracle/oradata eb1f68dbe985
   ```
 - go to container exit container will not stop
-```
-docker exec -it containerID /bin/bash
-docker exec -it containerID mysql -uroot -ptoor
-docker exec -ti oracle11g sqlplus sys/xcjkxcjk@XE as sysdba
-docker exec -ti oracle11g sqlplus system/xcjkxcjk@XE
-```
+
+    ```
+    docker exec -it containerID /bin/bash
+    docker exec -it containerID /bin/sh
+    docker exec -it containerID mysql -uroot -ptoor
+    docker exec -ti oracle11g sqlplus sys/xcjkxcjk@XE as sysdba
+    docker exec -ti oracle11g sqlplus system/xcjkxcjk@XE
+    ```
 - go to container exit container will stop
-```
-docker attach containerID
-```
+    ```
+    docker attach containerID
+    ```
 - out container
-```
-exit 退出容器伪终端并关闭容器
-ctrl+d 退出容器伪终端并关闭容器
-ctrl+c 退出容器伪终端不关闭容器
-ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
-```
+    ```
+    exit 退出容器伪终端并关闭容器
+    ctrl+d 退出容器伪终端并关闭容器
+    ctrl+c 退出容器伪终端不关闭容器
+    ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
+    ```
 - build image
   
   - java8-base image Dockerfile,build.sh在同一目录下
     - Dockerfile
-```
-      FROM java:8-alpine
-      
-      # 更新最新镜像源列表
-      RUN apk update
-      
-      # 设置Docker 时间为上海时区
-      RUN apk add -U tzdata && \
-          cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-          echo "Asia/shanghai" >> /etc/timezone
-      
-      # 依次安装命令curl、scp
-      RUN apk add curl && \
-          apk add openssh-client
-```
+    ```
+          FROM java:8-alpine
+          
+          # 更新最新镜像源列表
+          RUN apk update
+          
+          # 设置Docker 时间为上海时区
+          RUN apk add -U tzdata && \
+              cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+              echo "Asia/shanghai" >> /etc/timezone
+          
+          # 依次安装命令curl、scp
+          RUN apk add curl && \
+              apk add openssh-client
+    ```
     - build.sh
       ```
       #!/usr/bin/env bash
@@ -159,29 +164,29 @@ ctrl+p +  ctrl+q 退出容器伪终端不关闭容器
       
       ```
 - save image
-```
-docker save imageID | gzip > filename.tar.gz
-docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
-docker load -i filename.tar.gz
-```
+    ```
+    docker save imageID | gzip > filename.tar.gz
+    docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
+    docker load -i filename.tar.gz
+    ```
 - look container
-```
-docker ps -a
-docker ps | grep mysql
-```
+    ```
+    docker ps -a
+    docker ps | grep mysql
+    ```
 - stop container
-```
-docker stop containerID
-```
+    ```
+    docker stop containerID
+    ```
 - change tag image
-```
-docker tag hello hello:1.0 
-```
+    ```
+    docker tag hello hello:1.0 
+    ```
 - remove image
-```
-docker rm -f containerID
-docker rmi -f imageID
-```
+    ```
+    docker rm -f containerID
+    docker rmi -f imageID
+    ```
 - 
 ```
 

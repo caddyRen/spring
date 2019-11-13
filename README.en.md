@@ -1,7 +1,7 @@
 # springclouddemo
 
 #### Description
-springcloud demo
+springcloud study demo
 
 #### Software Architecture
 Software architecture description

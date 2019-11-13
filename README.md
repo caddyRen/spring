@@ -12,7 +12,7 @@
 #spring cloud Hystrix 监控和断路器，
 #spring cloud Hystrix Dashboard 监控面板，监控服务调用所消耗的时间
 #spring cloud Turbine 监控聚合，使用Hystrix监控，需要打开每一个服务实例的监控信息来查看，Turbine可以将所有服务实例监控信息聚合到一个地方统一查看
-#spring cloud Archaius 配置管理api 提供动态类型化属性，贤臣安全配置操作，轮询框架，回调机制。实现动态获取配置
+#spring cloud Archaius 配置管理api 提供动态类型化属性，线程安全配置操作，轮询框架，回调机制。实现动态获取配置
 #docker
 
 #关于
