@@ -1,5 +1,6 @@
 package com.mumu.springcloud.eurekaserver;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Slf4j
 public class EurekaServerApplicationTests {
 
     @Test
@@ -29,6 +31,12 @@ public class EurekaServerApplicationTests {
     **/
     @Test
     public void encrytor(){
+
+
+        log.info(stringEncryptor.decrypt("yfuirQOwkBtgvXSlD3L5RhshOLO1CDzagqjrdHh3Hk5II0d5d48PyZwNjIusQFTaJvaxQRn28KVOpLcIGbNnpg=="));
+        log.info(stringEncryptor.encrypt("xcjk"));
+        log.info(stringEncryptor.encrypt("xcjkxcjk"));
+
 
 //        System.err.println(stringEncryptor.decrypt("7b+U8ybrFJoOZhHImZm0yW2LOVg8G/ViBRbaHMwmpWs0bum9ODABx/TDO0RoWdBhszkCUZ1PXPE="));
         System.err.println(stringEncryptor.encrypt("jdbc:oracle:thin:@172.16.17.18:1621:xcjk"));
