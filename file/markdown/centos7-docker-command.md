@@ -11,30 +11,38 @@
     docker images | grep java
     ```
 - run container
-	
+  
+  - rabbitmq
+      ```
+      docker run -d -p 5672:5672 -p 15672:15672 --name demoRabbitmq 24cb552c7c00
+      ```
+  - redis
+      ```
+      docker run -d -p 6379:6379 --name demoredis registry.docker-cn.com/library/redis
+      ```
   - nextcloud
-  ```
-  docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
-  ```
+      ```
+      docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
+      ```
   
   - mysql
-  ```
-  docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
-  ```
+      ```
+      docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
+      ```
   
   - oracle挂载目录赋权
-  ```
-    chown 1000:1000 /root/oracle/oradata
-  ```
+      ```
+        chown 1000:1000 /root/oracle/oradata
+      ```
   - 启动oracle
-  ```
-    docker run --name oracle11g \
-    --shm-size=1g \
-    -p 1621:1521 -p 8081:8080 \
-    -e ORACLE_PWD=xcjkxcjk \
-    -e ORACLE_CHARACTERSET=AL32UTF8 \
-    -v /root/oracle/oradata:/u01/app/oracle/oradata eb1f68dbe985
-  ```
+      ```
+        docker run --name oracle11g \
+        --shm-size=1g \
+        -p 1621:1521 -p 8081:8080 \
+        -e ORACLE_PWD=xcjkxcjk \
+        -e ORACLE_CHARACTERSET=AL32UTF8 \
+        -v /root/oracle/oradata:/u01/app/oracle/oradata eb1f68dbe985
+      ```
 - go to container exit container will not stop
 
     ```
@@ -59,7 +67,7 @@
   
   - java8-base image Dockerfile,build.sh在同一目录下
     - Dockerfile
-    ```
+        ```
           FROM java:8-alpine
           
           # 更新最新镜像源列表
@@ -73,7 +81,7 @@
           # 依次安装命令curl、scp
           RUN apk add curl && \
               apk add openssh-client
-    ```
+        ```
     - build.sh
       ```
       #!/usr/bin/env bash
@@ -163,8 +171,9 @@
       docker stop $(docker ps -a | grep $service_name | awk '{print $1}')
       
       ```
-- save image
+- save image 尽量不要使用imageID导出，导入时候会出现没有name和tag问题
     ```
+    docker save > imageName-tag.tar imageName:tag
     docker save imageID | gzip > filename.tar.gz
     docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
     docker load -i filename.tar.gz
