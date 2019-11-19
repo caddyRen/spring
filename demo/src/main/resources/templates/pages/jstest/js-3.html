@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        alert(1);
+        //整个HTML加载完后执行，这样才能获取全部组件
+        window.onload=function () {
+            alert(3);
+        }
+    </script>
+</head>
+<body>
+    <button>ClickMe</button>
+</body>
+</html>
+<script type="text/javascript">
+     alert(2)
+</script>

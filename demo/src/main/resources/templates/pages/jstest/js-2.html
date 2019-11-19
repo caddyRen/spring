@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <button>ClickMe</button>
+</body>
+</html>
+<script type="text/javascript">
+    //获取button
+    var btns =document.getElementsByTagName("button");
+    alert(btns.length)
+    //添加click响应函数
+    btns[0].onclick=function () {
+        //4.弹出hello JS
+        alert("hello JS")
+    }
+</script>
