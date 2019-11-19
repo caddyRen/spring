@@ -1,0 +1,8 @@
+server:
+  port: 30000
+  context-path: /ksfd
+proxy:
+  solr:
+    servlet_url: /userFeedbackService/*
+    target_url: http://10.150.133.138:8001
+    logging_enabled: true

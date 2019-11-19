@@ -30,6 +30,7 @@
         <module>spring-depency</module>
         <module>database-depency</module>
         <module>ymldata</module>
+        <module>proxy</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -47,6 +48,7 @@
         <!-- 各模块版本号 -->
         <commons.version>1.0.0-SNAPSHOT</commons.version>
         <demo.version>1.0.0-SNAPSHOT</demo.version>
+        <proxy.version>1.0.0-SNAPSHOT</proxy.version>
         <eureka-server.version>1.0.0-SNAPSHOT</eureka-server.version>
         <config-server.version>1.0.0-SNAPSHOT</config-server.version>
         <config-client.version>1.0.0-SNAPSHOT</config-client.version>
