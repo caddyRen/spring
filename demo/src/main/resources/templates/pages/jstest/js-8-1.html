@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload=function () {
+            //点击每个li节点都弹出其文本的值
+            //获取所有li
+            var liNodeList=document.getElementsByTagName("li")
+            //for遍历
+            for(var i=0;i<liNodeList.length;i++){
+                //为每个li节点添加onclick响应函数
+                //不带括号表示引用，带括号表示执行，不应该带括号
+                liNodeList[i].onclick=hello;
+            }
+        }
+        function hello() {
+            alert(this.firstChild.nodeValue)
+        }
+    </script>
+</head>
+<body>
+    <p>选择城市</p>
+    <ul id="city"><li id="bj" name="Beijing">北京</li>
+        <li id="sh" name="Shanghai" onclick="alert('上海')">上海</li>
+        <li id="gz" name="Guangzhou">广州</li>
+        <li id="sz" name="Shenzhen">深圳</li>
+    </ul>
+    <br><br>
+    <p>选择城市</p>
+    <ul id="game">
+        <li id="bkm" name="bkm">宝可梦</li>
+        <li id="fifa" name="fifa">FIFA</li>
+        <li id="cs" name="cs">CS</li>
+        <li id="lol" name="lol">LOL</li>
+    </ul>
+
+    <br><br>
+    name:<input type="text" name="username" id="name" value="caddy"/>
+    <br><br>
+    gender:
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="female"/>Female
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //获取元素节点子节点
+        window.onload=function () {
+            //获取city节点的所有子节点
+            var cityNode=document.getElementById("city");
+            var gameNode=document.getElementById("game");
+            //利用元素节点的childNodes方法可以获取指定元素节点的所有子节点,该方法不实用,如果要获取指定的节点的指定子节点的集合，可以直接调用元素接待你的getElementsByTagName（）获取
+            alert(cityNode.childNodes.length);
+            alert(gameNode.childNodes.length);
+            //获取city节点的所有li子节点
+            var cityLiNodes=cityNode.getElementsByTagName("li");
+            alert(cityLiNodes.length);
+            //获取指定节点的第一个子节点和最后一个子节点
+            alert(cityNode.firstChild)
+            alert(cityNode.lastChild)
+        }
+    </script>
+</head>
+<body>
+    <p>选择城市</p>
+    <ul id="city"><li id="bj" name="Beijing">北京</li>
+        <li id="sh" name="Shanghai">上海</li>
+        <li id="gz" name="Guangzhou">广州</li>
+        <li id="sz" name="Shenzhen">深圳</li>
+    </ul>
+    <br><br>
+    <p>选择城市</p>
+    <ul id="game">
+        <li id="bkm" name="bkm">宝可梦</li>
+        <li id="fifa" name="fifa">FIFA</li>
+        <li id="cs" name="cs">CS</li>
+        <li id="lol" name="lol">LOL</li>
+    </ul>
+
+    <br><br>
+    name:<input type="text" name="username" id="name" value="caddy"/>
+    <br><br>
+    gender:
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="female"/>Female
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //读写属性节点
+        window.onload=function () {
+            //属性节点即为某一指定元素点属性
+            //获取指定元素节点
+            var nameNode=document.getElementById("name")
+            //读取属性值
+            alert(nameNode.value)
+            //设置指定属性的值
+            nameNode.value="大傻逼"
+        }
+    </script>
+</head>
+<body>
+    <p>选择城市</p>
+    <ul id="city">
+        <li id="bj" name="Beijing">北京</li>
+        <li id="sh" name="Shanghai">上海</li>
+        <li id="gz" name="Guangzhou">广州</li>
+        <li id="sz" name="Shenzhen">深圳</li>
+    </ul>
+    <br><br>
+    <p>选择城市</p>
+    <ul id="game">
+        <li id="bkm" name="bkm">宝可梦</li>
+        <li id="fifa" name="fifa">FIFA</li>
+        <li id="cs" name="cs">CS</li>
+        <li id="lol" name="lol">LOL</li>
+    </ul>
+
+    <br><br>
+    name:<input type="text" name="username" id="name" value="caddy"/>
+
+
+    <br><br>
+    gender:
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="female"/>Female
+
+</body>
+</html>

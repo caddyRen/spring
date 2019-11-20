@@ -13,8 +13,14 @@
             var bjNode1=document.getElementsByTagName("li");
             alert(bjNode1.length);
             var cityNode=document.getElementById("city");
-            var cityLiNode=cityLiNode.getElementsByTagName("li")
+            var cityLiNode=cityNode.getElementsByTagName("li")
             alert(cityLiNode.length);
+
+            //根据HTML文档元素name属性获取指定节点集合 getElementsByName对于IE无效
+            var genderNodes=document.getElementsByName("gender");
+            alert(genderNodes.length);
+            var bjNode2=document.getElementsByName("Beijing");
+            alert(bjNode2.length);
         }
     </script>
 </head>
@@ -36,7 +42,8 @@
     </ul>
     <br><br>
     gender:
-        <input>Male
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="female"/>Female
 
 </body>
 </html>
