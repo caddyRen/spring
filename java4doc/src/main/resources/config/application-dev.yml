@@ -1,0 +1,3 @@
+server:
+  port: 30001
+  context-path: /dev
