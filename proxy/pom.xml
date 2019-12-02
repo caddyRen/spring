@@ -35,6 +35,10 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>com.mumu.springcloud</groupId>
+            <artifactId>commons</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
         </dependency>
