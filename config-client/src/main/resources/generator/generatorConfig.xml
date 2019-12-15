@@ -27,7 +27,9 @@
 
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER" />
 
-        <table tableName="BURIED_DATA_MQ" domainObjectName="BuriedDataMQ" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="BURIED_DATA_MAIN" domainObjectName="BuriedDataMain" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="OUT_UF_FILE" domainObjectName="OutUfFile" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="OUT_UF_FEEDBACK" domainObjectName="OutUfFeedback" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="OUT_UF_APP" domainObjectName="OutUfApp" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="OUT_UF_USER" domainObjectName="OutUfUser" delimitAllColumns="false" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

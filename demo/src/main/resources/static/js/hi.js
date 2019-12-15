@@ -1,5 +1,5 @@
 const e=React.createElement;
-const str='李亚云 Is a Fucking Fog'
+const str='a Fucking Fog'
 const vDom=e('h1',{id:'id'},str.toUpperCase());
 const vDom1=e('h2',{id:'id'},str.toLowerCase());
 const vDom2=e('h3',{id:'id'},str);

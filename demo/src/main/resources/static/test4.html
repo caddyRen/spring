@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="test"></div>
+<div id="test1"></div>
+<div id="test2"></div>
+<div id="test3"></div>
+<div id="test4"></div>
+<div id="test5"></div>
+
+<!--react.development.js React核心库-->
+<script src="./js/react.development.js" crossorigin></script>
+<!--操作DOM的React扩展库-->
+<script src="./js/react-dom.development.js" crossorigin></script>
+<!--jsx语法代码转纯js语法代码库-->
+<script src="./js/babel.min.js"></script>
+<script src="./js/prop-types.development.js"></script>
+<script type="text/babel">
+    function WarningBanner(props) {
+        if(!props.warn){
+            return null
+        }
+        return(
+            <div className="warning">warning</div>
+        )
+    }
+    class Page extends React.Component{
+        constructor(props) {
+            super(props);
+            this.state={showWarning:true}
+            this.handleToggleClick=this.handleToggleClick.bind(this)
+        }
+        handleToggleClick(){
+            this.setState(
+                state=>({showWarning: !state.showWarning})
+            )
+        }
+        render(){
+            return (
+                <div>
+                    <WarningBanner warn={this.state.showWarning}/>
+                    <button onClick={this.handleToggleClick}>
+                        {this.state.showWarning?'Hide':'Show'}
+                    </button>
+                </div>
+            )
+        }
+    }
+    ReactDOM.render(<Page/>, document.getElementById("test5"))
+</script>
+<script type="text/babel">
+    function MailBox(props) {
+        const unreadMessages = props.unreadMessages
+        return (
+            <div>
+                <h1>Hello</h1>
+                {
+                    unreadMessages.length > 0 &&
+                    <h2>you have {unreadMessages.length} unread messages.</h2>
+                }
+            </div>
+        )
+    }
+
+    const messsages = ['React', 'Re:React', 'Re:Re:React']
+    ReactDOM.render(
+        <MailBox unreadMessages={messsages}/>, document.getElementById("test4")
+    )
+</script>
+<script type="text/babel">
+    function UserGreeting(props) {
+        return (<h1>Welcome back!</h1>)
+    }
+
+    function GuestGreeting(props) {
+        return (<h1>Please sign up</h1>)
+    }
+
+    function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn
+        if (isLoggedIn) {
+            return <UserGreeting/>
+        }
+        return <GuestGreeting/>
+    }
+
+    function LoginButton(props) {
+        return (<button onClick={props.onClick}>Login</button>)
+    }
+
+    function LogoutButton(props) {
+        return (<button onClick={props.onClick}>Logout</button>)
+    }
+
+    class LoginControl extends React.Component {
+        constructor(props) {
+            super(props);
+            this.handleLoginClick = this.handleLoginClick.bind(this)
+            this.handleLogoutClick = this.handleLogoutClick.bind(this)
+            this.state = {isLoggedIn: false}
+        }
+
+        handleLoginClick() {
+            this.setState({isLoggedIn: true})
+        }
+
+        handleLogoutClick() {
+            this.setState({isLoggedIn: false})
+        }
+        render() {
+            const isLoggedIn = this.state.isLoggedIn
+            return (
+                <div>
+                    <Greeting isLoggedIn={isLoggedIn}/>
+                    {isLoggedIn ?
+                            (<LogoutButton onClick={this.handleLogoutClick}/>)
+                            :
+                            (<LoginButton onClick={this.handleLoginClick}/>)
+                    }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <LoginControl/>, document.getElementById("test3")
+    )
+</script>
+<script type="text/babel">
+    function UserGreeting(props) {
+        return (<h1>Welcome back!</h1>)
+    }
+
+    function GuestGreeting(props) {
+        return (<h1>Please sign up</h1>)
+    }
+
+    function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn
+        if (isLoggedIn) {
+            return <GuestGreeting/>
+        }
+        return <UserGreeting/>
+    }
+
+    ReactDOM.render(
+        <Greeting isLoggedIn={true}/>, document.getElementById("test2")
+    )
+</script>
+<script type="text/babel">
+    class Toggle extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {isToggleOn: true}
+            this.handleClick = this.handleClick.bind(this)
+        }
+
+        handleClick() {
+            this.setState(
+                prevState => ({isToggleOn: !prevState.isToggleOn})
+            )
+        }
+
+        render() {
+            return (
+                <button onClick={this.handleClick}>
+                    {this.state.isToggleOn ? 'ON' : 'OFF'}
+                </button>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <Toggle/>, document.getElementById("test1")
+    )
+</script>
+<script type="text/babel">
+    function ActionLink() {
+        function handleClick(e) {
+            e.preventDefault();
+            console.log('The link was clicked.')
+        }
+
+        return (
+            <a href="#" onClick={handleClick}>click me </a>
+        )
+    }
+
+    ReactDOM.render(<ActionLink/>, document.getElementById("test"))
+</script>
+</body>
+</html>
