@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //节点属性 任意节点都有：nodeType nodeName nodeValue
+        //节点属性 具体节点有：id name value
+        window.onload=function () {
+            //元素节点
+            var bjNode=document.getElementById("bj")
+            alert(bjNode.nodeValue)//null 没有nodeValue属性值   属性值  属性值
+            alert(bjNode.nodeName)//LI
+            alert(bjNode.nodeType)//1表示元素节点
+            //属性节点
+            var nameAttr=document.getElementById("name").getAttributeNode("name")
+            alert(nameAttr.nodeValue)//getAttributeNode("name").value=username  name="username"
+            alert(nameAttr.nodeName)// name=getAttributeNode("name")
+            alert(nameAttr.nodeType)//2表示属性节点
+            //文本节点
+            var textNode=bjNode.firstChild
+            alert(textNode.nodeValue)//北京
+            alert(textNode.nodeName)// #text
+            alert(textNode.nodeType)//3表示文本节点
+            //nodeType nodeName只读  nodeValue可读写
+        }
+    </script>
+</head>
+<body>
+    <p>选择城市</p>
+    <ul id="city"><li id="bj" name="Beijing">北京</li>
+        <li id="sh" name="Shanghai" onclick="alert('上海')">上海</li>
+        <li id="gz" name="Guangzhou">广州</li>
+        <li id="sz" name="Shenzhen">深圳</li>
+    </ul>
+    <br><br>
+    <p>选择城市</p>
+    <ul id="game">
+        <li id="bkm" name="bkm">宝可梦</li>
+        <li id="fifa" name="fifa">FIFA</li>
+        <li id="cs" name="cs">CS</li>
+        <li id="lol" name="lol">LOL</li>
+    </ul>
+
+    <br><br>
+    name:<input type="text" name="username" id="name" value="caddy"/>
+    <br><br>
+    gender:
+        <input type="radio" name="gender" value="male"/>Male
+        <input type="radio" name="gender" value="female"/>Female
+
+</body>
+</html>
