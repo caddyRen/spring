@@ -1,9 +1,0 @@
-server:
-  port: 66
-spring:
-  application:
-    name: spring boot commons
-jasypt:
-  encryptor:
-    password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
-debug: true

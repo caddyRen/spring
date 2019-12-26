@@ -1,9 +1,0 @@
-server:
-  port: 30000
-  context-path: /dev
-proxy:
-  solr:
-    servlet_url: /userFeedbackService/*
-#    target_url: http://172.16.21.50:9077
-    target_url: http://127.0.0.1:9077
-    logging_enabled: true
