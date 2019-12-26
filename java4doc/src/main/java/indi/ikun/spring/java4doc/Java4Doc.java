@@ -1,4 +1,4 @@
-package com.mumu.springcloud.java4doc;
+package indi.ikun.spring.java4doc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

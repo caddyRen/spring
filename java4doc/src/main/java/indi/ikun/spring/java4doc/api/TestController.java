@@ -1,14 +1,9 @@
-package com.mumu.springcloud.java4doc.api;
+package indi.ikun.spring.java4doc.api;
 
-import com.alibaba.fastjson.JSON;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 

@@ -31,6 +31,7 @@
         <module>database-depency</module>
         <module>ymldata</module>
         <module>proxy</module>
+        <module>java4doc</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
