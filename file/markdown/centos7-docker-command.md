@@ -2,40 +2,40 @@
 # docker常用命令
 
 - pull image
-    ```
+    ```shell script
     docker pull java:8-alpine
     ```
 - look images
-    ```
+    ```shell script
     docker images
     docker images | grep java
     ```
 - run container
   
   - rabbitmq
-      ```
+      ```shell script
       docker run -d -p 5672:5672 -p 15672:15672 --name demoRabbitmq 24cb552c7c00
       ```
   - redis
-      ```
+      ```shell script
       docker run -d -p 6379:6379 --name demoredis registry.docker-cn.com/library/redis
       ```
   - nextcloud
-      ```
+      ```shell script
       docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
       ```
   
   - mysql
-      ```
+      ```shell script
       docker run -d --name mysql5.7 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=toor -v /home/mysql/conf/my.cnf:/etc/mysql/my.cnf -v /home/mysql/logs:/logs -v /home/mysql/data/mysql:/var/lib/mysql mysqlImagesId
       ```
   
   - oracle挂载目录赋权
-      ```
+      ```shell script
         chown 1000:1000 /root/oracle/oradata
       ```
   - 启动oracle
-      ```
+      ```shell script
         docker run --name oracle11g \
         --shm-size=1g \
         -p 1621:1521 -p 8081:8080 \
@@ -45,7 +45,7 @@
       ```
 - go to container exit container will not stop
 
-    ```
+    ```shell script
     docker exec -it containerID /bin/bash
     docker exec -it containerID /bin/sh
     docker exec -it containerID mysql -uroot -ptoor
@@ -53,11 +53,11 @@
     docker exec -ti oracle11g sqlplus system/xcjkxcjk@XE
     ```
 - go to container exit container will stop
-    ```
+    ```shell script
     docker attach containerID
     ```
 - out container
-    ```
+    ```shell script
     exit 退出容器伪终端并关闭容器
     ctrl+d 退出容器伪终端并关闭容器
     ctrl+c 退出容器伪终端不关闭容器
@@ -67,7 +67,7 @@
   
   - java8-base image Dockerfile,build.sh在同一目录下
     - Dockerfile
-        ```
+        ```shell script
           FROM java:8-alpine
           
           # 更新最新镜像源列表
@@ -83,13 +83,13 @@
               apk add openssh-client
         ```
     - build.sh
-      ```
+      ```shell script
       #!/usr/bin/env bash
       docker build -t java8-base:1.0 .
       ```
   - jar images Dockerfile,jar,define.sh,build.sh,package.sh,start.sh,showlog.sh,shutdown.sh在同一目录下
     - Dockerfile
-      ```
+      ```shell script
       FROM java8-base:1.0
       
       ENV WORK_DIR /jgpush-service
@@ -105,7 +105,7 @@
      
       ```
     - define.sh
-      ```
+      ```shell script
       #!/bin/bash
       
       service_name="jgpush-service"
@@ -113,7 +113,7 @@
     
       ```
     - build.sh
-      ```
+      ```shell script
       source ./define.sh
       
       # 先关停容器
@@ -129,14 +129,14 @@
     
       ```
     - package.sh
-      ```
+      ```shell script
       source ./define.sh
       
       echo -e "\n==> begin to package your image to tar file"
       docker save > $service_name-$version.tar $service_name:$version
       ```
     - start.sh
-      ```
+      ```shell script
       #!/bin/sh
       
       if [ ! $SPRING_PROFILES_ACTIVE ]; then
@@ -155,14 +155,14 @@
     
       ```
     - showlog.sh
-      ```
+      ```shell script
       source ./define.sh
       
       docker logs -f -t --tail 500 $(docker ps | grep $service_name | awk '{print $1}')
     
       ```
     - shutdown.sh
-      ```
+      ```shell script
       # 引用定义文件
       source ./define.sh
       
@@ -172,33 +172,34 @@
       
       ```
 - save image 尽量不要使用imageID导出，导入时候会出现没有name和tag问题
-    ```
+    ```shell script
     docker save > imageName-tag.tar imageName:tag
     docker save imageID | gzip > filename.tar.gz
     docker save imageID | bzip2 | ssh root@192.168.43.230 cat | docker load
     docker load -i filename.tar.gz
     ```
 - look container
-    ```
+    ```shell script
     docker ps -a
     docker ps | grep mysql
     ```
 - stop container
-    ```
+    ```shell script
     docker stop containerID
     ```
 - change tag image
-    ```
+    ```shell script
     docker tag hello hello:1.0 
     ```
 - remove image
-    ```
+    ```shell script
     docker rm -f containerID
     docker rmi -f imageID
     ```
-- 
-```
-
+-  zsh sh 切换 
+```shell script
+chsh -s /bin/zsh
+chsh -s /bin/bash
 ```
 - pull image
 ```
