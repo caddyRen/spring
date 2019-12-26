@@ -89,7 +89,7 @@
         <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug">
             <appender-ref ref="API_ACCESS_LOG"/>
         </Logger>
-        <Logger name="com.mumu.springcloud.proxy.filter.ApiRequestLoggingFilter" level="debug">
+        <Logger name="indi.ikun.spring.proxy.filter.ApiRequestLoggingFilter" level="debug">
             <appender-ref ref="API_ACCESS_LOG"/>
         </Logger>
 
