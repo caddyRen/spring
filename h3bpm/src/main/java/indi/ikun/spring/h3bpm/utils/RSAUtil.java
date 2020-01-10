@@ -1,20 +1,26 @@
 package indi.ikun.spring.h3bpm.utils;
 
-import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
-import java.security.*;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+
+import javax.crypto.Cipher;
 
 public class RSAUtil {
     /**
      * RSA最大加密明文大小
      */
-    private static final int MAX_ENCRYPT_BLOCK = 117;
+    public static final int MAX_ENCRYPT_BLOCK = 117;
     /**
      * RSA最大解密密文大小
      */
-    private static final int MAX_DECRYPT_BLOCK = 128;
+    public static final int MAX_DECRYPT_BLOCK = 128;
 
     /**
      * 获取密钥对
