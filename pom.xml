@@ -32,6 +32,7 @@
         <module>ymldata</module>
         <module>proxy</module>
         <module>java4doc</module>
+        <module>h3bpm</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->

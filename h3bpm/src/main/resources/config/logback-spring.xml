@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <property name="PROJECT_NAME" value="MyProxy"/>
+    <property name="PROJECT_NAME" value="h3bpm"/>
     <property name="LOG_HOME" value="logs"/>
 
     <property name="CONSOLE_LOG_PATTERN"
@@ -80,7 +80,7 @@
     </appender>
 
     <!-- 开发、测试环境、生产环境-->
-    <springProfile name="dev,ksfd">
+    <springProfile name="dev">
         <!--application-->
         <Logger name="indi.ikun" level="info"/>
         <!--spring-->
@@ -89,9 +89,9 @@
         <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug">
             <appender-ref ref="API_ACCESS_LOG"/>
         </Logger>
-        <Logger name="indi.ikun.spring.proxy.filter.ApiRequestLoggingFilter" level="debug">
-            <appender-ref ref="API_ACCESS_LOG"/>
-        </Logger>
+<!--        <Logger name="indi.ikun.spring.proxy.filter.ApiRequestLoggingFilter" level="debug">-->
+<!--            <appender-ref ref="API_ACCESS_LOG"/>-->
+<!--        </Logger>-->
 
         <Logger name="root" level="info">
             <appender-ref ref="STDOUT"/>
