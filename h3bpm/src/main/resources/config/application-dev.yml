@@ -1,6 +1,5 @@
 server:
   port: 30002
-  context-path: /dev
 #h3bpm接口常量
 h3bpm:
   #请求路径

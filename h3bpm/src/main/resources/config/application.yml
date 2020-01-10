@@ -1,21 +1,12 @@
 spring:
   profiles:
-    active: @package.environment@
-  mvc:
-    view:
-      prefix: /
-      suffix: .html
-    async:
-      request-timeout: 60000
+     active: @package.environment@
   http:
     multipart:
       max-file-size: 20MB
       max-request-size: 50MB
-
-
-# swagger配置参数
-swagger:
-  enable: true
+      
+debug: false
 
   # logback配置参数
 logging:

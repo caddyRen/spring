@@ -16,7 +16,7 @@ debug: true
 # swagger配置参数
 swagger:
   enable: true
-  base-package: com.mumu.springcloud.ymldata
+  base-package: indi.ikun.spring.ymldata
   path-regex: /error.*
   title: ymldata Service API
   description: ymldata springboot
