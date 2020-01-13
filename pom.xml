@@ -68,7 +68,7 @@
         <ojdbc7.version>12.1.0.2</ojdbc7.version>
         <mysql.version>5.1.47</mysql.version>
         <!--others-->
-        <projectlombok.version>1.16.10</projectlombok.version>
+        <projectlombok.version>1.18.4</projectlombok.version>
         <fastjson.version>1.2.58</fastjson.version>
         <gson.version>2.8.5</gson.version>
         <commons-lang3.version>3.9</commons-lang3.version>
@@ -76,7 +76,7 @@
         <xmlschema.core.version>2.2.3</xmlschema.core.version>
         <jdom.version>2.0.2</jdom.version>
         <orika.version>1.5.2</orika.version>
-        <snakeyaml.version>1.24</snakeyaml.version>
+        <snakeyaml.version>1.25</snakeyaml.version>
 
         <!--JDK8 若使用JDK7 请降级版本 1.5-java7 -->
         <jasypt.starter.version>1.5</jasypt.starter.version>
@@ -86,6 +86,7 @@
 
         <jxl.version>2.6.12</jxl.version>
         <poi.version>3.10-FINAL</poi.version>
+        
         <!--打包时候跳过maven test 会影响全局的pom-->
         <skipTests>true</skipTests>
         <!--<maven.test.skip>true</maven.test.skip>-->
