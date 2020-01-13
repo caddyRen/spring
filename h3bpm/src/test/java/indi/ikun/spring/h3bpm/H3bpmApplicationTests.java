@@ -47,8 +47,7 @@ public class H3bpmApplicationTests {
         map.put("apply_dept", "广州越秀供电局");
         map.put("project_leader", projectLeader);
         map.put("voltage_level", "10kV");
-        map.put("begin_date", "2020-01-07");
-        map.put("end_date", "2020-01-15");
+        map.put("build_time", "2019年01月至2019年12月");
         map.put("cost", "11700000（万元）");
         map.put("anquanmao", "200");
         map.put("denggaoban", "200");
@@ -66,9 +65,11 @@ public class H3bpmApplicationTests {
         }
         //1.发起流程，此时设置好需要设置好的参与者：项目负责人userCode（对应：项目负责人审批），项目经理（对应：接收派单，申请结项）
         JSONObject j1 = h3bpmHttpUtils.startFlow(Code, projectLeader, map);
+        //测试异步
+        System.err.println("2333");
         String instanceId = j1.getJSONObject("data").getString("instanceId");
 
-        //       2.项目经理接收派单，先设置现场负责人（现场施工参与者）再审批通过
+        //2.项目经理接收派单，先设置现场负责人（现场施工参与者）再审批通过
         String projectSiteLeaderId = h3bpmHttpUtils.getUserId(projectSiteLeader).getString("data");
         JSONObject j2 = h3bpmHttpUtils.setItemValue(instanceId, projectSiteLeaderId, "project_site_leader");
         //设置需要的表单值

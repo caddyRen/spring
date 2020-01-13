@@ -18,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -61,8 +62,7 @@ public class H3bpmHttpUtils {
                 map.put("apply_dept", "广州越秀供电局");
                 map.put("project_leader", "项目负责人");
                 map.put("voltage_level", "10kV");
-                map.put("begin_date", "2020-01-07");
-                map.put("end_date", "2020-01-15");
+                map.put("build_time", "2019年01月至2019年12月");
                 map.put("cost", "11700000（万元）");
                 map.put("work_com", "中区公司");
                 map.put("project_manager", "项目经理");
@@ -145,7 +145,15 @@ public class H3bpmHttpUtils {
      * @param: xmsgywlc
      * @return: 返回有instanceId
      **/
+    @Async
     public JSONObject startFlow(String Code, String userCode, Map<String, String> map) {
+        try {
+            Thread.sleep(3000);
+            System.err.println("sleep 3 s");
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         StringBuffer url = new StringBuffer().append(bpmAPI);
         url.append(H3BPMConfigs.getStartFlow());

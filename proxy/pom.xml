@@ -9,7 +9,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring.proxy</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>proxy</description>
 
@@ -51,18 +50,15 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
         </dependency>
         <!--Swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
@@ -83,12 +79,10 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>${aspectj.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
             <scope>runtime</scope>
         </dependency>
         <!--json-->
@@ -101,7 +95,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -113,12 +106,10 @@
                     <artifactId>commons-codec</artifactId>
                 </exclusion>
             </exclusions>
-            <version>${httpclient.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-            <version>${httpclient.version}</version>
         </dependency>
 
         <dependency>
@@ -141,7 +132,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
         </dependency>
     </dependencies>
 

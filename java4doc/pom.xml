@@ -9,29 +9,15 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <artifactId>spring.java4doc</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-
     <packaging>jar</packaging>
     <description>java for word and pdf</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!--        <maven.compiler.source>1.7</maven.compiler.source>-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <!--        <maven.compiler.target>1.7</maven.compiler.target>-->
-        <!--        <java.version>1.7</java.version>-->
         <java.version>1.8</java.version>
-        <springfox.version>2.9.2</springfox.version>
-        <swagger.version>1.9.5</swagger.version>
         <httpclient.version>4.5.6</httpclient.version>
-        <jasypt.starter.version>1.5</jasypt.starter.version>
-        <!--        <jasypt.starter.version>1.5-java7</jasypt.starter.version>-->
-        <commons-lang.version>3.8</commons-lang.version>
-        <fastjson.version>1.2.58</fastjson.version>
-        <lombok.version>1.18.4</lombok.version>
-        <snakeyaml.version>1.25</snakeyaml.version>
-<!--        <skipTests>true</skipTests>-->
     </properties>
     <dependencies>
         <dependency>
@@ -61,24 +47,16 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.20</version>
         </dependency>
 
         <!--Swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
         <!--配置加密-->
         <dependency>
@@ -89,17 +67,15 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang.version}</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
-            <version>${aspectj.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
             <scope>runtime</scope>
         </dependency>
         <!--json-->
@@ -112,7 +88,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -124,12 +99,10 @@
                     <artifactId>commons-codec</artifactId>
                 </exclusion>
             </exclusions>
-            <version>${httpclient.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-            <version>${httpclient.version}</version>
         </dependency>
 
         <dependency>
