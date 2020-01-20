@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @ClassName ZuulApplicationTests
- * @Description TODO
+ * @Description
  * @Author caddyR
  * @Date 2019-07-25 11:15
  * @Version 1.0

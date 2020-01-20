@@ -668,7 +668,6 @@ public class ProxyServlet extends HttpServlet {
      * and translates it to one the original client can use.
      */
     protected String rewriteUrlFromResponse(HttpServletRequest servletRequest, String theUrl) {
-        //TODO document example paths
         final String targetUri = getTargetUri(servletRequest);
         if (theUrl.startsWith(targetUri)) {
             /*-
@@ -745,7 +744,7 @@ public class ProxyServlet extends HttpServlet {
                     formatter = new Formatter(outBuf);
                 }
                 //leading %, 0 padded, width 2, capital hex
-                formatter.format("%%%02X", (int) c);//TODO
+                formatter.format("%%%02X", (int) c);
             }
         }
         return outBuf != null ? outBuf : in;

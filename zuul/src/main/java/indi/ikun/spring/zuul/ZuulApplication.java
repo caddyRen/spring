@@ -6,7 +6,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @ClassName ProviderApplication
- * @Description TODO
+ * @Description 
  * @Author caddyR
  * @Date 2019-06-17 11:22
  * @Version 1.0

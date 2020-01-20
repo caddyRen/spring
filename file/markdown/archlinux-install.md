@@ -133,7 +133,7 @@ vim /etc/locale.conf
 LANG=en_US.UTF-8
 主机名
 vim /etc/hostname
-caddy
+caddy 	
 hosts设置
 vim /etc/hosts
 127.0.0.1	localhost
@@ -194,8 +194,70 @@ lspci | grep VGA
 # # +--------+-------------+--------------------+--------------+
 # # |        AMD/ATI       |   xf86-video-ati   |              |
 sudo pacman -S xf86-video-intel（笔记本）
+sudo pacman -S nvidia nvidia(nvidia独立显卡)
 pacman -S xorg xorg-server xorg-xinit xorg-apps
+https://wiki.archlinux.org/index.php/Xorg
+```
+- 自动配置文件 https://wiki.archlinux.org/index.php/NVIDIA  参考这个个性化配置
+nvidia-xconfig
+```
+vim /etc/X11/xorg.conf
+
+Section "ServerLayout"
+    Identifier     "Layout0"
+    Screen      0  "Screen0" 0 0
+    InputDevice    "Keyboard0" "CoreKeyboard"
+    InputDevice    "Mouse0" "CorePointer"
+EndSection
+
+Section "Files"
+EndSection
+
+Section "InputDevice"
+
+    # generated from default
+    Identifier     "Mouse0"
+    Driver         "mouse"
+    Option         "Protocol" "auto"
+    Option         "Device" "/dev/psaux"
+    Option         "Emulate3Buttons" "no"
+    Option         "ZAxisMapping" "4 5"
+EndSection
+
+Section "InputDevice"
+
+    # generated from default
+    Identifier     "Keyboard0"
+    Driver         "kbd"
+EndSection
+
+Section "Monitor"
+    Identifier     "Monitor0"
+    VendorName     "Unknown"
+    ModelName      "Unknown"
+    Option         "DPMS" "1"
+EndSection
+
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    Option         "NoLogo" "1"
+    Option         "RenderAccel" "1"
+    Option         "TripleBuffer" "1"
+    Option         "RegistryDwords" "PerfLevelSrc=0x3333"
+EndSection
+
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+EndSection
+```
 pacman -S plasma kde-applications
 pacman -S sddm sddm-kcm
 systemctl enable sddm
-```

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @ClassName CommonsApplication
- * @Description TODO
+ * @Description @TODO @XXX  @FIXME 学习使用Tasks
  * @Author caddyR
  * @Date 2019-07-16 11:10
  * @Version 1.0

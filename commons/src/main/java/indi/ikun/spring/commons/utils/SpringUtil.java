@@ -36,14 +36,15 @@ public class SpringUtil implements ApplicationContextAware {
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if(SpringUtil.applicationContext==null){
-            SpringUtil.applicationContext=applicationContext;
+        if (SpringUtil.applicationContext == null) {
+            SpringUtil.applicationContext = applicationContext;
         }
         log.info("###############################################################");
         log.info("ApplicatinContext配置成功，可通过SpringUtil.getAppContent()获取");
         log.info("##############################################################");
 
     }
+
     /**
      *@Author caddyR
      *@Description //获取ApplicationContext
@@ -51,9 +52,10 @@ public class SpringUtil implements ApplicationContextAware {
      *@Param []
      *@return org.springframework.context.ApplicationContext
     **/
-    public static ApplicationContext getApplicationContext(){
+    public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
+
     /**
      *@Author caddyR
      *@Description //通过name获取Bean
@@ -61,9 +63,10 @@ public class SpringUtil implements ApplicationContextAware {
      *@Param [name]
      *@return java.lang.Object
     **/
-    public static Object getBean(String name){
+    public static Object getBean(String name) {
         return getApplicationContext().getBean(name);
     }
+
     /**
      *@Author caddyR
      *@Description //通过 class获取Bean
@@ -71,9 +74,10 @@ public class SpringUtil implements ApplicationContextAware {
      *@Param [clazz]
      *@return T
     **/
-    public static <T> T getBean(Class<T> clazz){
+    public static <T> T getBean(Class<T> clazz) {
         return getApplicationContext().getBean(clazz);
     }
+
     /**
      *@Author caddyR
      *@Description //通过name和class获取Bean
@@ -81,9 +85,8 @@ public class SpringUtil implements ApplicationContextAware {
      *@Param [name, clazz]
      *@return T
     **/
-    public static <T> T getBean(String name,Class<T> clazz){
-        return getApplicationContext().getBean(name,clazz);
+    public static <T> T getBean(String name, Class<T> clazz) {
+        return getApplicationContext().getBean(name, clazz);
     }
-
 
 }

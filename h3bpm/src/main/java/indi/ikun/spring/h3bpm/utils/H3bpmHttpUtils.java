@@ -151,7 +151,6 @@ public class H3bpmHttpUtils {
             Thread.sleep(3000);
             System.err.println("sleep 3 s");
         } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
