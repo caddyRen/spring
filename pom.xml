@@ -33,6 +33,8 @@
         <module>proxy</module>
         <module>java4doc</module>
         <module>h3bpm</module>
+        <module>if-else</module>
+        <module>design-pattern</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -60,6 +62,8 @@
         <ymldata.version>1.0.0-SNAPSHOT</ymldata.version>
         <java4doc.version>1.0.0-SNAPSHOT</java4doc.version>
         <zuul.version>1.0.0-SNAPSHOT</zuul.version>
+        <if-else.version>1.0.0-SNAPSHOT</if-else.version>
+        <design-pattern.version>1.0.0-SNAPSHOT</design-pattern.version>
         <!-- database 相关依赖-->
         <druid.version>1.1.6</druid.version>
         <mybatis.starter.version>1.3.2</mybatis.starter.version>

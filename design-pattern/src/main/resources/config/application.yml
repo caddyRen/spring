@@ -1,0 +1,17 @@
+spring:
+  profiles:
+     active: @package.environment@
+  http:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 50MB
+      
+debug: false
+
+  # logback配置参数
+logging:
+  config: classpath:config/logback-spring.xml
+#沉浸式体验接口yml文件名
+
+server:
+  connection-timeout: 60000
