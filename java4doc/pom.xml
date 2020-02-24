@@ -134,7 +134,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-
         <!-- 生产环境 -->
         <profile>
             <id>pro</id>
