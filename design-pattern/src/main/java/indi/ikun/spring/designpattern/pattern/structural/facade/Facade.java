@@ -1,7 +1,7 @@
 package indi.ikun.spring.designpattern.pattern.structural.facade;
 
 /**
- * 外观模式
+ * 外观模式 分层
  */
 public interface Facade {
 
