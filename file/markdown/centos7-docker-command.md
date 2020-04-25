@@ -23,6 +23,9 @@
   - nextcloud
       ```shell script
       docker run -d --name nextcloud -p 80:80 -v /root/nextcloud:/var/www/html nextCloudId
+    
+    create database nextcloud default character set utf8mb4 collate utf8mb4_unicode_ci;
+    use nextcloud;
       ```
   
   - mysql
