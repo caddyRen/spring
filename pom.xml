@@ -38,6 +38,7 @@
         <module>h3bpm</module>
         <module>if-else</module>
         <module>design-pattern</module>
+        <module>swagger</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -56,8 +57,12 @@
         <commons.version>1.0.0-SNAPSHOT</commons.version>
         <spring-depency.version>1.0.0-SNAPSHOT</spring-depency.version>
         <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
-        <eureka-server.version>1.0.0-SNAPSHOT</eureka-server.version>
-        <config-server.version>1.0.0-SNAPSHOT</config-server.version>
+        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
+        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
+        <spring-jetty.version>1.0.0-SNAPSHOT</spring-jetty.version>
+        <spring-tomcat.version>1.0.0-SNAPSHOT</spring-tomcat.version>
+        <spring-undertow.version>1.0.0-SNAPSHOT</spring-undertow.version>
+        <swagger.version>1.0.0-SNAPSHOT</swagger.version>
         <config-client.version>1.0.0-SNAPSHOT</config-client.version>
         <provider.version>1.0.0-SNAPSHOT</provider.version>
         <demo.version>1.0.0-SNAPSHOT</demo.version>
@@ -93,7 +98,7 @@
 
         <jxl.version>2.6.12</jxl.version>
         <poi.version>3.10-FINAL</poi.version>
-        
+
         <!--打包时候跳过maven test 会影响全局的pom-->
         <skipTests>true</skipTests>
         <!--<maven.test.skip>true</maven.test.skip>-->
@@ -126,21 +131,34 @@
                 <artifactId>commons</artifactId>
                 <version>${commons.version}</version>
             </dependency>
-            <!--Swagger ui#############################-->
+            <!--tomcat-->
             <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox.version}</version>
+                <groupId>indi.ikun</groupId>
+                <artifactId>spring-tomcat</artifactId>
+                <version>${spring-tomcat.version}</version>
+            </dependency>
+            <!--jetty-->
+            <dependency>
+                <groupId>indi.ikun</groupId>
+                <artifactId>spring-jetty</artifactId>
+                <version>${spring-jetty.version}</version>
+            </dependency>
+            <!--undertow-->
+            <dependency>
+                <groupId>indi.ikun</groupId>
+                <artifactId>spring-undertow</artifactId>
+                <version>${spring-undertow.version}</version>
+            </dependency>
+            <!--swagger-ui-->
+            <dependency>
+                <groupId>indi.ikun</groupId>
+                <artifactId>swagger</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
             <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox.version}</version>
-            </dependency>
-            <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
             <!--jdbc    ############################-->
             <dependency>
@@ -241,7 +259,7 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <encoding>UTF-8</encoding>
-    <!--                        <skipTests>true</skipTests>-->
+                        <!--                        <skipTests>true</skipTests>-->
                         <compilerArgs>
                             <arg>-XDignore.symbol.file</arg>
                         </compilerArgs>

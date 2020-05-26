@@ -24,16 +24,20 @@
             <groupId>indi.ikun</groupId>
             <artifactId>commons</artifactId>
         </dependency>
+        <dependency>
+            <groupId>indi.ikun</groupId>
+            <artifactId>spring-tomcat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>indi.ikun</groupId>
+            <artifactId>swagger</artifactId>
+        </dependency>
         <!--支持html-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <!--web模块-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
@@ -47,16 +51,6 @@
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-        </dependency>
-
-        <!--Swagger-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
         <!--配置加密-->
         <dependency>

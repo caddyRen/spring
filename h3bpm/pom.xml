@@ -20,11 +20,7 @@
         <!--        <maven.compiler.target>1.7</maven.compiler.target>-->
         <!--        <java.version>1.7</java.version>-->
         <java.version>1.8</java.version>
-        <springfox.version>2.9.2</springfox.version>
-        <swagger.version>1.9.5</swagger.version>
         <httpclient.version>4.5.6</httpclient.version>
-        <spring-tomcat.version>1.0.0-SNAPSHOT</spring-tomcat.version>
-        <!--        <jasypt.starter.version>1.5-java7</jasypt.starter.version>-->
         <skipTests>true</skipTests>
     </properties>
 
@@ -36,27 +32,17 @@
         <dependency>
             <groupId>indi.ikun</groupId>
             <artifactId>spring-undertow</artifactId>
-            <version>${spring-tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>indi.ikun</groupId>
+            <artifactId>swagger</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--Swagger-->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
+
         <!--配置加密-->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
