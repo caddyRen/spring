@@ -29,6 +29,9 @@
         <module>zuul</module>
         <module>spring-depency</module>
         <module>database-depency</module>
+        <module>spring-tomcat</module>
+        <module>spring-jetty</module>
+        <module>spring-undertow</module>
         <module>ymldata</module>
         <module>proxy</module>
         <module>java4doc</module>
