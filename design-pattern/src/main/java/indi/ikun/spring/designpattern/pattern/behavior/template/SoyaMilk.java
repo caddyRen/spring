@@ -80,6 +80,7 @@ class  PureSoyaMilk extends SoyaMilk{
 
     @Override
     void addCondiments() {
+        //空方法
     }
 
     @Override
