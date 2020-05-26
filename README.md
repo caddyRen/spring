@@ -29,5 +29,22 @@
   - redis-dependence: redis相关jar
   - rabbitmq-dependence: rabbitMQ相关jar
   - spring-cloud-dependence：spring-cloud相关jar
-
+  
+  
+##TODO
+- springboot 
+    - 1.5.X 
+    - 2.0.X
+- 拆分模块
+    - 微服务基础
+        - web容器 tomcat，jetty，undertow
+        - 数据库模块 mysql，oracle，
+        - swagger模块
+        - 单元测试
+        - 基础样例
+        - 消息相关
+        - nosql相关
+        - 安全相关模块
+    - springclould组件们
+    
 
