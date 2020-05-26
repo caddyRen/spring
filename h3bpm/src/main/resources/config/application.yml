@@ -15,3 +15,10 @@ logging:
 
 server:
   connection-timeout: 60000
+swagger:
+  enable: true
+  base-package: indi.ikun.spring.h3bpm
+  path-regex: /error.*
+  title: demo Service API
+  description: demo springboot
+  version: 1.0.0
