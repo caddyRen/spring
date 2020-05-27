@@ -31,11 +31,11 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>swagger-bootstrap-ui</artifactId>
-            <version>1.9.5</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.xiaoymin</groupId>-->
+<!--            <artifactId>swagger-bootstrap-ui</artifactId>-->
+<!--            <version>1.9.5</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 </project>
