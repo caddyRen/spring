@@ -43,8 +43,4 @@
         </dependency>
         <!--database end-->
     </dependencies>
-
-    <build>
-        <finalName>mysql</finalName>
-    </build>
 </project>
