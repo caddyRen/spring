@@ -34,10 +34,12 @@
         <dependency>
             <groupId>indi.ikun</groupId>
             <artifactId>spring-tomcat</artifactId>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>indi.ikun</groupId>
             <artifactId>swagger</artifactId>
+            <type>pom</type>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
         <dependency>

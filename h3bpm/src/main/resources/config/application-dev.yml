@@ -1,5 +1,14 @@
 server:
   port: 30002
+
+# mysql config
+mysql:
+  host: ${MYSQL_HOST:127.0.0.1}
+  port: ${MYSQL_PORT:3306}
+  dbname: ${MYSQL_DBNAME:sms}
+  username: ${MYSQL_USERNAME:root}
+  password: ${MYSQL_PASSWORD:qiankun415}
+
 #h3bpm接口常量
 h3bpm:
   #请求路径

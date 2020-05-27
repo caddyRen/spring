@@ -17,16 +17,35 @@ import java.util.Scanner;
 public class TestFileInputAndOutput {
 
     public static void main(String[] args){
-        TestFileInputAndOutput test=new TestFileInputAndOutput();
-        //test.files();
-        //test.file();
-        long start1=System.currentTimeMillis();
-        //test.testChannelFileReader();
-        //test.testInputStream();
-        //test.testBufferedReader();
-        test.bufferReader("c://SF_PROD_PLAN_I.dat",5*1024*1024,"GBK");
-        long end1=System.currentTimeMillis();
-        System.err.println(end1-start1);
+
+
+        Integer i=Integer.valueOf(100);
+        Integer j=Integer.valueOf(100);
+        System.err.println(i==j);
+        System.err.println(i>j);
+        System.err.println(i<j);
+
+        int a=10;
+        Integer ii=new Integer(a);
+        Integer jj=new Integer(a);
+        System.err.println(ii==jj);
+
+        ii=a;
+        jj=a;
+        System.err.println(ii==jj);
+        ii=Integer.valueOf(a);
+        jj=Integer.valueOf(a);
+        System.err.println(ii==jj);
+//        TestFileInputAndOutput test=new TestFileInputAndOutput();
+//        //test.files();
+//        //test.file();
+//        long start1=System.currentTimeMillis();
+//        //test.testChannelFileReader();
+//        //test.testInputStream();
+//        //test.testBufferedReader();
+//        test.bufferReader("c://SF_PROD_PLAN_I.dat",5*1024*1024,"GBK");
+//        long end1=System.currentTimeMillis();
+//        System.err.println(end1-start1);
 
     }
     //抽出方法

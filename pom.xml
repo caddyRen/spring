@@ -57,8 +57,6 @@
         <commons.version>1.0.0-SNAPSHOT</commons.version>
         <spring-depency.version>1.0.0-SNAPSHOT</spring-depency.version>
         <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
-        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
-        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
         <spring-jetty.version>1.0.0-SNAPSHOT</spring-jetty.version>
         <spring-tomcat.version>1.0.0-SNAPSHOT</spring-tomcat.version>
         <spring-undertow.version>1.0.0-SNAPSHOT</spring-undertow.version>
@@ -78,7 +76,7 @@
         <mybatis.mapper.version>4.0.2</mybatis.mapper.version>
         <mybatis.pagehelper.version>1.2.5</mybatis.pagehelper.version>
         <google.findbugs.version>3.0.1</google.findbugs.version>
-        <mysql.version>5.1.47</mysql.version>
+        <mysql-connector.version>5.1.47</mysql-connector.version>
         <!--others-->
         <projectlombok.version>1.18.4</projectlombok.version>
         <fastjson.version>1.2.58</fastjson.version>
@@ -136,36 +134,33 @@
                 <groupId>indi.ikun</groupId>
                 <artifactId>spring-tomcat</artifactId>
                 <version>${spring-tomcat.version}</version>
+                <type>pom</type>
             </dependency>
             <!--jetty-->
             <dependency>
                 <groupId>indi.ikun</groupId>
                 <artifactId>spring-jetty</artifactId>
                 <version>${spring-jetty.version}</version>
+                <type>pom</type>
             </dependency>
             <!--undertow-->
             <dependency>
                 <groupId>indi.ikun</groupId>
                 <artifactId>spring-undertow</artifactId>
                 <version>${spring-undertow.version}</version>
+                <type>pom</type>
             </dependency>
             <!--swagger-ui-->
             <dependency>
                 <groupId>indi.ikun</groupId>
                 <artifactId>swagger</artifactId>
                 <version>${swagger.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <!--jdbc    ############################-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-                <scope>runtime</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -259,7 +254,7 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <encoding>UTF-8</encoding>
-                        <!--                        <skipTests>true</skipTests>-->
+                        <!--<skipTests>true</skipTests>-->
                         <compilerArgs>
                             <arg>-XDignore.symbol.file</arg>
                         </compilerArgs>

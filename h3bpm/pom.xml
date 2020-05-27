@@ -32,10 +32,17 @@
         <dependency>
             <groupId>indi.ikun</groupId>
             <artifactId>spring-undertow</artifactId>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>indi.ikun</groupId>
             <artifactId>swagger</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>indi.ikun</groupId>
+            <artifactId>database-depency</artifactId>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
