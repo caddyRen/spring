@@ -35,10 +35,10 @@
         <module>ymldata</module>
         <module>proxy</module>
         <module>java4doc</module>
-        <module>h3bpm</module>
+        <module>demo-springboot</module>
         <module>if-else</module>
         <module>design-pattern</module>
-        <module>swagger</module>
+        <module>spring-swagger</module>
         <!--<module>zipkin-server</module>-->
         <!--<module>provider</module>-->
         <!--<module>consumer</module>-->
@@ -54,13 +54,14 @@
         <spring-boot.version>1.5.19.RELEASE</spring-boot.version>
         <spring-cloud.version>Edgware.SR5</spring-cloud.version>
         <!-- 各模块版本号 -->
-        <commons.version>1.0.0-SNAPSHOT</commons.version>
-        <spring-depency.version>1.0.0-SNAPSHOT</spring-depency.version>
-        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
         <spring-jetty.version>1.0.0-SNAPSHOT</spring-jetty.version>
         <spring-tomcat.version>1.0.0-SNAPSHOT</spring-tomcat.version>
         <spring-undertow.version>1.0.0-SNAPSHOT</spring-undertow.version>
-        <swagger.version>1.0.0-SNAPSHOT</swagger.version>
+        <spring-swagger.version>1.0.0-SNAPSHOT</spring-swagger.version>
+        <database-depency.version>1.0.0-SNAPSHOT</database-depency.version>
+        <commons.version>1.0.0-SNAPSHOT</commons.version>
+        <spring-depency.version>1.0.0-SNAPSHOT</spring-depency.version>
+
         <config-client.version>1.0.0-SNAPSHOT</config-client.version>
         <provider.version>1.0.0-SNAPSHOT</provider.version>
         <demo.version>1.0.0-SNAPSHOT</demo.version>
@@ -68,6 +69,7 @@
         <ymldata.version>1.0.0-SNAPSHOT</ymldata.version>
         <java4doc.version>1.0.0-SNAPSHOT</java4doc.version>
         <zuul.version>1.0.0-SNAPSHOT</zuul.version>
+        <demo-springboot.version>1.0.0-SNAPSHOT</demo-springboot.version>
         <if-else.version>1.0.0-SNAPSHOT</if-else.version>
         <design-pattern.version>1.0.0-SNAPSHOT</design-pattern.version>
         <!-- database 相关依赖-->
@@ -79,23 +81,23 @@
         <mysql-connector.version>5.1.47</mysql-connector.version>
         <!--others-->
         <projectlombok.version>1.18.4</projectlombok.version>
-        <fastjson.version>1.2.58</fastjson.version>
+<!--        <fastjson.version>1.2.58</fastjson.version>-->
         <gson.version>2.8.5</gson.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <wsdl4j.version>1.6.3</wsdl4j.version>
-        <xmlschema.core.version>2.2.3</xmlschema.core.version>
-        <jdom.version>2.0.2</jdom.version>
-        <orika.version>1.5.2</orika.version>
+<!--        <wsdl4j.version>1.6.3</wsdl4j.version>-->
+<!--        <xmlschema.core.version>2.2.3</xmlschema.core.version>-->
+<!--        <jdom.version>2.0.2</jdom.version>-->
+<!--        <orika.version>1.5.2</orika.version>-->
         <snakeyaml.version>1.25</snakeyaml.version>
 
         <!--JDK8 若使用JDK7 请降级版本 1.5-java7 -->
         <jasypt.starter.version>1.5</jasypt.starter.version>
         <springfox.version>2.9.2</springfox.version>
         <!--18.0版本报错-->
-        <guava.version>26.0-jre</guava.version>
+<!--        <guava.version>26.0-jre</guava.version>-->
 
-        <jxl.version>2.6.12</jxl.version>
-        <poi.version>3.10-FINAL</poi.version>
+<!--        <jxl.version>2.6.12</jxl.version>-->
+<!--        <poi.version>3.10-FINAL</poi.version>-->
 
         <!--打包时候跳过maven test 会影响全局的pom-->
         <skipTests>true</skipTests>
@@ -111,7 +113,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- 公共模块 ##################-->
             <dependency>
                 <groupId>indi.ikun</groupId>
                 <artifactId>spring-depency</artifactId>
@@ -153,14 +154,9 @@
             <!--swagger-ui-->
             <dependency>
                 <groupId>indi.ikun</groupId>
-                <artifactId>swagger</artifactId>
-                <version>${swagger.version}</version>
+                <artifactId>spring-swagger</artifactId>
+                <version>${spring-swagger.version}</version>
                 <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -199,13 +195,13 @@
     </profiles>
 
     <!--仓库地址配置-->
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>apache central</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>central</id>-->
+<!--            <name>apache central</name>-->
+<!--            <url>https://repo.maven.apache.org/maven2</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <!--打包-->
 
     <build>

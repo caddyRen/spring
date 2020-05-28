@@ -42,7 +42,7 @@
         </dependency>
         <dependency>
             <groupId>indi.ikun</groupId>
-            <artifactId>swagger</artifactId>
+            <artifactId>spring-swagger</artifactId>
             <type>pom</type>
         </dependency>
         <dependency>

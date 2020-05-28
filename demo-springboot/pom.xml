@@ -3,27 +3,23 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>indi.ikun</groupId>
         <artifactId>spring</artifactId>
+        <groupId>indi.ikun</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>spring.demo</artifactId>
+    <artifactId>demo-springboot</artifactId>
     <packaging>jar</packaging>
-    <description>springboot 功能示例</description>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <java.version>1.8</java.version>
-        <!--springboot默认的是2.1.6版本，如果页面报错需要手动引入高版本的thymeleaf和与之匹配的thymeleaf layout-->
-        <thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
-        <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
-        <thymeleaf-extras-springsecurity4.version>3.0.4.RELEASE</thymeleaf-extras-springsecurity4.version>
+        <skipTests>true</skipTests>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>indi.ikun</groupId>
@@ -31,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>indi.ikun</groupId>
-            <artifactId>spring-tomcat</artifactId>
+            <artifactId>spring-undertow</artifactId>
             <type>pom</type>
         </dependency>
         <dependency>
@@ -39,34 +35,45 @@
             <artifactId>spring-swagger</artifactId>
             <type>pom</type>
         </dependency>
-        <!--引入spring security相关-->
+        <dependency>
+            <groupId>indi.ikun</groupId>
+            <artifactId>database-depency</artifactId>
+            <type>pom</type>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
-        <!--引入springcurity和thymeleaf整合模块，用于获取登陆后用户信息-->
+        <!--配置文件加密-->
         <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${jasypt.starter.version}</version>
         </dependency>
-        <!--thymeleaf模板引擎-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <!--系统监控工具，监控系统信息，有安全问题 需要结合security控制访问权限-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
     </dependencies>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <package.environment>dev</package.environment>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+    </profiles>
     <build>
-        <finalName>demo</finalName>
+        <finalName>demo-springboot</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

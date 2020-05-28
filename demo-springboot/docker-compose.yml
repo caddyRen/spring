@@ -1,0 +1,10 @@
+version: '3'
+services:
+  ppmb-service:
+    image: demo-springboot:1.0.0-SNAPSHOT
+    container_name: demo-springboot
+    restart: "no"
+    ports:
+      - "30002:30002"
+    extra_hosts:
+      - "work-ip:192.168.8.125"
