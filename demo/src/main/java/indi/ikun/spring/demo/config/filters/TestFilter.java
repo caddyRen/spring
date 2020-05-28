@@ -1,7 +1,7 @@
 package indi.ikun.spring.demo.config.filters;
 
 
-import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
 import indi.ikun.spring.demo.config.interceptors.BodyReaderHttpServletRequestWrapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -125,6 +125,6 @@ public class TestFilter implements Filter {
         if (obj == null) {
             return null;
         }
-        return JSONObject.toJSONString(obj!=null?obj.toString():"");
+        return new Gson().toJson(obj);
     }
 }
