@@ -45,12 +45,21 @@ ForceCommand internal-sftp
 ClientAliveInterval 60
 ClientAliveCountMax 10
 ```
+
 - 权限设置
   ```text
   ChrootDirectory设置的目录权限及其所有上级文件夹权限，属主和属组必须是root
   chown root:root /home/ppmuser
   ChrootDirectory只有属主能拥有写权限，权限最大设置只能是755
   chmod 755 /home/ppmuser
-```
+  ```
 
+- 修改配置后要重启sshd 和vsftpd服务
+```shell script
+systemctl restart sshd
+systemctl restart vsftpd
+
+service sshd restart
+service restart vsftpd
+```
 
