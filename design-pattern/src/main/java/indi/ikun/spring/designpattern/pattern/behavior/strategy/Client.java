@@ -8,6 +8,10 @@ package indi.ikun.spring.designpattern.pattern.behavior.strategy;
  * 把变化的代码从不变的代码中分离出来,
  * 针对接口编程,策略接口
  * 多用组合/聚合,少用继承--客户通过组合方式使用策略
+ *
+ * 对修改关闭,对扩展开放
+ *
+ * 策略过多,会导致类数目庞大
  */
 public class Client {
     public static void main(String[] args) {
