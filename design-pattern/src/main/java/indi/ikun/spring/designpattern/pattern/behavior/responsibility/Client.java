@@ -11,6 +11,11 @@ package indi.ikun.spring.designpattern.pattern.behavior.responsibility;
  * 责任链模式 通常每个接收者都包含对另一个接收者的引用
  * 如果一个对象不能处理该请求,那么它会把相同的请求传给下一个接收者,依次类推
  *
+ *
+ * 问题 : 当链比较长的时候,需要控制链中的节点数量
+ * 一般在接收者里设置一个最大节点数量,在指定下一节点的时候,判断是否超过阈值
+ * 避免出现超长链,影响系统性能
+ *
  */
 public class Client {
 
