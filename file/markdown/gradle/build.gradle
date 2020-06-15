@@ -10,15 +10,18 @@ task hello {
 /**
  * 快速定义task
  * gradle -q hello2
+ *
+ * << 操作符是doLast的简写方式 4.10支持,5.0以上<<已过时,使用doLst代替
  */
-task hello2 << {
+//task hello2 << {
+task hello2 doLast {
     println 'Hello world!'
 }
 /**
  * 代码即脚本
  * gradle -q upper
  */
-task upper << {
+task upper doLast {
     String someString = 'mY_nAmE'
     println "Original: " + someString
     println "Upper case: " + someString.toUpperCase()
@@ -28,7 +31,7 @@ task upper << {
  * gradle task 采用groovy语言
  * gradle -q count
  */
-task count << {
+task count doLast {
     4.times {
         print "$it "
     }
@@ -38,7 +41,7 @@ task count << {
  * 依赖关系
  * gradle -q intro
  */
-task intro(dependsOn: hello) << {
+task intro(dependsOn: hello) doLast {
     println 'I`m Gradle'
 }
 /**
@@ -46,10 +49,10 @@ task intro(dependsOn: hello) << {
  * gradle -q taskX
  * 注意：当引用的任务尚未定义的时候不可使用短标记法来运行任务
  */
-task taskX(dependsOn: 'taskY') << {
+task taskX(dependsOn: 'taskY') doLast {
     println 'taskX'
 }
-task taskY << {
+task taskY doLast {
     println 'taskY'
 }
 /**
@@ -59,7 +62,7 @@ task taskY << {
  */
 4.times {
     counter ->
-        task "task$counter" << {
+        task "task$counter" doLast {
             println "I`m task number $counter"
         }
 }
@@ -73,7 +76,7 @@ task0.dependsOn task2, task3
  * 通过API进行任务之间的通信-增加任务行为
  * gradle -q hello3
  */
-task hello3 << {
+task hello3 doLast {
     println 'Hello3'
 }
 hello3.doFirst {
@@ -81,12 +84,6 @@ hello3.doFirst {
 }
 hello3.doLast {
     println 'Hello3 后'
-}
-/**
- * 其实<< 操作符是doLast的简写方式
- */
-hello3 << {
-    println 'Hello<<'
 }
 /**
  * 每个任务都是一个脚本属性，可以被访问
@@ -104,7 +101,7 @@ task myTask {
     ext.myProperty = 'myValue'
     ext.myProperty2 = "$hello3.name"
 }
-task printTaskProperties << {
+task printTaskProperties doLast {
     println myTask.myProperty
     println myTask.myProperty2
 }
@@ -114,23 +111,25 @@ task printTaskProperties << {
  * 在多项目构建中，每个子项目都可以指定单独的默认任务。
  * 如果子项目未进行指定将会调用父项目指定的的默认任务
  */
-defaultTasks 'clean','run'
-task clean<<{
+defaultTasks 'clean', 'run'
+task clean doLast {
     println 'Default Cleaning~'
 }
-task run <<{
-    println'Default run~'
+task run doLast {
+    println 'Default run~'
 }
 /**
- *
+ * 依赖任务的不同输出
+ * gradle -q release
+ * gradle -q distribution
  */
-task distribution << {
+task distribution doLast {
     println "We build the zip with version=$version"
 }
-task release(dependsOn: distribution) << {
+task release(dependsOn: distribution) doLast {
     println 'We release now'
 }
-gradle.taskGraph.whenReady {taskGraph ->
+gradle.taskGraph.whenReady { taskGraph ->
     if (taskGraph.hasTask(release)) {
         version = '1.0'
     } else {
