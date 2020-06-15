@@ -1,0 +1,139 @@
+/**
+ * gradle -q hello
+ */
+task hello {
+    doLast {
+        println 'hello gradle!'
+    }
+}
+
+/**
+ * 快速定义task
+ * gradle -q hello2
+ */
+task hello2 << {
+    println 'Hello world!'
+}
+/**
+ * 代码即脚本
+ * gradle -q upper
+ */
+task upper << {
+    String someString = 'mY_nAmE'
+    println "Original: " + someString
+    println "Upper case: " + someString.toUpperCase()
+}
+
+/**
+ * gradle task 采用groovy语言
+ * gradle -q count
+ */
+task count << {
+    4.times {
+        print "$it "
+    }
+    println ''
+}
+/**
+ * 依赖关系
+ * gradle -q intro
+ */
+task intro(dependsOn: hello) << {
+    println 'I`m Gradle'
+}
+/**
+ * 延迟依赖 taskY在taskX之后定义 但是先执行了taskY
+ * gradle -q taskX
+ * 注意：当引用的任务尚未定义的时候不可使用短标记法来运行任务
+ */
+task taskX(dependsOn: 'taskY') << {
+    println 'taskX'
+}
+task taskY << {
+    println 'taskY'
+}
+/**
+ * 动态任务
+ * gradle -q task1
+ * gradle -q task2
+ */
+4.times {
+    counter ->
+        task "task$counter" << {
+            println "I`m task number $counter"
+        }
+}
+/**
+ * 通过API进行task之间的通信，增加依赖
+ * gradle -q task0
+ */
+task0.dependsOn task2, task3
+
+/**
+ * 通过API进行任务之间的通信-增加任务行为
+ * gradle -q hello3
+ */
+task hello3 << {
+    println 'Hello3'
+}
+hello3.doFirst {
+    println 'Hello3 前'
+}
+hello3.doLast {
+    println 'Hello3 后'
+}
+/**
+ * 其实<< 操作符是doLast的简写方式
+ */
+hello3 << {
+    println 'Hello<<'
+}
+/**
+ * 每个任务都是一个脚本属性，可以被访问
+ * gradle -q hello3
+ * 对于插件提供的内置任务,非常方便，例如compile
+ */
+hello3.doLast {
+    println "Greeting from the $hello3.name task."
+}
+/**
+ * 增加自定义属性
+ * gradle -q printTaskProperties
+ */
+task myTask {
+    ext.myProperty = 'myValue'
+    ext.myProperty2 = "$hello3.name"
+}
+task printTaskProperties << {
+    println myTask.myProperty
+    println myTask.myProperty2
+}
+/**
+ * 定义默认任务
+ * gradle -q
+ * 在多项目构建中，每个子项目都可以指定单独的默认任务。
+ * 如果子项目未进行指定将会调用父项目指定的的默认任务
+ */
+defaultTasks 'clean','run'
+task clean<<{
+    println 'Default Cleaning~'
+}
+task run <<{
+    println'Default run~'
+}
+/**
+ *
+ */
+task distribution << {
+    println "We build the zip with version=$version"
+}
+task release(dependsOn: distribution) << {
+    println 'We release now'
+}
+gradle.taskGraph.whenReady {taskGraph ->
+    if (taskGraph.hasTask(release)) {
+        version = '1.0'
+    } else {
+        version = '1.0-SNAPSHOT'
+    }
+}
