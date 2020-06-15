@@ -1,0 +1,8 @@
+apply plugin: 'java'
+
+task testCopy(type: Copy) {
+    description 'Copies the resource directory to the target directory.'
+    from 'resources'
+    into 'target'
+    include('*.yml')
+}

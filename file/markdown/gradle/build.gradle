@@ -1,3 +1,6 @@
+description ='----Gradle study------'
+
+
 /**
  * gradle -q hello
  */
@@ -20,6 +23,7 @@ task hello2 doLast {
 /**
  * 代码即脚本
  * gradle -q upper
+ * gradle -q up
  */
 task upper doLast {
     String someString = 'mY_nAmE'
@@ -47,7 +51,9 @@ task intro(dependsOn: hello) doLast {
 /**
  * 延迟依赖 taskY在taskX之后定义 但是先执行了taskY
  * gradle -q taskX
+ * gradle -q tX
  * 注意：当引用的任务尚未定义的时候不可使用短标记法来运行任务
+ * 依赖在下面,要加单引号
  */
 task taskX(dependsOn: 'taskY') doLast {
     println 'taskX'
