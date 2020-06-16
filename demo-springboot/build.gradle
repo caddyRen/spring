@@ -1,8 +1,29 @@
-apply plugin: 'java'
+plugins {
+    id 'org.springframework.boot' version '1.5.19.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
 
-task testCopy(type: Copy) {
-    description 'Copies the resource directory to the target directory.'
-    from 'resources'
-    into 'target'
-    include('*.yml')
+group = 'indi.ikun'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'indi.ikun:commons'
+    implementation 'indi.ikun:spring-undertow'
+    implementation 'indi.ikun:spring-swagger'
+    implementation 'indi.ikun:database-depency'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter'
+    implementation 'org.aspectj:aspectjweaver'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
 }
