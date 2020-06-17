@@ -1,0 +1,6 @@
+pluginManagement{
+    repositories{
+        gradlePluginPotal()
+    }
+}
+rootProject.name = 'demo-springboot'
