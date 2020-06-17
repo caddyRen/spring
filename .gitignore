@@ -45,6 +45,9 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
 
 ### STS ###
 .apt_generated
@@ -53,6 +56,7 @@ buildNumber.properties
 .project
 .settings
 .springBeans
+.sts4-cache
 
 ### IntelliJ IDEA ###
 .idea
@@ -60,7 +64,7 @@ buildNumber.properties
 *.iml
 *.ipr
 class/
-
+out/
 
 ### NetBeans ###
 nbproject/private/
@@ -70,5 +74,15 @@ dist/
 nbdist/
 .nb-gradle/
 
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
 ### jrebel ###
 rebel.xml
+
+### VS Code ###
+.vscode/
