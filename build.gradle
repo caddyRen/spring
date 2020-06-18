@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+//    api() 方法需要引入java-library
+//    api=compile 依赖可以传递
+//    implementation 依赖不能传递给下一层
+//    gradle
+    id 'java-library'
+}
+
+// 子项目的插件
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+}
+
+group = 'indi.ikun.spring'
+version = '1.0.0-SNAPSHOT'
+//全局java版本
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+//仓库
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit',name: 'junit',version: '4.12'
+}
