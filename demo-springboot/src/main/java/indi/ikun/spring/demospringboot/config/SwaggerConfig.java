@@ -1,4 +1,4 @@
-package indi.ikun.spring.h3bpm.config;
+package indi.ikun.spring.demospringboot.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.beans.factory.annotation.Value;

@@ -3,19 +3,14 @@ plugins {
     id "io.spring.dependency-management" version "1.0.9.RELEASE"
 }
 
-group = "indi.ikun.spring"
-version = "1.0.0-SNAPSHOT"
+test.enabled=false
 
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-}
 
 dependencies {
-    api(":spring-depency")
-}
-
-test {
-    useJUnitPlatform()
+    //@Slf4j gradle识别不到
+    annotationProcessor "org.projectlombok:lombok:1.16.16"
+    api(project(":spring-depency"))
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+    }
 }

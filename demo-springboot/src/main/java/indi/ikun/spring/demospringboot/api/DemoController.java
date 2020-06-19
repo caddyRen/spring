@@ -1,7 +1,7 @@
-package indi.ikun.spring.h3bpm.api;
+package indi.ikun.spring.demospringboot.api;
 
-import indi.ikun.spring.h3bpm.mybatis.dao.SysAppMapper;
-import indi.ikun.spring.h3bpm.mybatis.po.SysApp;
+import indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper;
+import indi.ikun.spring.demospringboot.mybatis.po.SysApp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

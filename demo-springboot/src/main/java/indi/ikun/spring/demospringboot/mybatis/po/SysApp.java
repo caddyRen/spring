@@ -1,4 +1,4 @@
-package indi.ikun.spring.h3bpm.mybatis.po;
+package indi.ikun.spring.demospringboot.mybatis.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
