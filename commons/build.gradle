@@ -5,7 +5,6 @@ plugins {
 
 test.enabled=false
 
-
 dependencies {
     //@Slf4j gradle识别不到
     annotationProcessor "org.projectlombok:lombok:1.16.16"

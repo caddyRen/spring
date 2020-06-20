@@ -22,7 +22,7 @@ subprojects {
 }
 
 group = 'indi.ikun.spring'
-//version = '1.0.0-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 //全局java版本
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'

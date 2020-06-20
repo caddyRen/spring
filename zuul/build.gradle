@@ -6,12 +6,9 @@ plugins {
 test.enabled=false
 
 dependencies {
-    api(project(":commons"))
-    api(project(":spring-undertow"))
-    api(project(":spring-swagger"))
-    api(project(":database-depency"))
-    api("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.5")
-    api("org.aspectj:aspectjweaver")
+    api(project(":spring-depency"))
+    api("org.springframework.cloud:spring-cloud-starter-zuul:1.4.6.RELEASE")
+    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:1.4.6.RELEASE")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: "org.junit.vintage", module: "junit-vintage-engine"
     }

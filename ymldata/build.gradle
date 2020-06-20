@@ -7,11 +7,10 @@ test.enabled=false
 
 dependencies {
     api(project(":commons"))
-    api(project(":spring-undertow"))
+    api(project(":spring-tomcat"))
     api(project(":spring-swagger"))
     api(project(":database-depency"))
-    api("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.5")
-    api("org.aspectj:aspectjweaver")
+    api("org.yaml:snakeyaml:1.25")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: "org.junit.vintage", module: "junit-vintage-engine"
     }
