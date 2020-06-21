@@ -1,3 +1,4 @@
+bootRepackage.enabled=false
 dependencies {
     api("mysql:mysql-connector-java:5.1.47")
     api("com.alibaba:druid-spring-boot-starter:1.1.6")

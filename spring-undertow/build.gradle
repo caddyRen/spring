@@ -1,10 +1,4 @@
-plugins {
-    id "org.springframework.boot" version "1.5.19.RELEASE"
-    id "io.spring.dependency-management" version "1.0.9.RELEASE"
-}
-
 bootRepackage.enabled=false
-
 dependencies {
     api("org.springframework.boot:spring-boot-starter-web"){
         exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"

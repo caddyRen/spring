@@ -1,17 +1,7 @@
-plugins {
-    id "org.springframework.boot" version "1.5.19.RELEASE"
-    id "io.spring.dependency-management" version "1.0.9.RELEASE"
-}
-
-test.enabled=false
-
 dependencies {
     api(project(":commons"))
     api(project(":spring-tomcat"))
     api(project(":spring-swagger"))
     api(project(":database-depency"))
     api("org.yaml:snakeyaml:1.25")
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
-    }
 }
