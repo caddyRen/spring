@@ -1,6 +1,6 @@
 spring:
   profiles:
-     active: @package.environment@
+     active: dev
   http:
     multipart:
       max-file-size: 20MB
@@ -8,7 +8,7 @@ spring:
   datasource:
     enable: true
     druid:
-      url: jdbc:mysql://${mysql.host:172.0.0.1}:${mysql.port:3306}/${mysql.dbname:demo}?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      url: jdbc:mysql://${mysql.host:127.0.0.1}:${mysql.port:3306}/${mysql.dbname:demo}?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
       username: ${mysql.username:root}
       password: ${mysql.password:qiankun415}
       driver-class-name: com.mysql.jdbc.Driver
@@ -39,7 +39,7 @@ mybatis:
 logging:
   config: classpath:config/logback-spring.xml
 
-debug: true
+debug: false
 
 server:
   connection-timeout: 60000

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="indi.ikun.spring.h3bpm.mybatis.dao.SysAppMapper">
-    <resultMap id="BaseResultMap" type="indi.ikun.spring.h3bpm.mybatis.po.SysApp">
+<mapper namespace="indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper">
+    <resultMap id="BaseResultMap" type="indi.ikun.spring.demospringboot.mybatis.po.SysApp">
         <id column="id" jdbcType="VARCHAR" property="id"/>
         <result column="app_id" jdbcType="VARCHAR" property="appId"/>
         <result column="app_secret" jdbcType="VARCHAR" property="appSecret"/>
@@ -12,7 +12,7 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
-    <select id="getByAppId2" resultType="indi.ikun.spring.h3bpm.mybatis.po.SysApp" resultMap="BaseResultMap">
+    <select id="getByAppId2" resultType="indi.ikun.spring.demospringboot.mybatis.po.SysApp" resultMap="BaseResultMap">
         SELECT * FROM sys_app where app_id = #{appId}
     </select>
 </mapper>
