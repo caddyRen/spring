@@ -1,6 +1,6 @@
 spring:
   profiles:
-     active: @package.environment@
+     active: dev
   http:
     multipart:
       max-file-size: 20MB

@@ -33,8 +33,12 @@ allprojects {
      */
     apply plugin: 'java-library'
 
-    test.enabled=false
 
+    compileTestJava.enabled=false
+    processTestResources.enabled=false
+    testClasses.enabled=false
+    test.enabled=false
+    
     //指定编码格式
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
