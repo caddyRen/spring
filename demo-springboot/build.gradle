@@ -1,8 +1,0 @@
-dependencies {
-    api(project(":commons"))
-    api(project(":spring-undertow"))
-    api(project(":spring-swagger"))
-    api(project(":database-depency"))
-    api("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.5")
-    api("org.aspectj:aspectjweaver")
-}

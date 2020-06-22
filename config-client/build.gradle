@@ -1,7 +1,0 @@
-dependencies {
-    api(project(":commons"))
-    api("org.springframework.cloud:spring-cloud-starter-config")//:1.4.5.RELEASE")
-    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")//:1.4.6.RELEASE")
-    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")//:1.4.6.RELEASE")
-    api(project(":database-depency"))
-}

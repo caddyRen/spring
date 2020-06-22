@@ -1,5 +1,0 @@
-dependencies {
-    api(project(":spring-depency"))
-    api("org.springframework.cloud:spring-cloud-starter-zuul")
-    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-}

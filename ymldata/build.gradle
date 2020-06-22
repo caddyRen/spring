@@ -1,7 +1,0 @@
-dependencies {
-    api(project(":commons"))
-    api(project(":spring-tomcat"))
-    api(project(":spring-swagger"))
-    api(project(":database-depency"))
-    api("org.yaml:snakeyaml:1.25")
-}
