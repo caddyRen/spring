@@ -1,3 +1,10 @@
+#注意
+- gradle项目
+## 运行main()时默认会将该方法当成gradle的Task，运行会报错，需要做如下配置
+- idea需要配置 Build and run using为Intellij IDEA（默认是Gradle）
+- idea需要配置 Run test using为Intellij IDEA（默认是Gradle）
+
+
 #spring cloud
 #spring boot 微服务入门级微架构
 #spring cloud eureka 服务治理
