@@ -1,4 +1,4 @@
-//test.enabled=true
+compileTestJava.enabled=true
 dependencies {
     api(project(":commons"))
     api("org.springframework.boot:spring-boot-starter-web-services")
