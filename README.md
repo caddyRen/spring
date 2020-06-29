@@ -1,4 +1,4 @@
-# 开发环境注意事项
+#开发环境注意事项
 ```text
 windows idea2019.2下运行public static void main()时
 默认会将该main()方法当成gradle的Task，运行会报错，需要做如下配置
@@ -9,7 +9,6 @@ archlinux idea 2020版本下，未出现此问题
 - idea配置 Run test using为Intellij IDEA（默认是Gradle）
 ###archlinux idea2020
 - idea配置 Run test using为Intellij IDEA（默认是Gradle）
-
 
 #spring cloud
 #spring boot 微服务入门级微架构
