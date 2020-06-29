@@ -1,9 +1,16 @@
 #注意
 - gradle项目
-## 运行main()时默认会将该方法当成gradle的Task，运行会报错，需要做如下配置
-- idea需要配置 Build and run using为Intellij IDEA（默认是Gradle）
-- idea需要配置 Run test using为Intellij IDEA（默认是Gradle）
-
+## 注意事项
+```text
+windows idea2019.2下运行public static void main()时
+默认会将该main()方法当成gradle的Task，运行会报错，需要做如下配置
+archlinux idea 2020版本下，未出现此问题
+```
+###windows idea2019
+- idea配置 Build and run using为Intellij IDEA（默认是Gradle）
+- idea配置 Run test using为Intellij IDEA（默认是Gradle）
+###archlinux idea2020
+- idea配置 Run test using为Intellij IDEA（默认是Gradle）
 
 #spring cloud
 #spring boot 微服务入门级微架构
