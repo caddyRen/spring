@@ -8,3 +8,11 @@
     1. JSONassert — An assertion library for JSON.一个针对JSON的断言库
     1. JsonPath — XPath for JSON.JSON XPath库
 - By default, Spring Boot uses Mockito 1.x. However it’s also possible to use 2.x if you wish
+- 隔离测试
+```text
+层与层之间可以隔离测试
+如果上层测试需要用到下层的依赖，就使用mock的方式构造一个依赖
+比如测试DAO层可以使用@DataJpaTest注解；
+测试controller层可以使用@WebMvcTest；
+测试Service层可以使用@TestConfiguration把需要用到Bean依赖进来
+```

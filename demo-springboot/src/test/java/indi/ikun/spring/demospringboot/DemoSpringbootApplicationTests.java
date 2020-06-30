@@ -1,8 +1,11 @@
 package indi.ikun.spring.demospringboot;
 
+import indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper;
+import indi.ikun.spring.demospringboot.mybatis.po.SysApp;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -16,8 +19,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Slf4j
 public class DemoSpringbootApplicationTests {
 
+    @Autowired
+    SysAppMapper sysAppMapper;
+
     @Test
     public void test(){
-        log.info("111");
+        SysApp xcgk = sysAppMapper.getByAppId2("xcgk");
+        log.info(xcgk.toString());
     }
 }

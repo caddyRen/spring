@@ -4,6 +4,7 @@ dependencies {
     api(project(":spring-undertow"))
     api(project(":spring-swagger"))
     api(project(":database-depency"))
+    implementation("org.springframework.boot:spring-boot-starter-test")
     api("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.5")
     api("org.aspectj:aspectjweaver")
 }
