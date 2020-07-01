@@ -1,6 +1,7 @@
 //@TODO 使用implemenation引入springboot，然后可以写全局swagger配置
 bootRepackage.enabled=false
 dependencies {
+//    implementation("com.google.guava:guava:26.0-jre")
     api("io.springfox:springfox-swagger2:2.9.2")
     api("io.springfox:springfox-swagger-ui:2.9.2")
 }

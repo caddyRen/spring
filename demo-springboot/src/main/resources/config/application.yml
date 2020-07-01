@@ -45,7 +45,7 @@ server:
   connection-timeout: 60000
 swagger:
   enable: true
-  base-package: indi.ikun.spring.demo-springboot
+  base-package: indi.ikun.spring.demospringboot
   path-regex: /error.*
   title: demo Service API
   description: demo springboot

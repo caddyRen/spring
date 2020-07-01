@@ -2,11 +2,12 @@ package indi.ikun.spring.demospringboot.api;
 
 import indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper;
 import indi.ikun.spring.demospringboot.mybatis.po.SysApp;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ClassName DemoController
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Date 2019-06-14 11:31
  * @Version 1.0
  **/
-@Controller
+@RestController
+//@RequestMapping("/demo")
+@Api(tags = "APIDemo")
 @Slf4j
 public class DemoController {
 
@@ -31,6 +34,11 @@ public class DemoController {
         sysAppMapper.insert(byAppId);
         int i=1/0;
         return byAppId2;
+    }
+
+    @GetMapping("/index2")
+    public String index2(){
+        return "Hello World";
     }
 
 
