@@ -1,4 +1,6 @@
 compileTestJava.enabled=true
+processResources.enabled=true
+processTestResources.enabled=true
 dependencies {
     api(project(":commons"))
     api(project(":spring-undertow"))
@@ -7,5 +9,5 @@ dependencies {
     api("org.aspectj:aspectjweaver")
     //guava:26.0-jre覆盖swagger-ui自带的guava
     implementation("com.google.guava:guava:26.0-jre")
-    implementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

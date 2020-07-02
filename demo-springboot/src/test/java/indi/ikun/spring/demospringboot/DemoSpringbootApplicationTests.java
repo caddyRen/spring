@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @Date:2020-01-08 10:55
  **/
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 @Slf4j
 public class DemoSpringbootApplicationTests {
 
