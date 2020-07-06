@@ -6,4 +6,4 @@ mysql:
   port: ${MYSQL_PORT:3306}
   dbname: ${MYSQL_DBNAME:sms}
   username: ${MYSQL_USERNAME:root}
-  password: ${MYSQL_PASSWORD:qiankun415}
+  password: ${MYSQL_PASSWORD:toor}

@@ -4,6 +4,8 @@
 
     <property name="PROJECT_NAME" value="demo-springboot"/>
     <property name="LOG_HOME" value="logs"/>
+    <property name="FILE_SIZE" value="100MB"/>
+    <property name="MAX_HISTORY" value="60"/>
 
     <property name="CONSOLE_LOG_PATTERN"
               value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%4line) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
@@ -27,14 +29,14 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_HOME}/%d{yyyy-MM,aux}/${PROJECT_NAME}-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>100MB</maxFileSize>
+                <maxFileSize>${FILE_SIZE}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>180</maxHistory>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
         </rollingPolicy>
     </appender>
 
 
-    <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
             <!-- pattern节点，用来设置日志的输入格式 -->
             <pattern>${FILE_LOG_PATTERN}</pattern>
@@ -51,36 +53,75 @@
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <!-- maxFileSize:这是日志文件的大小，默认值是10MB，测试时可改成1KB看效果 -->
-                <maxFileSize>100MB</maxFileSize>
+                <maxFileSize>${FILE_SIZE}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
             <!-- 每产生一个日志文件，该日志文件的保存期限为180天 -->
-            <maxHistory>180</maxHistory>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
         </rollingPolicy>
+<!--        only ERROR -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
     </appender>
-<!--  API请求前请求后日志 -->
-    <appender name="API_ACCESS_LOG"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_HOME}/${PROJECT_NAME}_api_access.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>
-                ${FILE_LOG_PATTERN}
-            </Pattern>
-        </encoder>
 
+    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <file>${LOG_HOME}/debug/${PROJECT_NAME}-debug.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- rollover daily -->
-            <fileNamePattern>
-                ${LOG_HOME}/%d{yyyy-MM}/${PROJECT_NAME}_api_access.%d{yyyy-MM-dd}-%i.log
+            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM,aux}/base/${PROJECT_NAME}_access_file-%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>10MB</maxFileSize>
+                <maxFileSize>${FILE_SIZE}</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>30</maxHistory>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
         </rollingPolicy>
+<!--        DEBUG 及其更高级别-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
     </appender>
 
+
+    <!--  API请求前请求后日志 -->
+<!--    <appender name="API_ACCESS_LOG"-->
+<!--              class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${LOG_HOME}/${PROJECT_NAME}_api_access.log</file>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <Pattern>-->
+<!--                ${FILE_LOG_PATTERN}-->
+<!--            </Pattern>-->
+<!--        </encoder>-->
+
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash; rollover daily &ndash;&gt;-->
+<!--            <fileNamePattern>-->
+<!--                ${LOG_HOME}/%d{yyyy-MM}/${PROJECT_NAME}_api_access.%d{yyyy-MM-dd}-%i.log-->
+<!--            </fileNamePattern>-->
+<!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--                <maxFileSize>10MB</maxFileSize>-->
+<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+<!--            <maxHistory>30</maxHistory>-->
+<!--        </rollingPolicy>-->
+<!--    </appender>-->
+
+    <springProfile name="!pro">
+        <root level="DEBUG">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="ACCESS_FILE"/>
+            <appender-ref ref="ERROR"/>
+            <appender-ref ref="DEBUG"/>
+        </root>
+    </springProfile>
+
+
+
     <!-- 开发、测试环境、生产环境-->
-    <springProfile name="dev">
+    <springProfile name="pro">
         <!--application-->
         <Logger name="indi.ikun" level="info"/>
         <!--spring-->
