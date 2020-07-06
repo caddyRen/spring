@@ -7,8 +7,22 @@ archlinux idea 2020版本下，未出现此问题
 ###windows idea2019
 - idea配置 Build and run using为Intellij IDEA（默认是Gradle）
 - idea配置 Run test using为Intellij IDEA（默认是Gradle）
-###archlinux idea2020
+###windows idea2020.1
 - idea配置 Run test using为Intellij IDEA（默认是Gradle）
+###archlinux idea2020.1
+- idea配置 Run test using为Intellij IDEA（默认是Gradle）
+
+#已完善模块
+1. spring-swagger
+1. database-depency
+1. spring-tomcat
+1. spring-undertow
+1. spring-jetty
+
+#springboot样例
+1. demo-springboot
+
+
 
 #spring cloud
 #spring boot 微服务入门级微架构
@@ -31,23 +45,5 @@ archlinux idea 2020版本下，未出现此问题
 - eureka server port：8761，8762
 - config server port：9999
 
-#maven基础依赖
-##已完善
-- swagger
-- spring-jetty
-- spring-tomcat
-- spring-undertow
-##待完善
-- springboot 
-    - 1.5.X 
-    - 2.0.X
-- 拆分模块
-    - 微服务基础
-        - 单元测试
-        - 基础样例
-        - 消息相关
-        - nosql相关
-        - 安全相关模块
-    - springclould组件们
     
 

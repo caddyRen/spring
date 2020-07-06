@@ -1,6 +1,5 @@
 server:
   port: 30002
-
 # mysql config
 mysql:
   host: ${MYSQL_HOST:127.0.0.1}

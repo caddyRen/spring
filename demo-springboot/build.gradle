@@ -2,12 +2,10 @@ compileTestJava.enabled=true
 processResources.enabled=true
 processTestResources.enabled=true
 dependencies {
-    api(project(":commons"))
-    api(project(":spring-undertow"))
-    api(project(":spring-swagger"))
-    api(project(":database-depency"))
-    api("org.aspectj:aspectjweaver")
-    //guava:26.0-jre覆盖swagger-ui自带的guava
-    implementation("com.google.guava:guava:26.0-jre")
+    implementation("org.aspectj:aspectjweaver")
+    implementation(project(":spring-depency"))
+    implementation(project(":spring-undertow"))
+    implementation(project(":spring-swagger"))
+    implementation(project(":database-depency"))
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

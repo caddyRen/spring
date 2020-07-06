@@ -8,5 +8,4 @@ dependencies {
     api("org.apache.commons:commons-lang3:3.8")
     api("org.yaml:snakeyaml:1.17")
     api("com.google.code.gson:gson:2.8.5")
-
 }

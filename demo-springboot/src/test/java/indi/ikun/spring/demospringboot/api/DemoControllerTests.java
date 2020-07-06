@@ -1,34 +1,34 @@
 package indi.ikun.spring.demospringboot.api;
 
-import lombok.extern.slf4j.Slf4j;
+import indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper;
+import indi.ikun.spring.demospringboot.mybatis.po.SysApp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-//随机一个未占用的端口启动测试
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//以application设置的端口启动测试，如果没设置则会用8080端口
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-//加载applicationContext正在使用的SpringApplication但是不提供任何servlet环境
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-//加载WebApplicationContext并提供一个模拟servlet环境,使用此注释,不会启动嵌入式Servlcet容器,
-// 如果servletAPI不在类路径中则此模式将透明地回退到创建常规非Web的ApplicationContext
-//可以结合@AutoConfigureMockMvc使用MockMvc为应用程序测试
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Slf4j
+@WebMvcTest(DemoController.class)//测试controller
 public class DemoControllerTests {
-    @Autowired
-    private TestRestTemplate restTemplate;
 
+    @Autowired
+    private MockMvc mvc;
+
+    @MockBean
+    private SysAppMapper sysAppMapper;
     @Test
-    public void exampleTest() {
-        String body = this.restTemplate.getForObject("/index2", String.class);
-        assertThat(body).isEqualTo("Hello World");
+    public void exampleTest() throws Exception{
+        given(this.sysAppMapper.getByAppId2("xcgk")).willReturn(SysApp.builder().appName("主站").build());
+        this.mvc.perform(get("/index2").accept(MediaType.TEXT_PLAIN))
+                .andExpect(status().isOk()).andExpect(content().string("Hello World"));
     }
 }

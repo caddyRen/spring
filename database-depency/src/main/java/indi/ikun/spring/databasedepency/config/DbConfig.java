@@ -1,4 +1,4 @@
-package indi.ikun.spring.demospringboot.config;
+package indi.ikun.spring.databasedepency.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,8 @@ import org.springframework.util.Assert;
 import javax.annotation.PostConstruct;
 
 /**
- * @author WangJiHua
- * @date 2019/7/25
+ * @author renqiankun
+ *
  */
 @Configuration
 @ConditionalOnProperty(prefix = "spring.datasource", name = "enable", matchIfMissing = false)
@@ -34,14 +34,13 @@ public class DbConfig {
      * 若项目启动时无连接数据库，启动后再执行连接数据库，会导致druid线程池循环连接数据库
      * 若执行以下sql测试连接，连接失败则启动失败，防止账号被锁
      *
-     * @author WangJiHua
-     * @date 2019/7/25 10:31
+     * @author renqiankun
      */
     @PostConstruct
     public void testConnect() {
-        log.info("==> Begin connect database ......");
+        log.info("======> Begin connect database ......");
         int result = jdbcTemplate.queryForObject("select 1 from dual", Integer.class);
-        log.info("==> Connect database success: {}", result);
+        log.info("======> Connect database success: {}", result);
     }
 
 

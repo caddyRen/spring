@@ -1,4 +1,4 @@
-package indi.ikun.spring.demospringboot.config;
+package indi.ikun.spring.swagger.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +10,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -28,19 +29,42 @@ public class SwaggerConfig {
 
     @Value("${swagger.base-package}")
     String basePackage;
+
     @Value("${swagger.path-regex}")
     String pathRegex;
+
     @Value("${swagger.title}")
     String title;
+
     @Value("${swagger.description}")
     String description;
+
     @Value("${swagger.version}")
     String version;
 
+    @Value("${swagger.url}")
+    String url;
+
+    @Value("${swagger.email}")
+    String email;
+
+    @Value("${swagger.contact}")
+    String contact;
+
+    /**
+     * 单元测试使用
+     * @return
+     */
+    public String getBasePackage() {
+        return basePackage;
+    }
+
+
     @Bean
-    public Docket demoApi() {
+    public Docket globalApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+                .groupName("Global")
+                .apiInfo(globalApiInfo())
                 .genericModelSubstitutes(DeferredResult.class)
                 .useDefaultResponseMessages(false)
                 .forCodeGeneration(false)
@@ -51,9 +75,10 @@ public class SwaggerConfig {
     }
 
 
-    private ApiInfo apiInfo() {
+    private ApiInfo globalApiInfo() {
         return new ApiInfoBuilder().title(title)
                 .description(description)
+                .contact(new Contact(contact, url, email))
                 .version(version)
                 .build();
     }

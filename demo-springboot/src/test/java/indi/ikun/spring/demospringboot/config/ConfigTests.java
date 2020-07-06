@@ -1,11 +1,10 @@
 package indi.ikun.spring.demospringboot.config;
 
-import org.checkerframework.checker.units.qual.A;
+import indi.ikun.spring.swagger.config.SwaggerConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,10 +18,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DirtiesContext
 public class ConfigTests {
     @Autowired
-    SwaggerConfig swaggerConfigl;
+    SwaggerConfig swaggerConfig;
 
     @Test
     public void test(){
-        System.err.println(swaggerConfigl.basePackage);
+        System.err.println(swaggerConfig.getBasePackage());
     }
 }

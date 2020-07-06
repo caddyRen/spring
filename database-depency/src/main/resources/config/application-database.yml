@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    enable: true
+    druid:
+      url: jdbc:mysql://${mysql.host:127.0.0.1}:${mysql.port:3306}/${mysql.dbname:demo}?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      username: ${mysql.username:root2}
+      password: ${mysql.password:qiankun415}
+      driver-class-name: com.mysql.jdbc.Driver
+      #数据库连接池的配置信息
+      initial-size: 6
+      min-idle: 6
+      max-active: 66
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-error-retry-attempts: 0
+      break-after-acquire-failure: true
+# myBatis config
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    jdbc-type-for-null: 'null'
+    call-setters-on-nulls: true
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml
