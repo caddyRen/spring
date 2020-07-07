@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <property name="PROJECT_NAME" value="java4doc"/>
+    <property name="PROJECT_NAME" value="base_java"/>
     <property name="LOG_HOME" value="logs"/>
     <property name="FILE_SIZE" value="100MB"/>
     <property name="MAX_HISTORY" value="60"/>

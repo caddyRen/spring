@@ -1,93 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration scan="true" scanPeriod="60 seconds" debug="true"><!--定时扫描日志配置文件是否改变-->
-    <contextName>logbak--first</contextName><!--上下文名称 可以加到日志输出格式里显示 如CONSOLE_LOG_PATTERN里的  %contextName-->
-    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-<!--属性设置-->
-   <!--应用名称-->
-    <property name="APP_NAME" value="commons" />
-    <!--日志目录 C:\Users\caddy\logs\consumerdemo     APP_NAME是上面的property配置的-->
-    <property name="LOG_HOME" value="logs" /><!--win10的日志目录为C:\Users\caddy\logs\consumerdemo-->
-    <!-- 日志格式-->
-    <property name="CONSOLE_LOG_PATTERN"
-              value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %contextName %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%4line) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
-    <property name="FILE_LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} %4line : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
-<!--属性设置结束-->
-    <!-- 该文件的引入必须要放在property节点后面，否则上面定义的property无法覆盖defaults.xml内已经定义的property -->
-    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
-    <!--格式化日志输出节点，name和class属性；class指定输出策略：常用CONSOLE控制台输出策略和FILE文件输出策略-->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-<!--过滤想要的日志级别 默认info级别 此处可以实现相同级别的日志放到一起，-->
-        <!--如果只是想要 Info 级别的日志，只是过滤 info 还是会输出 Error 日志，因为 Error 的级别高，所以我们使用下面的策略，可以避免输出 Error 的日志-->
-        <!--<filter class="ch.qos.logback.classic.filter.LevelFilter">
-            &lt;!&ndash;过滤 Error&ndash;&gt;
-            <level>ERROR</level>
-            &lt;!&ndash;匹配到就禁止&ndash;&gt;
-            <onMatch>DENY</onMatch>
-            &lt;!&ndash;没有匹配到就允许&ndash;&gt;
-            <onMismatch>ACCEPT</onMismatch>
-        </filter>-->
-        <!--如果只是想要 Error 级别的日志，那么需要过滤一下，默认是 info 级别的，ThresholdFilter-->
-        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>Error</level>
-        </filter>-->
-<!--过滤想要的日志级别 end -->
-        <!--字符编码，和日志输出格式-->
-        <encoder>
-            <charset>UTF-8</charset><!--字符编码-->
-            <pattern>${FILE_LOG_PATTERN}</pattern><!--使用上面设置的属性-->
-        </encoder>
-        <file>${LOG_HOME}/${APP_NAME}.log</file><!--文件-->
-        <!--切分日志，避免文件过大，滚动策略，按照时间滚动TimeBasedRollingPolicy-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--文件路径，以日期为界，切分日志文件，每月的日志归档到一个文件中 为.gz压缩文件-->
-            <fileNamePattern>${LOG_HOME}/%d{yyyy-MM,aux}/${APP_NAME}-%d{yyyy-MM-dd}.%i.gz</fileNamePattern><!-- C:/Users/caddy/logs/firststudy/2018-04/firststudy-2018-04-27.0.gz -->
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-            <maxFileSize>100MB</maxFileSize><!-- 按大小分割日志文件-->
-            </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>365</maxHistory><!--日志最大保存时间 单位天-->
-        </rollingPolicy>
-        <!--切分日志，避免文件过大，滚动策略，按照时间滚动TimeBasedRollingPolicy   end-->
-    </appender>
+<configuration>
+<include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <!-- 设置某一个包，或者具体的某一个类的日志打印级别 以及指定appender
-        三个属性
-            name指定受此logger约束的包或类
-            level打印级别，大小写无关TRACE,DEBUG,INFO,WARN,ERROR,ALL,OFF还有特殊值INHERITED或者同义词NULL代表强制执行上级的级别，不设置的话继承上级的级别
-            additivity 是否向上级logger传递打印信息 默认TRUE，
-    -->
+<property name="PROJECT_NAME" value="commons"/>
+<property name="LOG_HOME" value="logs"/>
+<property name="FILE_SIZE" value="100MB"/>
+<property name="MAX_HISTORY" value="60"/>
 
-    <!--
-    <logger name="com.first.study" level="DEBUG"/>
-    <logger name="org.mybatis" level="INFO"/>
-    <logger name="tk.mybatis" level="INFO"/>
-    <logger name="java.sql" level="INFO"/>
-    -->
-    <!-- 如下name如果有重叠，则越精确的优先级越高-->
-    <!--<logger name="com.first.study.service.service.first.service.RedisService" level="WARN" additivity="false">
-        <appender-ref ref="FILE"/>
-    </logger>-->
-    <!--多环境配置  application.yml里环境设置为dev时会自动匹配下面的name-->
-    <!-- 测试环境+开发环境. 多个使用逗号隔开. -->
-    <springProfile name="test,dev">
-        <logger name="com.first.study.service.service.first" level="DEBUG" additivity="false"><!--addtivity为true时，会将日志信息传递给上级即root节点，然后日志文件内就会打印两行相同的日志-->
-            <appender-ref ref="CONSOLE"/><!--控制台-->
-            <appender-ref ref="FILE"/><!--日志文件-->
-        </logger>
-        <logger name="com.first.study.service.mybatis.dao" level="DEBUG" additivity="false"><!--输出sql-->
-            <appender-ref ref="CONSOLE"/><!--输出到控制台，没有则不会输出到控制台-->
-            <appender-ref ref="FILE"/><!--日志文件-->
-        </logger>
-    </springProfile>
-    <!-- 生产环境. -->
-    <springProfile name="prod">
-        <logger name="com.first.study.service.service.first" level="INFO" additivity="false">
-            <appender-ref ref="FILE"/><!--日志文件-->
-        </logger>
-    </springProfile>
-    <!--多环境配置end-->
-    <root level ="info"><!--必须节点，指定最基础的日志输出级别，默认debug，只有一个level属性，info   INFO大小写无关 TRACE，DEBUG，INFO，WARN，ERROR，ALL，OFF-->
-        <appender-ref ref="CONSOLE"/><!--控制台-->
-        <appender-ref ref="FILE"/><!--日志文件-->
+<property name="CONSOLE_LOG_PATTERN"
+          value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(%4line) %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+<property name="FILE_LOG_PATTERN"
+          value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} %4line : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+<!--工作台日志输出-->
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+        <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+    </layout>
+</appender>
+<!--文件日志输出 配置输出的日志-->
+<appender name="ACCESS_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+    <file>${LOG_HOME}/${PROJECT_NAME}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_HOME}/%d{yyyyMM,aux}/${PROJECT_NAME}_%d{yyyyMMdd}.%i.log</fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>${FILE_SIZE}</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        <maxHistory>${MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+</appender>
+
+<!-- 只记录 ERROR 日志-->
+<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder>
+        <!-- pattern节点，用来设置日志的输入格式 -->
+        <pattern>${FILE_LOG_PATTERN}</pattern>
+        <!-- 记录日志的编码:此处设置字符集  -->
+        <charset>UTF-8</charset>
+    </encoder>
+    <!-- logs/error/demo_springboot_error.log-->
+    <File>${LOG_HOME}/error/${PROJECT_NAME}_error.log</File>
+    <!-- rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。 -->
+    <!-- TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- 活动文件的名字会根据fileNamePattern的值，每隔一段时间改变一次 -->
+        <!-- 文件名：logs/202007/error/demo_springboot_error_20200707.0.log -->
+        <fileNamePattern>${LOG_HOME}/%d{yyyyMM,aux}/error/${PROJECT_NAME}_error_%d{yyyyMMdd}.%i.log
+        </fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <!-- maxFileSize:这是日志文件的大小，默认值是10MB，测试时可改成1KB看效果 -->
+            <maxFileSize>${FILE_SIZE}</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        <!-- 每产生一个日志文件，该日志文件的保存期限为180天 -->
+        <maxHistory>${MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+    <!--        筛选 ERROR 日志 只记录系统会输出的error级别日志 -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+        <level>ERROR</level>
+        <!-- 匹配到就收集-->
+        <onMatch>ACCEPT</onMatch>
+        <!-- 没有匹配到就拒绝收集-->
+        <onMismatch>DENY</onMismatch>
+    </filter>
+</appender>
+<!-- 记录输出的：debug，info，warn，error级别日志  调试专用 -->
+<appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+    <file>${LOG_HOME}/debug/${PROJECT_NAME}_debug.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <fileNamePattern>${LOG_HOME}/%d{yyyyMM,aux}/debug/${PROJECT_NAME}_debug_%d{yyyyMMdd}.%i.log
+        </fileNamePattern>
+        <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>${FILE_SIZE}</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+        <maxHistory>${MAX_HISTORY}</maxHistory>
+    </rollingPolicy>
+    <!--  收集DEBUG 及其更高 info，warn，error级别日志 调试专用 -->
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+        <level>DEBUG</level>
+    </filter>
+</appender>
+
+<springProfile name="!pro">
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="DEBUG"/>
     </root>
+</springProfile>
+
+
+<!-- 开发、测试环境、生产环境-->
+<springProfile name="pro">
+    <root level="WARN">
+        <appender-ref ref="ACCESS_FILE"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="DEBUG"/>
+    </root>
+</springProfile>
+
+
 </configuration>

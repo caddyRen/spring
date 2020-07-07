@@ -23,7 +23,7 @@ spring:
     host: 127.0.0.1
     port: 5672
     username: guest
-    password: qiankun415
+    password: guest
 eureka:
   instance:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息

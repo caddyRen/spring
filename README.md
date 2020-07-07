@@ -45,5 +45,11 @@ archlinux idea 2020版本下，未出现此问题
 - eureka server port：8761，8762
 - config server port：9999
 
+
+#基础服务
+- eureka 注册中心
+- configServer 配置中心
+- rabbitmq 消息队列 搭配配置中心
+- 网关
     
 

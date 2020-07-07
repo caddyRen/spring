@@ -19,9 +19,10 @@ import tk.mybatis.spring.annotation.MapperScan;
 public class DemoSpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoSpringbootApplication.class, args);
-        log.debug("--debug");
-        log.info("--info");
-        log.warn("--warn");
-        log.error("--error");
+        log.trace("============trace");
+        log.debug("============debug");
+        log.info("============info");
+        log.warn("============warn");
+        log.error("============error");
     }
 }

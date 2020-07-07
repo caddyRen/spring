@@ -1,5 +1,5 @@
 server:
-  port: 8762
+  port: 8761
 #--------开启安全模块-------#
 security: #开启服务注册认证机制
   basic:
@@ -8,14 +8,7 @@ security: #开启服务注册认证机制
     name: mumu
     password: 66
 #---------安全模块------------#
-#------开启配置文件密文显示------#
-jasypt:
-  encryptor:
-    password: PBEWithMD5AndDES #ecc 使用
-#    password: hEVJk7e5OvXBctrR #xcgj 使用
-#    password: SGx2Bre4JveWKFPf #msgservice 使用
-#    password: 2p62GjAru5IRZ8l9 #msgservice 使用
-#------配置文件密文显示------#
+
 #eureka配置
 eureka:
   instance:
@@ -63,8 +56,8 @@ eureka:
     availability-zones: #只会注册到可用区域的注册中心
       guangdong: gz,sz # 获取实例所在的地区下可用性的区域列表，用逗号隔开。（AWS）
     service-url:
-      gz: http://mumu:66@127.0.0.1:8761/eureka/
-      sz: http://mumu:66@127.0.0.1:8761/eureka/
+      gz: http://mumu:66@127.0.0.1:8762/eureka/
+      sz: http://mumu:66@127.0.0.1:8762/eureka/
 #    eureka-connection-idle-timeout-seconds: 36 #client连接Eureka服务端后的空闲等待时间，默认为30 秒
 #    eureka-server-connect-timeout-seconds: 6 #client连接eureka服务端的连接超时时间，默认为5秒
 #    eureka-server-read-timeout-seconds: 12 #client对服务端的读超时时长

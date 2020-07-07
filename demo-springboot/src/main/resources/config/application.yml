@@ -10,7 +10,7 @@ spring:
 logging:
   config: classpath:config/logback-spring.xml
   level:
-    root: debug
+    root: info
 
 debug: false
 
