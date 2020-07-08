@@ -6,4 +6,8 @@ spring:
 jasypt:
   encryptor:
     password: m88CREAHperHSVG9q8sHJHaVwnr4xNlC #密钥
-debug: true
+#debug: true
+
+logging:
+  level:
+    root: info

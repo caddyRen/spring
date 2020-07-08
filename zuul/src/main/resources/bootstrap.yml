@@ -1,5 +1,5 @@
 server:
-  port: 9996
+  port: 9997
 spring:
   application:
     name: zuul
@@ -24,7 +24,7 @@ eureka:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
     app-group-name: mumu #注册在Eureka服务中的应用组名
 #    appname: config-client #注册在的Eureka服务中的应用名称
-    instance-id: config-client-9997 #该实例注册到服务中心的唯一ID
+    instance-id: zuul #该实例注册到服务中心的唯一ID
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
     initial-status: up #初始化该实例，注册到服务中心的初始状态
     lease-renewal-interval-in-seconds: 12 #该实例给服务中心发送心跳的间隔时间，用于表明该服务实例可用
@@ -73,3 +73,9 @@ security:
 management:
   security:
     enabled: false
+#这里的配置表示，访问/it/** 直接重定向到http://www.ityouknow.com/**
+zuul:
+  routes:
+    config-client:
+        path: /config-client/**
+        serviceId: CONFIGCLIENT
