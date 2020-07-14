@@ -3,6 +3,7 @@ package indi.ikun.spring.demospringboot;
 import indi.ikun.spring.demospringboot.mybatis.dao.SysAppMapper;
 import indi.ikun.spring.demospringboot.mybatis.po.SysApp;
 import lombok.extern.slf4j.Slf4j;
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,9 @@ public class DemoSpringbootApplicationTests {
     @Autowired
     private SysAppMapper sysAppMapper;
 
+    @Autowired
+    StringEncryptor stringEncryptor;
+
     @Test
     public void exampleTest() {
         String body = this.restTemplate.getForObject("/index2", String.class);
@@ -48,5 +52,9 @@ public class DemoSpringbootApplicationTests {
         System.err.println(user);
         assertThat(user.getAppName()).isEqualTo("广州地区现场可视化应用主站");
         assertThat(user.getAppShortName()).isEqualTo("主站");
+    }
+    @Test
+    public void contextLoads() {
+        System.err.println(stringEncryptor.decrypt("r1h11lrnWcgCxEnCcfyOtZ4mzrIjkX/hI27+6kFqTBM="));
     }
 }

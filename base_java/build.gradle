@@ -1,4 +1,4 @@
-test.enabled=true
+//test.enabled=true
 dependencies {
     api(project(":commons"))
     api(project(":spring-jetty"))

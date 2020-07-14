@@ -1,0 +1,122 @@
+version: '3'
+services:
+  #-------------------#
+  #------中间件--------#
+  #-------------------#
+  mysql:
+    image:
+  jenkins:
+    image: jenkins/jenkins:alpine
+    container_name: jenkins
+    restart: "no"
+    ports:
+      - "50000:50000"
+      - "8080:8080"
+    volumes:
+      - /root/devops/jenkins:/var/jenkins_home
+    user: "root"
+  gitlib:
+    image: gitlab/gitlab-ce:rc
+    container_name: gitlab
+    restart: "no"
+    ports:
+      - "4422:22"
+      - "4480:80"
+      - "44443:443"
+    volumes:
+      - /root/devops/gitlib/config:/etc/gitlib
+      - /root/devops/gitlib/logs:/var/log/gitlib
+      - /root/devops/gitlib/data:/var/opt/gitlib
+  #--------------------#
+  #---eureka注册中心----#
+  #-------------------#
+  eureka_8761:
+    image: eureka:1.0.0-SNAPSHOT
+    container_name: eureka_8761
+    restart: "no"
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_SERVER=192.168.8.125
+      - PORT=8761
+      - GZ_IP=192.168.8.125
+      - GZ_PORT=8762
+      - SZ_IP=192.168.8.125
+      - SZ_PORT=8762
+  eureka_8762:
+    image: eureka:1.0.0-SNAPSHOT
+    container_name: eureka_8762
+    restart: "no"
+    ports:
+      - "8762:8762"
+    environment:
+      - EUREKA_SERVER=192.168.8.125
+      - PORT=8762
+      - GZ_IP=192.168.8.125
+      - GZ_PORT=8761
+      - SZ_IP=192.168.8.125
+      - SZ_PORT=8761
+  #--------------------#
+  #---配置中心----#
+  #-------------------#
+  config_server:
+    image: config_server:1.0.0-SNAPSHOT
+    container_name: config_server
+    restart: "no"
+    ports:
+      - "9999:9999"
+    extra_hosts:
+      - "work-ip:192.168.8.125"
+    environment:
+      - EUREKA_SERVER=work-ip
+      - PORT=9999
+      - GZ_IP=work-ip
+      - GZ_PORT=8761
+      - SZ_IP=work-ip
+      - SZ_PORT=8762
+      - RABBITMQ_HOST=work-ip
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+  #eureka注册中心 8761
+#  eureka_8761:
+#    image: eureka:1.0.0-SNAPSHOT
+#    container_name: eureka_8761
+#    restart: "no"
+#    ports:
+#      - "8761:8761"
+#    extra_hosts:
+#      - "work-ip:192.168.8.125"
+#    environment:
+#      - EUREKA_SERVER=192.168.8.125
+#      - PORT=8761
+#      - GZ_IP=work-ip
+#      - GZ_PORT=8762
+#      - SZ_IP=work-ip
+#      - SZ_PORT=8762
+    #    links:
+    #      - "eureka_8762"
+    #    networks:
+    #      - eureka_net
+#  eureka_8762:
+#    image: eureka:1.0.0-SNAPSHOT
+#    container_name: eureka_8762
+#    restart: "no"
+#    ports:
+#      - "8762:8762"
+#    extra_hosts:
+#      - "work-ip:192.168.8.125"
+#    environment:
+#      - EUREKA_SERVER=192.168.8.125
+#      - PORT=8762
+#      - GZ_IP=work-ip
+#      - GZ_PORT=8761
+#      - SZ_IP=work-ip
+#      - SZ_PORT=8761
+#      links:
+  #      - "eureka_8761"
+  #    networks:
+  #      - eureka_net
+#networks:
+#  eureka_net:
+#    driver: bridge

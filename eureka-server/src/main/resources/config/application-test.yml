@@ -2,9 +2,9 @@ eureka:
   instance:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
     app-group-name: mumu #注册在Eureka服务中的应用组名
-    appname: ${eureka.instance.namespace}:${eureka.instance.non-secure-port} #注册在的Eureka服务中的应用名称
+    appname: ${eureka.instance.namespace}-${eureka.instance.non-secure-port} #注册在的Eureka服务中的应用名称
     instance-id: 0000 #该实例注册到服务中心的唯一ID
-    ip-address: 127.0.0.1 #该实例的IP地址
+    ip-address: 127.0.0.1 #该实例的IP地址,一台机启动多个eureka server 设置后不能组集群
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
     #    a-s-g-name: #用于AWS平台（亚马逊云平台）自动扩展的与此实例关联的组名，
     #    data-center-info: #部署此实例的数据中心

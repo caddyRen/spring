@@ -8,3 +8,7 @@ mysql:
   username: ${MYSQL_USERNAME:root}
 #  password: ${MYSQL_PASSWORD:toor}
   password: ${MYSQL_PASSWORD:qiankun415}
+#开启配置文件密文显示#
+jasypt:
+  encryptor:
+    password: C2QNY7f7Co4Md7Bg

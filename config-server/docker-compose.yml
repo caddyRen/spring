@@ -1,19 +1,21 @@
 version: '3'
 services:
-  eureka_8761:
-    image: config:1.0.0-SNAPSHOT
-    container_name: config
+  config_server:
+    image: config_server:1.0.0-SNAPSHOT
+    container_name: config_server
     restart: "no"
     ports:
       - "9999:9999"
     extra_hosts:
       - "work-ip:192.168.8.125"
     environment:
-      - EUREKA_SERVER=192.168.8.125
+      - EUREKA_SERVER=work-ip
+      - PORT=9999
       - GZ_IP=work-ip
-      - GZ_PORT=8762
+      - GZ_PORT=8761
       - SZ_IP=work-ip
-      - SZ_PORT=8761
+      - SZ_PORT=8762
+      - APPNAME=config_server
       - RABBITMQ_HOST=work-ip
       - RABBITMQ_PORT=5672
       - RABBITMQ_USERNAME=guest
