@@ -339,7 +339,7 @@ A依赖B，B有两个互斥特性，分别依赖于X，Y，用户不可能同时
 ##多模块
 - DepencyManagement
   - 在顶层的POM文件中，通过DepencyManagement元素来管理jar包的版本，让子项目中引用一个依赖而不用显示的列出版本号。Maven会沿着父子层次向上走，直到找到一个拥有dependencyManagement元素的项目，然后它就会使用在这个dependencyManagement元素中指定的版本号
-  ![image](file/markdown/img/maven-parent-child.jpg)
+  ![image](img/maven-parent-child.jpg)
   - 可以统一管理项目的版本号，确保应用的各个项目的依赖和版本一致，保证测试和发布是相同的成果，因此在顶层pom中定义共同的依赖关系，同时可以避免在每个使用的子项目中都声明一个版本号，这样想升级或者切换版本，只需在父类容器更新。如果子项目需要另外一个版本号时，只需要在自己的pom的dependencies中声明一个版本号，子项目就使用自己声明的版本号，不继承父类版本号。
 - Dependencies
   - 相对于depencyManagement，所有声明在dependencies里的依赖都会自动引入，并默认被所有子项目继承

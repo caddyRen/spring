@@ -1,9 +1,10 @@
 #git
 ##command
-1. 下载项目
+1. 下载项目 
     ```shell script
     git clone 项目地址
     ```
+
 1. 查看本地分支
     ```shell script
     git branch
@@ -41,4 +42,5 @@
    ```shell script
    git add eureka-server/src/main/java/indi/ikun/spring/eurekaserver/EurekaServerApplication.java
    git commit -am '合并冲突'
-   ```   
+   ```
+   ![image](img/git_merge.png)
