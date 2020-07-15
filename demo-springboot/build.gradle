@@ -3,6 +3,11 @@ processResources.enabled=true
 processTestResources.enabled=true
 dependencies {
     implementation("org.aspectj:aspectjweaver")
+    //rabbitmq
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("org.springframework:spring-messaging")
+    implementation("org.springframework.amqp:spring-rabbit")
+    //rabbitmq
     implementation(project(":spring-depency"))
     implementation(project(":spring-undertow"))
     implementation(project(":spring-swagger"))

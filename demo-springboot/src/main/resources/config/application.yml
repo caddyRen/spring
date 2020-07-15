@@ -1,10 +1,32 @@
 spring:
+  application:
+    name: demo_springboot
   profiles:
      active: dev,swagger,database
   http:
     multipart:
       max-file-size: 20MB
       max-request-size: 50MB
+  rabbitmq:
+    addresses: define in profile
+    virtual-host: define in profile
+    username: define in profile
+    password: define in profile
+#    connection-name: ${spring.application.name}
+    publisher-confirms: true #确认模式，消息发送失败会回退
+    publisher-returns: true #
+    template: #RabbitTemplate
+      mandatory: true
+    listener:
+      simple: #SimpleRabbitListenerContainerFactory配置
+        concurrency: 2
+        max-concurrency: 10
+        acknowledge-mode: manual
+        prefetch: 5
+        transaction-size: 2
+        retry:
+          enabled: true #开启消费重试功能，当连不到rabbitmq时消费者默认重试三次。如果不开启 当监听器异常，则会无限重试
+          max-attempts: 6 #重试次数 默认是3
 
   # logback配置参数
 logging:

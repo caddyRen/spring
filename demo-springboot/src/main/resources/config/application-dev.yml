@@ -1,5 +1,11 @@
 server:
   port: 30002
+spring:
+  rabbitmq:
+    addresses: ${RABBITMQ_ADDRESSES:127.0.0.1:5672}
+    virtual-host: ${RABBITMQ_VHOST:/}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
 # mysql config
 mysql:
   host: ${MYSQL_HOST:127.0.0.1}
@@ -12,3 +18,10 @@ mysql:
 jasypt:
   encryptor:
     password: C2QNY7f7Co4Md7Bg
+
+#rabbitmq queue exchange binding
+rabbitmq:
+  enable: false
+  queue: demo
+  exchange: demo
+  routkey: demo
