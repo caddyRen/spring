@@ -44,3 +44,4 @@
    git commit -am '合并冲突'
    ```
    ![image](img/git_merge.png)
+   ![image](../img/maven-parent-child.jpg)
