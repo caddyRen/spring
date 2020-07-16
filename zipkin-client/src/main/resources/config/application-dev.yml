@@ -1,0 +1,19 @@
+server:
+  port: ${PORT:10002}
+
+logging:
+  level:
+    root: info
+
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVER:localhost}
+    appname: ${APPNAME:zipkin-client}
+  client:
+    service-url:
+      gz:
+        ip: ${GZ_IP:127.0.0.1}
+        port: ${GZ_PORT:8761}
+      sz:
+        ip: ${SZ_IP:127.0.0.1}
+        port: ${SZ_PORT:8762}

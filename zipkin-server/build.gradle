@@ -1,0 +1,20 @@
+dependencies {
+    api(project(":commons"))
+    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")//:1.4.6.RELEASE")
+    api("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")//:1.4.6.RELEASE")
+    implementation ('org.springframework.boot:spring-boot-starter-web')
+    implementation ('org.springframework.cloud:spring-cloud-starter-sleuth')
+    implementation ('org.springframework.cloud:spring-cloud-starter-zipkin')
+    implementation ('io.zipkin.java:zipkin-server')//2.11.10
+    implementation ('io.zipkin.java:zipkin-autoconfigure-ui')//2.11.10
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+dependencyManagement {
+    imports {
+        /**
+         * 解决cloud零散jar的版本问题,也会引入一些版本冲突的问题，会修改依赖的版本，后续深入学习，寻找好的解决方案
+         * 此处会导致swagger-ui2.9.2（2.8.0无问题）版本引入的guava-20.jar降级成guava-18.jar,项目启动会报错，详情请看demo-springboot项目
+         */
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
