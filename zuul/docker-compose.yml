@@ -1,0 +1,18 @@
+version: '3'
+services:
+  config_server:
+    image: zuul:1.0.0-SNAPSHOT
+    container_name: zuul
+    restart: "no"
+    ports:
+      - "10203:10203"
+    extra_hosts:
+      - "work-ip:192.168.8.125"
+    environment:
+      - EUREKA_SERVER=work-ip
+      - PORT=10203
+      - GZ_IP=work-ip
+      - GZ_PORT=8761
+      - SZ_IP=work-ip
+      - SZ_PORT=8762
+      - APPNAME=zuul

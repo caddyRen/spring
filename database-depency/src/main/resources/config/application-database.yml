@@ -21,6 +21,14 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
       connection-error-retry-attempts: 0
       break-after-acquire-failure: true
+      #禁用druid监控页面
+      stat-view-servlet:
+        enabled: false
+      web-stat-filter:
+        enabled: false
+      filter:
+        config:
+          enabled: false
 # myBatis config
 mybatis:
   configuration:

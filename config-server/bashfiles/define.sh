@@ -2,4 +2,4 @@
 
 service_name="config-server"
 version="1.0.0-SNAPSHOT"
-port="9999"
+port="10201"

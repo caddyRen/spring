@@ -1,22 +1,43 @@
+#PORT
+PORT: 9901
+
+#eureka配置
+EUREKA_SERVER: localhost
+APPNAME: zipkin-client
+GZ_IP: 127.0.0.1
+GZ_PORT: 8761
+SZ_IP: 127.0.0.1
+SZ_PORT: 8762
+
+#zipkin server 配置
+ZIPKIN_HOST: localhost
+ZIPKIN_PORT: 10202
+PERCENTAGE: 1
+
+server:
+  port: ${PORT}
 spring:
-  profiles:
-    active: dev
   application:
-    name: zipkin-client
-  #zipkin服务所在地址
-  zipkin:
-    base-url: http://127.0.0.1:10001/
-  #配置采样百分比,开发环境可以设置为1，表示全部，生产就用默认
-  sleuth:
-    sampler:
-      percentage: 1.0
+    name: ${APPNAME}
+
+logging:
+  level:
+    root: info
+
+security:
+  basic:
+    enabled: false #引入security 不用的话就需要配置为false
+
+management:
+  security:
+    enabled: false
 
 eureka:
   instance:
-    hostname: ${eureka.instance.hostname:localhost} #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
+    hostname: ${EUREKA_SERVER} #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息
     app-group-name: mumu #注册在Eureka服务中的应用组名
-    appname: ${eureka.instance.appname:zipkin-client} #注册在的Eureka服务中的应用名称
-    instance-id: ${eureka.instance.appname}-${server.port:9999} #该实例注册到服务中心的唯一ID
+    appname: ${APPNAME} #注册在的Eureka服务中的应用名称
+    instance-id: ${eureka.instance.appname}-${server.port} #该实例注册到服务中心的唯一ID
     prefer-ip-address: true #该实例，相较于hostname是否优先使用IP
     initial-status: up #初始化该实例，注册到服务中心的初始状态
     lease-renewal-interval-in-seconds: 12 #该实例给服务中心发送心跳的间隔时间，用于表明该服务实例可用
@@ -31,17 +52,17 @@ eureka:
     health-check-url-path: /admin/health #该实例健康检查url,相对路径
     status-page-url-path: /admin/info #该实例的状态呈现url,相对路径
     non-secure-port-enabled: true #http通信端口是否启用
-    non-secure-port: ${server.port:9999} #http通信端口
+    non-secure-port: ${server.port} #http通信端口
   client: #eureka客户端配置
     region: guangdong # 获取实例所在的地区。默认为us-east-1
     prefer-same-zone-eureka: true #实例是否使用同一zone里的eureka服务器，默认为true，理想状态下，eureka客户端与服务端是在同一zone下
     availability-zones:
       guangdong: sz,gz #先尝试注入sz的service-url，当注册失使，才会尝试下一个gz的service-url，注册到哪个中心，则会一直在那个中心存在，除非该中心down掉
     service-url:
-      gz: http://mumu:66@${eureka.client.service-url.gz.ip:127.0.0.1}:${eureka.client.service-url.gz.port:8761}/eureka/
-      sz: http://mumu:66@${eureka.client.service-url.sz.ip:127.0.0.1}:${eureka.client.service-url.sz.port:8762}/eureka/
+      gz: http://mumu:66@${GZ_IP}:${GZ_PORT}/eureka/
+      sz: http://mumu:66@${SZ_IP}:${SZ_PORT}/eureka/
     healthcheck:
-      enabled: true #开启健康检查
+      enabled: true #开启健康检查  eureka.client.healthcheck.enabled=true should only be set in application.yml. Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status
     enabled: true #是否可用
     register-with-eureka: true #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true
     fetch-registry: true #此客户端是否获取eureka服务器注册表上的注册信息，默认为true

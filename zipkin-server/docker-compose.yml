@@ -1,0 +1,18 @@
+version: '3'
+services:
+  config_server:
+    image: zipkin-server:1.0.0-SNAPSHOT
+    container_name: zipkin-server
+    restart: "no"
+    ports:
+      - "10202:10202"
+    extra_hosts:
+      - "work-ip:192.168.8.125"
+    environment:
+      - EUREKA_SERVER=work-ip
+      - PORT=10201
+      - GZ_IP=work-ip
+      - GZ_PORT=8761
+      - SZ_IP=work-ip
+      - SZ_PORT=8762
+      - APPNAME=zipkin-server

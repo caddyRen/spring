@@ -5,12 +5,12 @@ services:
     container_name: config_server
     restart: "no"
     ports:
-      - "9999:9999"
+      - "10201:10201"
     extra_hosts:
       - "work-ip:192.168.8.125"
     environment:
       - EUREKA_SERVER=work-ip
-      - PORT=9999
+      - PORT=10201
       - GZ_IP=work-ip
       - GZ_PORT=8761
       - SZ_IP=work-ip
@@ -18,5 +18,9 @@ services:
       - APPNAME=config_server
       - RABBITMQ_HOST=work-ip
       - RABBITMQ_PORT=5672
+      - RABBITMQ_VHOST=/
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
+      - GIT_URI=http://work-ip:10101/caddyRen/config.git
+      - GIT_USER=caddyRen
+      - GIT_PASSWORD=caddyRen

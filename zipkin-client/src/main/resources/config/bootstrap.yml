@@ -6,7 +6,7 @@ spring:
         service-id: config-server
       username: configServer
       password: 9999
-      name: rabbitmq,mysql #eureka-server-work.yml,mysql-work.yml
+      name: zipkin-server #zipkin-server-work.yml
       profile: work
       label: master
       fail-fast: true
