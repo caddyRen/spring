@@ -1,4 +1,4 @@
-package indi.ikun.spring.basejava.difficulty.easy;
+package indi.ikun.spring.basejava.leetcode.easy;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class A {
+public class Aa {
 
     public static void main(String[] args) {
         int[] a = new int[]{0, 1, 1, 2, 3, 4, 5, 9, 6, 7, 7};
@@ -22,7 +22,7 @@ public class A {
         //声明一个半长数组，不够后续扩容
         for (int i = nums.length - 1; i > 0; i--) {
             if (target - nums[i] >= 0) {
-                List a = new ArrayList<Integer>();
+                List<Integer> a = new ArrayList<>();
                 for (int j = 0; j < i; j++) {
                     if (target - nums[i] == nums[j]) {
                         if (!a.contains(j)) {
