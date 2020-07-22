@@ -22,18 +22,25 @@ import java.util.Scanner;
 public class Ap {
 
     public static void main(String[] args) throws Exception{
+        //获取一个JavaScript的执行引擎
         ScriptEngine engine=new ScriptEngineManager().getEngineByName("javascript");
+        //建立上下文变量
         Bindings bind=engine.createBindings();
         bind.put("factor",1);
+        //绑定上下文，作用域是当前引擎范围
         engine.setBindings(bind, ScriptContext.ENGINE_SCOPE);
         Scanner input=new Scanner(System.in);
         while (input.hasNextInt()){
             int first=input.nextInt();
             int sec=input.nextInt();
             System.err.println("输入参数是："+first+","+sec);
-            engine.eval(new FileReader("d:/Ap.js"));
+            //执行js代码
+            engine.eval(new FileReader("d:/Ap.js"));//win
+//            engine.eval(new FileReader("/onepiece/Ap.js"));//arch;
+            //是否可回调方法
             if(engine instanceof Invocable){
                 Invocable in=(Invocable)engine;
+                //执行js中的函数
                 Double result=(Double)in.invokeFunction("formula",first,sec);
                 System.err.println("运算结果是"+result.intValue());
             }

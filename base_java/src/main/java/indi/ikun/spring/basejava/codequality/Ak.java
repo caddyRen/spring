@@ -79,8 +79,10 @@ class Consumer{
  * 读写java类
  */
 class SerializationUtils{
-
+    //win
     private static String FILE_NAME="d:/obj.bin";
+    //arch
+//    private static String FILE_NAME="d:/obj.bin";
 
     //序列化
     public static void writeObject(Serializable s){
