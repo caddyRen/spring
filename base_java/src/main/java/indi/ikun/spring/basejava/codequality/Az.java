@@ -1,34 +1,47 @@
 package indi.ikun.spring.basejava.codequality;
 
-//静态导入
-import static java.lang.Math.PI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 9.少用静态导入
- * java5开始引入静态导入语法 import static
- * 目的是减少字符输入量，提高代码的可阅读性
+ * 26.提防包装类型的null值
  *
- * 规则
- *  1.不使用*通配符，除非是导入静态常量类（只包含常量的类或接口）
- *  2.方法名是具有明确、清晰表象意义的工具类
- *
- * 滥用静态导入会使程序更难阅读更难维护
- * 静态导入后，代码中就不用再写类名了，
- * 若使用*号通配符，会把一个类的所有静态元素导入进来，大可不必，
- * 用什么拿什么带着类名访问，更直观
+ * Java引入包装类型（Wrapper Types）是为了解决基本类型得实例化问题，以便让一个基本类型也能参与到面向对象的编程世界中。、
+ * 而在Java5中泛型更是对基本类型说了“不”，如想把一个整型放到List中，就必须使用Integer包装类型
  *
  *
- *
+ * 包装对象和拆箱对象可以自由转换，但是要剔除null值，
+ * null值并不能转化为基本类型。
+ * 对于此类问题，我们谨记一点：包装类型参与运算时，要做null值校验
  */
 public class Az {
-    //不使用静态导入
-    public static double calCircleArea(double r){
-        return Math.PI*r*r;
+
+    public static void main(String[] args) {
+        List<Integer> list=new ArrayList<Integer>();
+        list.add(1);
+        list.add(2);
+        list.add(null);
+        System.err.println(f(list));
     }
 
-    //使用静态导入
-    public static double calCircleArea2(double r){
-        return PI*r*r;
-    }
 
+    public static int f(List<Integer> list){
+        int count=0;
+        /**
+         * for循环中，隐含了一个拆箱过程，
+         * 在此过程中包装类型Integer转换为了基本类型int。
+         * 我们知道拆箱过程是通过调用包装对象的intValue方法来实现的，
+         * 由于包装对象是null值，访问其intValue方法报空指针异常也就在所难免了。
+         * 问题清楚了，修改也很简单，加入null值检查即可
+         */
+//        for(int i:list){
+//            count+=i;
+//        }
+
+        //ok
+        for(Integer i:list){
+            count+=(i!=null)?i:0;
+        }
+        return count;
+    }
 }
