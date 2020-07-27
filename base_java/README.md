@@ -14,7 +14,7 @@
 12. Al避免用序列化类在构造函数中为不变量赋值
 13. Am避免为final变量复杂赋值
 14. An使用序列化类的私有方法巧妙解决部分属性持久化问题
-15. Aobreak万万不可忘
+15. Ao break万万不可忘
 16. Ap易变业务使用脚本语言编写
 17. Aq慎用动态编译
 18. Ar避免instanceof非预期结果
@@ -44,10 +44,48 @@
 42. Bp让工具类不可实例化
 43. Bq避免对象的浅拷贝
 44. Br推荐使用序列化实现对象的拷贝
-45. Bs
+45. Bs覆写equals方法时不要识别不出自己
+46. Bt equals应该考虑null值情景
+47. Bu在equals中使用getClass进行类型判断
+48. Bv覆写equals方法必须覆写hashCode方法
+49. Bw推荐覆写toString方法
+50. Bx使用package-info类为包服务
+51. By不要主动进行垃圾回收
+52. Bz推荐使用String直接量赋值
+53. Ca注意方法中传递的参数要求
+54. Cb正确使用String、StringBuffer、StringBuilder
+55. Cc注意字符串的位置
+56. Cd自由选择字符串拼接方法
+57. Ce推荐在复杂字符串操作中使用正则表达式
+58. Cf强烈建议使用UTF编码
+59. Cg对字符串排序持一种宽容的心态
+60. Ch性能考虑，数组是首选
+
 
 
 
 1. 包名全小写、类名首字母全大写、常量全部大写并用下划线分隔、变量采用驼峰命名法（Camel Case）;
 2. 不要将易混字母混合使用iIlL10Oo(小写字母i、大写字母I、小写字母l、大写字母L、数字1、数字0、大写字母O、小写字母o)
 1. 在面向对象编程（Object-Oriented Programming，OOP）的世界里，类和对象是真实世界的描述工具，方法是行为和动作的展示形式，封装、继承、多态则是其多姿多彩的主要实现方式
+## 建议使用UTF编码
+### java文件编码
+```text
+使用记事本创建.java后缀的文件，则文件的编码格式就是操作系统默认的格式。
+如果是使用IDE工具创建的，则依赖于IDE的设置
+```
+### class文件编码
+```text
+通过javac命令生成的.class字节码文件是UTF-8编码的UNICODE文件,与操作系统无关
+UTF是UNICODE的存储和传输格式，是为了解决UNICODE的高位占用冗余空间而产生的
+使用UTF编码就标志着字符集使用的是UNICODE
+```
+### javac
+- 不指定encoding 默认使用系统的编码，windows=GBK，java文件编码格式最好与encoding指定的一致，否则class文件里的中文是乱码
+```shell script
+javac -encoding GBK GBKCode.java
+```
+### javap 
+- 读class文件，有点像反编译，但是不够完整 可以借助IDEA阅读
+```shell script
+javap GBKCode
+```

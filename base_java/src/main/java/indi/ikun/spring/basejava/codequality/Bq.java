@@ -16,7 +16,7 @@ package indi.ikun.spring.basejava.codequality;
  * 3. String字符串
  *      拷贝的也是一个地址，是个引用，但是在修改时，它会从字符串池（String Pool）中重新生成新的字符串，原有的字符串对象保持不变，在此处我们可以认为String是一个基本类型
  */
-public final class Bq {
+public class Bq {
 
     public static void main(String[] args) {
         PersonBq f=new PersonBq("你爹");

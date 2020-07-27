@@ -10,7 +10,7 @@ package indi.ikun.spring.basejava.codequality;
  * 因为如果子类可以实例化的话，那就要调用父类的构造函数，
  * 可是父类没有可以被访问的构造函数，于是问题就会出现
  */
-public final class Bp {
+public class Bp {
     /**
      * Don’t let anyone instantiate this class
      *

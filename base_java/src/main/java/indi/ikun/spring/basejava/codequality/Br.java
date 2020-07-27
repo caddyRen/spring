@@ -10,7 +10,7 @@ import java.io.*;
  *
  * 采用序列化方式拷贝时还有一个更简单的办法，即使用Apache下的commons工具包中的SerializationUtils类，直接使用更加简洁方便
  */
-public final class Br {
+public class Br {
     public static void main(String[] args) {
         PersonBr f=new PersonBr("你爹");
         PersonBr s1=new PersonBr("逆子",f);
