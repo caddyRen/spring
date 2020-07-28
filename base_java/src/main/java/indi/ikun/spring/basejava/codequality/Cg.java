@@ -64,7 +64,7 @@ class ClientCg {
     public static void main(String[] args) {
         String[] strs={"张三（Z）","李四（L）","王五（W）"};
         //定义一个中文排序器
-        Comparator c= Collator.getInstance(Locale.CHINA);
+        Comparator<Object> c= Collator.getInstance(Locale.CHINA);
         //升序排列
         Arrays.sort(strs,c);
         for (String str:strs){
@@ -75,7 +75,7 @@ class ClientCg {
 class Client2Cg {
     public static void main(String[] args) {
         String[] strs={"犇（Ben）","鑫（X）","张三（Z）","李四（L）","王五（W）"};
-        Comparator c= Collator.getInstance(Locale.CHINA);
+        Comparator<Object> c= Collator.getInstance(Locale.CHINA);
         Arrays.sort(strs,c);
         for (String str:strs){
             System.err.println(str);
