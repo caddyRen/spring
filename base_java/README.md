@@ -73,6 +73,14 @@
 71. Cs推荐使用subList处理局部列表
 72. Ct生成子列表后不要再操作原列表
 73. Cu使用Comparator进行排序
+74. Cv不推荐使用binarySearch对列表进行检索
+75. Cw集合中的元素必须做到compareTo和equals同步
+76. Cx集合运算时使用更优雅的方式
+77. Cy使用shuffle打乱列表
+78. Cz减少HashMap中元素的数量
+79. Da集合中的哈希码不要重复
+80. Db多线程使用Vector或HashTable
+81. Dc非稳定排序推荐使用List
 
 
 

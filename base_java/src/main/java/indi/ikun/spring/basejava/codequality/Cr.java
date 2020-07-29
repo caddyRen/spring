@@ -34,7 +34,7 @@ public class Cr {
         c2.add("C");
         System.err.println(c.equals(c1));//false
         System.err.println(c.equals(c2));//true
-        System.err.println(c==c2);//true
+        System.err.println(c==c2);//false
         cr.displayList(c2);
         cr.displayList(c1);
         cr.displayList(c);
