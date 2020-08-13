@@ -45,7 +45,7 @@ yum install docker-ce-18.06.1.ce --downloadonly --downloaddir=/root/dockerrpm/
 ```
 - 或者
 ```
-yumdownloader yum-utils --downloaddir=/root/dockerrpm
+yum downloader yum-utils --downloaddir=/root/dockerrpm
 ```
 - 安装依赖rpm:--nodeps --force表示不检查是否依赖直接安装
 ```
@@ -53,15 +53,15 @@ rpm -ivh *.rpm --nodeps --force
 ```
 - 安装docker rpm：
 ```
-rpm -ivh docer-ce-18.09.7-3.el7.x86_64.rpm
+rpm -ivh docker-ce-18.09.7-3.el7.x86_64.rpm
 ```
 - 升级docker rpm
 ```
-rpm -Uvh docer-ce-18.09.7-3.el7.x86_64.rpm
+rpm -Uvh docker-ce-18.09.7-3.el7.x86_64.rpm
 ```
 - 启动
 ```
-systemctl start doker
+systemctl start docker
 ```
 - 检查
 ```
@@ -72,7 +72,7 @@ systemctl start doker
 ```
 - 卸载 -e ,不含依赖--nodeps
 ```
-rpm -e docer-ce-18.09.7
+rpm -e docker-ce-18.09.7
 ```
 - 配置国内镜像加速(阿里云开发者平台可以获取)/etc/docker/daemon.json
 ```json
@@ -82,7 +82,7 @@ rpm -e docer-ce-18.09.7
 ```
 - 重启docker
 ```
-systemctl restart doker
+systemctl restart docker
 ```
 
 
