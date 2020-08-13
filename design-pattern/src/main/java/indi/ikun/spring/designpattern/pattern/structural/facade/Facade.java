@@ -73,7 +73,7 @@ class Model2{
     }
 
     public void satrt(){
-        System.err.println("Model2 is satrt");
+        System.err.println("Model2 is start");
         play();
     }
     public void stop(){
