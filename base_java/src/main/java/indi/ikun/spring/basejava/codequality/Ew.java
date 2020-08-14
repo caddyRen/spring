@@ -171,12 +171,13 @@ class FooEw{
     private final Lock r=rwl.readLock();
     //写锁
     private final Lock w=rwl.writeLock();
+    private int i=1;
     //读操作，可并发执行
     public void read(){
         try{
             r.lock();
             Thread.sleep(1000);
-            System.err.println(Thread.currentThread().getName()+"read...");
+            System.err.println(Thread.currentThread().getName()+"read...= "+i);
         }catch (InterruptedException e){
             e.printStackTrace();
         }finally {
@@ -188,7 +189,8 @@ class FooEw{
         try{
             w.lock();
             Thread.sleep(1000);
-            System.err.println(Thread.currentThread().getName()+" writing...");
+            i++;
+            System.err.println(Thread.currentThread().getName()+" writing...= "+i);
         }catch (InterruptedException e){
             e.printStackTrace();
         }finally {
