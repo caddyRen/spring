@@ -1,3 +1,4 @@
+//使用implemenation引入springboot，然后可以写全局swagger配置
 bootRepackage.enabled=false
 processResources.enabled=true
 dependencies {
