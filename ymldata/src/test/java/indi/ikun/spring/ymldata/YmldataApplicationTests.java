@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 /**
  * @ClassName YmldataApplicationTests
- * @Description TODO
  * @Author caddyR
  * @Date 2019-09-17 09:12
  * @Version 1.0
@@ -444,7 +443,6 @@ public class YmldataApplicationTests {
      * @return a
      * @Author renqiankn
      * @Method a
-     * @Description //TODO
      * @Date 2019-11-11 1104
      * @Param
      * @Version 1.0

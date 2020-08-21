@@ -4,7 +4,6 @@ import java.lang.annotation.*;
 
 /**
  * @ClassName DemoAnnotation
- * @Description TODO
  * @Author caddyR
  * @Date 2019-08-29 17:35
  * @Version 1.0

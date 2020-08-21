@@ -7,11 +7,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
-  *@TODO //启动类
-  *@Author:renqiankun
-  *@Date:2020-01-08 10:55
-  **/
-//@SpringBootApplication
+ *@author renqiankun
+ *@date 2020-01-08 10:55
+ */
 @SpringBootApplication(scanBasePackages ="indi.ikun.spring" )
 @EnableAsync
 @MapperScan(basePackages ="indi.ikun.spring.demospringboot.mybatis.dao")

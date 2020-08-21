@@ -18,7 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class CommonsApplicationTests {
 
     /**
-     * TODO XXX FIXME
      * @Author: renqiankun
      * @Description: <功能描述>
      * @Date: 2020-01-15 10:39:23

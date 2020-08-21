@@ -6,7 +6,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * @ClassName DemoApplication
- * @Description TODO
  * @Author caddyR
  * @Date 2019-06-14 11:24
  * @Version 1.0

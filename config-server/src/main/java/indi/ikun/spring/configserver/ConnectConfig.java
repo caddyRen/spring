@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * @ClassName ConnectConfig
- * @Description TODO
  * @Author caddyR
  * @Date 2019-05-12 18:57
  * @Version 1.0

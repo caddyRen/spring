@@ -8,7 +8,6 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @ClassName RestTemplateConfig
- * @Description TODO
  * @Author caddyR
  * @Date 2019-09-18 17:16
  * @Version 1.0

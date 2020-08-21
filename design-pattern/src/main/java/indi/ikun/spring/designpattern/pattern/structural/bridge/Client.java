@@ -1,7 +1,6 @@
 package indi.ikun.spring.designpattern.pattern.structural.bridge;
 
 /**
- * @Description: TODO
  * @Author caddy
  * @date 2020-02-12 14:13:50
  * @version 1.0

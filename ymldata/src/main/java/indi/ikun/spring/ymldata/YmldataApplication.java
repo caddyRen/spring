@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @ClassName YmldataApplication
- * @Description TODO
  * @Author caddyR
  * @Date 2019-09-10 09:28
  * @Version 1.0

@@ -14,9 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * @TODO //启动类
- * @Author:renqiankun
- * @Date:2020-01-08 10:55
+ * @author renqiankun
  **/
 @RunWith(SpringRunner.class)
 //随机一个未占用的端口启动测试

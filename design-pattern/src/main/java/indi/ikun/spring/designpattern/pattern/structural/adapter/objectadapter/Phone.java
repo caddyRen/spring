@@ -2,7 +2,6 @@ package indi.ikun.spring.designpattern.pattern.structural.adapter.objectadapter;
 
 
 /**
- * @Description: TODO
  * @Author caddy
  * @date 2020-02-11 16:06:59
  * @version 1.0

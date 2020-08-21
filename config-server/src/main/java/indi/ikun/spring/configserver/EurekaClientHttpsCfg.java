@@ -15,7 +15,6 @@ import java.security.cert.CertificateException;
 
 /**
  * @ClassName EurekaClientHttpsCfg
- * @Description TODO
  * @Author caddyR
  * @Date 2019-05-13 15:08
  * @Version 1.0

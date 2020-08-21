@@ -54,7 +54,6 @@ class CollegeManager{
 }
 
 /**
- * @Description: TODO
  * @Author caddy
  * @date 2020-02-05 17:31:04
  * @version 1.0

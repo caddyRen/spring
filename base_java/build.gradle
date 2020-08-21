@@ -1,6 +1,5 @@
 //test.enabled=true
 dependencies {
-
     api(project(":commons"))
     api(project(":spring-jetty"))
     api(project(":spring-swagger"))

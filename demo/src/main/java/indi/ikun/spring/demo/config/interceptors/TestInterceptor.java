@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName TestInterceptor
- * @Description TODO
  * @Author caddyR
  * @Date 2019-07-16 10:14
  * @Version 1.0
