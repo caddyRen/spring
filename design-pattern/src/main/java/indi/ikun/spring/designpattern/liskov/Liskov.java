@@ -1,10 +1,9 @@
 package indi.ikun.spring.designpattern.liskov;
 
 /**
- * @Description: 里氏替换原则  降低继承的耦合度
- * @Author caddy
- * @date 2020-02-04 18:40:06
- * @version 1.0
+ * 里氏替换原则(Liskov Substitution Principle LSP)面向对象设计的基本原则之一。
+ * 里氏替换原则中说，任何基类可以出现的地方，子类一定可以出现。
+ * LSP是继承复用的基石，只有当衍生类可以替换掉基类，软件单位的功能不受到影响时，基类才能真正被复用，而衍生类也能够在基类的基础上增加新的行为
  *
  * A和B耦合度高
  */
@@ -21,7 +20,6 @@ public class Liskov {
 }
 
 class A {
-
     public int func1( int a,int b){
         return a+b;
     }

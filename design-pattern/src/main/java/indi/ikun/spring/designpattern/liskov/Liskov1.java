@@ -34,6 +34,7 @@ class A2 extends Base{
     }
 }
 
+//使用组合替换继承关系
 class B2 extends Base{
 
     A2 a2;
