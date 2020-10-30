@@ -19,8 +19,9 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
-      connection-error-retry-attempts: 0
-      break-after-acquire-failure: true
+      #数据库连接失败进行重连，次数2次
+      break-after-acquire-failure: false
+      connection-error-retry-attempts: 2
       #禁用druid监控页面
       stat-view-servlet:
         enabled: false
