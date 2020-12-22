@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
  **/
 //@Configuration
 public class ConnectConfig {
-    @Bean
+/*    @Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
             @Override
@@ -40,7 +40,7 @@ public class ConnectConfig {
         connector.setSecure(false);
         connector.setRedirectPort(8443);
         return connector;
-    }
+    }*/
 
 
 }

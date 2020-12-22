@@ -1,8 +1,8 @@
 compileTestJava.enabled=true
 processResources.enabled=true
 processTestResources.enabled=true
-//test.enabled(true)
-//testClasses.enabled(true)
+test.enabled(true)
+testClasses.enabled(true)
 dependencies {
     implementation("org.aspectj:aspectjweaver")
 

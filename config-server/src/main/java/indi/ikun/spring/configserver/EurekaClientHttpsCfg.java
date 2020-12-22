@@ -21,7 +21,7 @@ import java.security.cert.CertificateException;
  **/
 //@Configuration
 public class EurekaClientHttpsCfg {
-    @Value("${server.ssl.test}")
+    /*@Value("${server.ssl.test}")
     String keyStoreFileName;
 
     @Value("${server.ssl.key-store-password}")
@@ -43,5 +43,5 @@ public class EurekaClientHttpsCfg {
         DiscoveryClient.DiscoveryClientOptionalArgs args = new DiscoveryClient.DiscoveryClientOptionalArgs();
         args.setEurekaJerseyClient(builder.build());
         return args;
-    }
+    }*/
 }
