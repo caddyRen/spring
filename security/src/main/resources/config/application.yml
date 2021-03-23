@@ -34,7 +34,7 @@ server:
   compression:
     enabled: true
   tomcat:
-    basedir: ${TOMCAT_LOG:tomcat_log}
+    basedir: ${TOMCAT_LOG:logs/tomcat}
     accesslog:
       enabled: true
 
