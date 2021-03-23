@@ -1,0 +1,79 @@
+buildscript {
+    ext {
+        // 定义变量
+        springBootVersion = '2.4.1'
+        depManVersion = '1.0.10.RELEASE'
+        asciidoctor = '1.5.8'
+//        springCloudVersion = 'Edgware.SR5'
+    }
+
+    repositories {
+        //优先使用maven本地仓库
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        //用来 打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins{
+    id 'java'
+/**
+ *    api() 方法需要引入java-library
+ *    api=compile 依赖可以传递 compile说是要抛弃
+ *    implementation 依赖不能传递给下一层
+ */
+    id 'java-library'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${depManVersion}"
+    id 'org.asciidoctor.convert' version "${asciidoctor}"
+}
+
+group = 'org.bougainvillea.spring'
+version = '0.0.1-SNAPSHOT'
+//全局java版本
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+jar.enabled = false
+
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    compileTestJava.enabled = false
+    processTestResources.enabled = false
+    testClasses.enabled = false
+    test.enabled = false
+
+    //指定编码格式
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    repositories {
+        //优先使用maven本地仓库
+        mavenLocal()
+        mavenCentral()
+    }
+}
+// 子项目的公共配置及插件
+subprojects {
+    //springboot和jar包管理
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+
+    dependencies {
+        //lombok注解gradle识别不到
+//        annotationProcessor "org.projectlombok:lombok:1.16.16"
+//        testAnnotationProcessor "org.projectlombok:lombok:1.16.16"
+        //统一单元测试配置
+//        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+}

@@ -1,0 +1,6 @@
+mysql:
+  ip: ${MYSQL_IP:localhost}
+  port: ${MYSQL_PORT:3306}
+  database: ${MYSQL_DB:sonar}
+  user: ${MYSQL_USER:root}
+  pwd: ${MYSQL_PWD:qiankun415}

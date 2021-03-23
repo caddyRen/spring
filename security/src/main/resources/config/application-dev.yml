@@ -1,0 +1,26 @@
+mysql:
+  ip: ${MYSQL_IP:127.0.0.1}
+  port: ${MYSQL_PORT:3306}
+  database: ${MYSQL_DB:spring_security}
+  user: ${MYSQL_USER:caddy}
+  pwd: ${MYSQL_PWD:caddy@415}
+
+port: ${PORT:8086}
+
+#spring:
+#  security:
+#    user:
+#      name: caddy
+#      password: caddy
+# 管理接口
+management:
+  endpoints:
+    web:
+      base-path: /666
+      exposure:
+        include: logfile,loggers,health,configprops,info,scheduledtasks,metrics,shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+# logfile日志,loggers日志等级,health状态,configprops配置
+# info,scheduledtasks 定时任务信息,metrics
