@@ -27,9 +27,9 @@ plugins{
  *    implementation 依赖不能传递给下一层
  */
     id 'java-library'
-    id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${depManVersion}"
-    id 'org.asciidoctor.convert' version "${asciidoctor}"
+    id 'org.springframework.boot' version "${springBootVersion}" apply false
+    id 'io.spring.dependency-management' version "${depManVersion}" apply false
+    id 'org.asciidoctor.convert' version "${asciidoctor}" apply false
 }
 
 group = 'org.bougainvillea.spring'
@@ -38,16 +38,23 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
+/**
+ *  非jar包运行可以禁用jar
+ *  springboot 默认使用bootJar 打jar包（jar默认禁用），bootJar会搜索main 方法 找不到会报错
+ *  所以非springboot模块不要依赖springboot
+ *  比如父项目设置 apply false： id 'org.springframework.boot' version "${springBootVersion}" apply false
+ */
 jar.enabled = false
-
 
 allprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
+
     compileTestJava.enabled = false
     processTestResources.enabled = false
     testClasses.enabled = false
     test.enabled = false
+
 
     //指定编码格式
     tasks.withType(JavaCompile) {
@@ -66,7 +73,6 @@ subprojects {
     //springboot和jar包管理
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-
 
     dependencies {
         //lombok注解gradle识别不到
