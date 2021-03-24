@@ -1,4 +1,4 @@
-package org.bougainvillea.spring.security.entity;
+package org.bougainvillea.spring.commons.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,7 +1,7 @@
 package org.bougainvillea.spring.security.secu;
 
+import org.bougainvillea.spring.commons.utils.Result;
 import org.bougainvillea.spring.security.utils.ResponseUtil;
-import org.bougainvillea.spring.security.utils.Result;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 

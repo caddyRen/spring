@@ -1,6 +1,6 @@
 package org.bougainvillea.spring.security.secu;
 
-import org.bougainvillea.spring.security.utils.MD5;
+import org.bougainvillea.spring.commons.utils.MD5;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 

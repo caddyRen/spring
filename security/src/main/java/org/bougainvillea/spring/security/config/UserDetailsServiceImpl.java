@@ -1,7 +1,7 @@
 package org.bougainvillea.spring.security.config;
 
+import org.bougainvillea.spring.commons.entity.User;
 import org.bougainvillea.spring.security.entity.SecuUser;
-import org.bougainvillea.spring.security.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

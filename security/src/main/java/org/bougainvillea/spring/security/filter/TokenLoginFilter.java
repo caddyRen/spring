@@ -1,11 +1,11 @@
 package org.bougainvillea.spring.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.bougainvillea.spring.commons.entity.User;
+import org.bougainvillea.spring.commons.utils.Result;
 import org.bougainvillea.spring.security.entity.SecuUser;
-import org.bougainvillea.spring.security.entity.User;
 import org.bougainvillea.spring.security.secu.TokenManager;
 import org.bougainvillea.spring.security.utils.ResponseUtil;
-import org.bougainvillea.spring.security.utils.Result;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

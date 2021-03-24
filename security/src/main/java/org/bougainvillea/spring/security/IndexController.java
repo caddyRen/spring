@@ -1,6 +1,6 @@
 package org.bougainvillea.spring.security;
 
-import org.bougainvillea.spring.security.utils.Result;
+import org.bougainvillea.spring.commons.utils.Result;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

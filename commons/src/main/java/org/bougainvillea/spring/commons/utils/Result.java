@@ -1,4 +1,4 @@
-package org.bougainvillea.spring.security.utils;
+package org.bougainvillea.spring.commons.utils;
 
 import lombok.Data;
 

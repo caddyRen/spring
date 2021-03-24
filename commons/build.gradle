@@ -1,0 +1,6 @@
+bootJar.enabled = false
+dependencies {
+    api("org.apache.commons:commons-lang3")
+    api("org.bouncycastle:bcpg-jdk15on:1.67")
+    api("io.jsonwebtoken:jjwt:0.9.1")
+}

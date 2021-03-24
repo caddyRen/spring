@@ -2,6 +2,7 @@ package org.bougainvillea.spring.security.entity;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
+import org.bougainvillea.spring.commons.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
