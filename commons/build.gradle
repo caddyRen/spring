@@ -1,6 +1,7 @@
-bootJar.enabled = false
 dependencies {
     api("org.apache.commons:commons-lang3")
+    api("com.google.code.gson:gson")
     api("org.bouncycastle:bcpg-jdk15on:1.67")
     api("io.jsonwebtoken:jjwt:0.9.1")
+    api("org.yaml:snakeyaml:1.17")
 }

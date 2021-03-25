@@ -1,0 +1,10 @@
+swagger:
+  enable: true
+  base-package: org.bougainvillea.spring
+  path-regex: /error.*
+  title: Global interface
+  description: global interface
+  version: 1.0.0
+  url: http://localhost
+  email: caddyren@qq.com
+  contact: 花有清香月有阴

@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    enable: true
+    druid:
+      url: jdbc:mysql://${mysql.ip}:${mysql.port}/${mysql.database}?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      username: ${mysql.user}
+      password: ${mysql.pwd}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      #数据库连接池的配置信息
+      initial-size: 6
+      min-idle: 6
+      max-active: 66
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      #数据库连接失败进行重连，次数2次
+      break-after-acquire-failure: false
+      connection-error-retry-attempts: 2
+      #禁用druid监控页面
+      stat-view-servlet:
+        enabled: false
+      web-stat-filter:
+        enabled: false
+      filter:
+        config:
+          enabled: false
+  flyway: #flyway相关配置
+#    locations: classpath:db/migration/mysql/dev  #${spring.profiles.active}
+    check-location: true
+    enabled: true #是否启用
+    encoding: UTF-8 #编码
+    sql-migration-prefix: V #脚本前缀，默认V大写
+    sql-migration-separator: __ #脚本分割符
+    sql-migration-suffixes: .sql #脚本后缀
+    #baseline-version: 1 #基线默认版本
+#    validate-on-migrate: true #迁移时是否校验默认true
+#    baseline-on-migrate: false #存量数据初始化flyway基线,本地基线设置完,最好重新设置false,当迁移发现数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表，当数据库已经有表，需要设置为true，并且脚本版本号要大于1
+
+# myBatis config
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    jdbc-type-for-null: 'null'
+    call-setters-on-nulls: true
+  mapper-locations: classpath*:mybatis/mapper/**/*.xml

@@ -10,6 +10,10 @@ import java.io.IOException;
 
 public class ResponseUtil {
 
+    private ResponseUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void out(HttpServletResponse response, Result result){
         ObjectMapper mapper=new ObjectMapper();
         response.setStatus(HttpStatus.OK.value());

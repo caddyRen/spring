@@ -16,5 +16,4 @@ public class SecurityApplication {
         log.warn("warn");
         log.error("error");
     }
-
 }

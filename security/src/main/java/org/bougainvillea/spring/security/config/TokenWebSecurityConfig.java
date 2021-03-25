@@ -59,6 +59,14 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/v1/**");
+        String[] paths={
+                "/index/menu",
+                "/swagger-ui.html",
+                "/swagger-resources/**",
+                "/v2/api-docs",
+                "/webjars/**",
+                "/666/**"
+        };
+        web.ignoring().antMatchers(paths);
     }
 }
