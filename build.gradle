@@ -1,9 +1,10 @@
 buildscript {
     ext {
         // 定义变量
-        springBootVersion = '2.4.1'
-        depManVersion = '1.0.10.RELEASE'
+        springBootVersion = '2.3.0.RELEASE'
+        depManVersion = '1.0.11.RELEASE'
         asciidoctor = '1.5.8'
+        springCloudVersion = 'Hoxton.SR10'
 //        springCloudVersion = '2020.0.2'
     }
 
@@ -46,7 +47,7 @@ allprojects {
     apply plugin: 'java-library'
 
     group = 'org.bougainvillea.spring'
-    version = '1.0.1-SNAPSHOT'
+    version = '0.0.1-SNAPSHOT'
     //全局java版本
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
@@ -89,6 +90,7 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         testAnnotationProcessor 'org.projectlombok:lombok'
+//        developmentOnly("org.springframework.boot:spring-boot-devtools")
     }
     configurations {
         compileOnly {

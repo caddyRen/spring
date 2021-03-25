@@ -30,13 +30,22 @@ logging:
   file:
 #    name: logs/${spring.application.name}.log
     path: ./logs  #path和name两个写一个就可以，使用path，默认日志名spring.log
+    clean-history-on-start: true
+    max-size: 10MB
+    max-history: 180
+    total-size-cap: 2GB
   config: classpath:config/log/logback.xml
-  logback:
-    rollingpolicy:
-      max-file-size: 10MB
-      max-history: 180
-      total-size-cap: 2GB
-      clean-history-on-start: true
+  pattern:
+    rolling-file-name:
+  ##springboot2.4新特性
+#  logback:
+#    rollingpolicy:
+#      max-file-size: 10MB
+#      max-history: 180
+#      total-size-cap: 2GB
+#      clean-history-on-start: true
+#      file-name-pattern
+
 
 info:
   app:

@@ -1,7 +1,7 @@
 compileTestJava.enabled = true
 processTestResources.enabled = true
 testClasses.enabled = true
-test.enabled = true
+//test.enabled = true
 bootJar.enabled = true
 jar.enabled = false
 
@@ -15,6 +15,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 

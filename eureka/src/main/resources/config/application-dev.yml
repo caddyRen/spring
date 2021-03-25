@@ -1,0 +1,13 @@
+server:
+  port: ${PORT:8761}
+eureka:
+  instance:
+    hostname: ${EUREKA_SERVER:localhost}
+  client:
+    service-url:
+      gz:
+        ip: ${GZ_IP:127.0.0.1}
+        port: ${GZ_PORT:8762}
+      sz:
+        ip: ${SZ_IP:127.0.0.1}
+        port: ${SZ_PORT:8762}

@@ -55,10 +55,9 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 不进行认证的路径可以直接访问
-     * @throws Exception
      */
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         String[] paths={
                 "/index/menu",
                 "/swagger-ui.html",

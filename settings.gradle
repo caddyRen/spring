@@ -1,5 +1,6 @@
 rootProject.name = 'spring'
 include 'security'
+include 'eureka'
 include 'commons'
 include 'spring-depency'
 include 'spring-tomcat'
