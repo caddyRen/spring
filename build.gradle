@@ -1,11 +1,10 @@
 buildscript {
     ext {
         // 定义变量
+        springCloudVersion = 'Hoxton.SR10'
         springBootVersion = '2.3.0.RELEASE'
         depManVersion = '1.0.11.RELEASE'
         asciidoctor = '1.5.8'
-        springCloudVersion = 'Hoxton.SR10'
-//        springCloudVersion = '2020.0.2'
     }
 
     repositories {
