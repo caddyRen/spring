@@ -12,7 +12,7 @@ spring:
       password: 66
 #---------安全模块------------#
 
-#eureka配置
+#eureka配置 TODO 抽离 eureka client 模块
 eureka:
   instance:
     hostname: localhost #服务注册中心实例的主机名,eureka页面，鼠标放上去显示主机信息

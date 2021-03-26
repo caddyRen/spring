@@ -7,7 +7,7 @@ services:
     ports:
       - "8760:8760"
     environment:
-      - EUREKA_SERVER=172.17.0.1
+      - EUREKA_SERVER=172.17.0.1  # docker 网卡ip
       - PORT=8760
       - GZ_IP=172.17.0.1
       - GZ_PORT=8761

@@ -17,6 +17,7 @@ spring:
           uri: lb://security
           predicates:
             - Path=/login
+            - Path=/admin
             - Path=/index/info
 #        - id: security2
 #          uri: http://localhost:8086
@@ -99,14 +100,16 @@ logging:
     max-history: 180
     total-size-cap: 2GB
   config: classpath:config/log/logback.xml
-  ##springboot2.4新特性
-#  logback:
-#    rollingpolicy:
-#      max-file-size: 10MB
-#      max-history: 180
-#      total-size-cap: 2GB
-#      clean-history-on-start: true
-#      file-name-pattern
+# 管理接口
+management:
+  endpoints:
+    web:
+      base-path: /admin
+      exposure:
+        include: logfile,loggers,health,configprops,info,scheduledtasks,metrics,shutdown
+  endpoint:
+    shutdown:
+      enabled: true
 
 
 info:
