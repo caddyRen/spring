@@ -2,73 +2,40 @@ spring:
   application:
     name: security
   profiles:
-    active: ${PROFILES_ACTIVE:dev},database,swagger
+    active: ${PROFILES_ACTIVE:dev}
   main:
     banner-mode: log
   lifecycle:
     timeout-per-shutdown-phase: 30s #缓冲期
-  flyway: #flyway相关配置
-    locations: classpath:db/migration/mysql/dev
-    validate-on-migrate: true #迁移时是否校验默认true
-    baseline-on-migrate: false #存量数据初始化flyway基线,本地基线设置完,最好重新设置false,当迁移发现数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表，当数据库已经有表，需要设置为true，并且脚本版本号要大于1
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: security
+          uri: lb://security
+          predicates:
+            - Path=/login
+            - Path=/index/info
+#        - id: security2
+#          uri: http://localhost:8086
+#          predicates:
+#            - Path=/index/info
+#        - id: security3
+#          uri: http://localhost:8086
+#          predicates:
+#            - Path=/index/meun
 
 server:
-  port: ${port}
-  shutdown: graceful #优雅停机,当web容器关闭时，web服务器将不再接收新请求，并将等待活动请求完成,等待时间timeout-per-shutdown-phase
-#  shutdown: immediate #立即关机
-  compression:
-    enabled: true
-  tomcat:
-    basedir: ${TOMCAT_LOG:logs/tomcat}
-    accesslog:
-      enabled: true
-
-logging:
-  level:
-    root: INFO
-#    root: DEBUG
-  file:
-#    name: logs/${spring.application.name}.log
-    path: ./logs  #path和name两个写一个就可以，使用path，默认日志名spring.log
-    clean-history-on-start: true
-    max-size: 10MB
-    max-history: 180
-    total-size-cap: 2GB
-  config: classpath:config/log/logback.xml
-#  pattern:
-#    rolling-file-name:
-  ##springboot2.4新特性
-#  logback:
-#    rollingpolicy:
-#      max-file-size: 10MB
-#      max-history: 180
-#      total-size-cap: 2GB
-#      clean-history-on-start: true
-#      file-name-pattern
-
-
-info:
-  app:
-    name: 认证鉴权
-    shortName: security
-    version: 0.0.1
-    encoding: UTF-8
-    java.source: 1.8
-    java.traget: 1.8
-
-jasypt:
-  encryptor:
-    password: bougainvillea
-
-
+  port: 9997
 #eureka配置
 EUREKA_SERVER: localhost
-APPNAME: security
+APPNAME: gateway
 GZ_IP: 127.0.0.1
 GZ_PORT: 8761
 SZ_IP: 127.0.0.1
 SZ_PORT: 8762
-
 #eureka
 eureka:
   instance:
@@ -118,3 +85,39 @@ eureka:
     initial-instance-info-replication-interval-seconds: 36 #最初复制实例信息到eureka服务器所需的时间（s），默认为40秒
     instance-info-replication-interval-seconds: 36 #间隔多长时间再次复制实例信息到eureka服务器，默认为30秒
     registry-fetch-interval-seconds: 36  #从eureka服务器注册表中获取注册信息的时间间隔（s），默认为30秒
+
+
+logging:
+  level:
+    root: INFO
+#    root: DEBUG
+  file:
+#    name: logs/${spring.application.name}.log
+    path: ./logs  #path和name两个写一个就可以，使用path，默认日志名spring.log
+    clean-history-on-start: true
+    max-size: 10MB
+    max-history: 180
+    total-size-cap: 2GB
+  config: classpath:config/log/logback.xml
+  ##springboot2.4新特性
+#  logback:
+#    rollingpolicy:
+#      max-file-size: 10MB
+#      max-history: 180
+#      total-size-cap: 2GB
+#      clean-history-on-start: true
+#      file-name-pattern
+
+
+info:
+  app:
+    name: 网关
+    shortName: gateway
+    version: 0.0.1
+    encoding: UTF-8
+    java.source: 1.8
+    java.traget: 1.8
+
+jasypt:
+  encryptor:
+    password: bougainvillea

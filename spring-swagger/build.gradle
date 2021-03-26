@@ -1,3 +1,5 @@
+jar.enabled = true
+bootJar.enabled = false
 dependencies {
     implementation(project(":spring-depency"))
     implementation(project(":spring-tomcat"))

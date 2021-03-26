@@ -1,3 +1,5 @@
+jar.enabled = true
+bootJar.enabled = false
 dependencies {
     api("org.springframework.boot:spring-boot-starter-web")
 }

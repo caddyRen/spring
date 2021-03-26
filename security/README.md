@@ -32,6 +32,12 @@
 - SpringSecurity4.0开始默认开启CSRF防护，针对PATCH、POST、PUT、DELETE方法进行防护
 
 ```curl
+gateway
+
+curl -H 'Content-Type:application/json' -X POST -d '{"username":"caddy","password":"123"}'  http://127.0.0.1:9997/login
+curl -H 'token:eyJhbGciOiJIUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJSSk5MSalU0lFKrShQsjI0MzSzMDY1MzOrBQDsO8rsIAAAAA.Hk23Euw1HAbVcv5kMvpFW3YXacdMckTTawy9OljT3GE' -X GET  http://127.0.0.1:9997/index/info
+
+
 curl -H 'Content-Type:application/json' -X POST -d '{"username":"caddy","password":"123"}'  http://127.0.0.1:8086/login
 curl -H 'token:eyJhbGciOiJIUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJSSk5MSalU0lFKrShQsjI0MzQzNTc3MzCqBQDs8q0MIAAAAA.yUOI5Lig0rJyRwEFVgn5E9xI-bPvAC1WqywVEhQQDVc' -X GET  http://127.0.0.1:8086/index/info
 curl -H 'token:eyJhbGciOiJIUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJSSk5MSalU0lFKrShQsjI0MzQwM7S0NDSvBQCuMpW2IAAAAA.fm2X2vj5qtp3mz5jWmiaFOmsn_bLsb9nJmpOvxJWI8Y' -X GET  http://127.0.0.1:8086/index/menu

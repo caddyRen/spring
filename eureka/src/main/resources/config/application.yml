@@ -51,6 +51,7 @@ eureka:
     enable-self-preservation: false #服务端开启自我保护模式。无论什么情况，服务端都会保持一定数量的服务。避免client与server的网络问题，而出现大量的服务被清除。本地开发设为false
     eviction-interval-timer-in-ms: 30000 #开启清除无效服务的定时任务，时间间隔。默认1分钟
 
+# 日志
 logging:
   level:
     root: INFO
@@ -63,18 +64,19 @@ logging:
     max-history: 180
     total-size-cap: 2GB
   config: classpath:config/log/logback.xml
-#  pattern:
-#    rolling-file-name:
 
-  ## springboot2.4新特性
-#  logback:
-#    rollingpolicy:
-#      max-file-size: 10MB
-#      max-history: 180
-#      total-size-cap: 2GB
-#      clean-history-on-start: true
-#      file-name-pattern
+# 管理接口
+management:
+  endpoints:
+    web:
+      base-path: /admin
+      exposure:
+        include: logfile,loggers,health,configprops,info,scheduledtasks,metrics,shutdown
+  endpoint:
+    shutdown:
+      enabled: true
 
+# 服务信息
 info:
   app:
     name: 注册中心

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  eureka_8760:
+    image: eureka:0.0.1-SNAPSHOT
+    container_name: eureka_8760
+    restart: "no"
+    ports:
+      - "8760:8760"
+    environment:
+      - EUREKA_SERVER=172.17.0.1
+      - PORT=8760
+      - GZ_IP=172.17.0.1
+      - GZ_PORT=8761
+      - SZ_IP=172.17.0.1
+      - SZ_PORT=8762
+  eureka_8761:
+    image: eureka:0.0.1-SNAPSHOT
+    container_name: eureka_8761
+    restart: "no"
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_SERVER=172.17.0.1
+      - PORT=8761
+      - GZ_IP=172.17.0.1
+      - GZ_PORT=8760
+      - SZ_IP=172.17.0.1
+      - SZ_PORT=8762
+  eureka_8762:
+    image: eureka:0.0.1-SNAPSHOT
+    container_name: eureka_8762
+    restart: "no"
+    ports:
+      - "8762:8762"
+    environment:
+      - EUREKA_SERVER=172.17.0.1
+      - PORT=8762
+      - GZ_IP=172.17.0.1
+      - GZ_PORT=8760
+      - SZ_IP=172.17.0.1
+      - SZ_PORT=8761

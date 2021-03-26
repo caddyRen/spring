@@ -16,7 +16,7 @@ port: ${PORT:8086}
 management:
   endpoints:
     web:
-      base-path: /666
+      base-path: /admin
       exposure:
         include: logfile,loggers,health,configprops,info,scheduledtasks,metrics,shutdown
   endpoint:

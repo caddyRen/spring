@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <include resource="config/log/file-error-appender.xml" />
+<!--    logback 默认配置 -->
+<!--    <logger name="org.bougainvillea.spring.security" level="TRACE"/>-->
+<!--    <logger name="org.bougainvillea.spring.security" level="DEBUG"/>-->
+<!--    <logger name="org.bougainvillea.spring.security" level="INFO"/>-->
+<!--    <logger name="org.bougainvillea.spring.security" level="WARN"/>-->
+<!--    <logger name="org.bougainvillea.spring.security" level="ERROR"/>-->
+    <root level="INFO">
+        <appender-ref ref="ERROR_FILE" />
+    </root>
+</configuration>

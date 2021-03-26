@@ -1,4 +1,5 @@
-port: ${PORT:8761}
+server:
+  port: ${PORT:8762}
 
 eureka:
   instance:
