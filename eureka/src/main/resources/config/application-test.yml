@@ -19,7 +19,7 @@ eureka:
     lease-expiration-duration-in-seconds: 36 #服务中心删除此服务实例的等待时间(秒为单位),时间间隔为最后一次服务中心接受到的心跳时间
     registry:
       default-open-for-traffic-count: 6 #该实例，注册服务中心，默认打开的通信数量
-      expected-number-of-renews-per-min: 6  #每分钟续约次数
+      expected-number-of-clients-sending-renews: 6  #每分钟续约次数
     home-page-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/ #该实例的主页url,绝对路径
     health-check-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/health #该实例健康检查url,绝对路径
     status-page-url: http://${eureka.instance.hostname}:${eureka.instance.non-secure-port}/info #该实例的状态呈现url,绝对路径

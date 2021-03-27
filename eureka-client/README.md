@@ -30,6 +30,7 @@ GZ_IP: 127.0.0.1 # eureka 注册中心ip
 GZ_PORT: 8761 # eureka 注册中心端口
 SZ_IP: 127.0.0.1 # eureka 注册中心ip
 SZ_PORT: 8762 # eureka 注册中心端口
+# eureka 注册中心才会需要使用下面两个配置，普通服务模块不需要添加
 REGISTER-WITH-EUREKA: true #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true 注册中心可设为false
 FETCH_REGISTRY: true #实例是否在eureka服务器上注册自己的信息以供其他服务发现，默认为true 注册中心可设为false
 # 管理接口 配置
