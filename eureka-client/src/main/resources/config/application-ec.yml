@@ -72,7 +72,7 @@ info:
 # 日志配置 springboot2.4改动较大
 logging:
   level:
-    root: ${log.level:INFO}
+    root: ${LOGLEV:INFO}
   file:
     #    name: logs/${spring.application.name}.log
     path: ./logs  #path和name两个写一个就可以，使用path，默认日志名spring.log

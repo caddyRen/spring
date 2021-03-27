@@ -38,8 +38,7 @@ MPATH: /admin # management.endpoints.web.base-path
 VERSION: 0.0.1 # 本服务版本号
 APPDESC: 注册中心 # 本服务描述信息
 # 日志
-log:
-  level: INFO
+LOGLEV: INFO
 # enc() 加密配置文件
 KEY: bougainvillea
 ```
