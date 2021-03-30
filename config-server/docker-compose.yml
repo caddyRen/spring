@@ -1,0 +1,14 @@
+version: '3'
+services:
+  config_server:
+    image: config_server:0.0.1-SNAPSHOT
+    container_name: config_server
+    restart: "no"
+    ports:
+      - "10000:10000"
+    environment:
+      - PROFILES_ACTIVE=prod
+      - HOSTNAME=172.17.0.1
+      - PORT=10000
+      - LOGLEV=WARN
+      - KEY=bougainvillea

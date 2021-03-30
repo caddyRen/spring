@@ -1,0 +1,31 @@
+# eureka配置，
+HOSTNAME: blackbox # 本服务实例 域名
+PORT: 10000 # 本服务实例端口
+GZ_IP: 172.17.0.1 # eureka 注册中心ip
+GZ_PORT: 8761 # eureka 注册中心端口
+SZ_IP: 172.17.0.1 # eureka 注册中心ip
+SZ_PORT: 8762 # eureka 注册中心端口
+
+# 管理接口 配置
+MPATH: /admin # management.endpoints.web.base-path
+VERSION: 0.0.1 # 本服务版本号
+APPDESC: 配置中心 # 本服务描述信息
+
+# 日志
+LOGLEV: WARN
+
+# enc() 加密配置文件
+KEY: bougainvillea
+
+#rabbitmq
+RABBITMQ_HOST: 172.17.0.1
+RABBITMQ_PORT: 5672
+RABBITMQ_VHOST: /
+RABBITMQ_USERNAME: caddy
+RABBITMQ_PASSWORD: caddy
+
+GIT_HOST: 127.0.0.1
+GIT_PORT: 10101
+GIT_URI: https://gitee.com/renqiankun/config
+GIT_USER: caddy
+GIT_PASSWORD: caddy

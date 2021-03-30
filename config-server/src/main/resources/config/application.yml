@@ -1,0 +1,37 @@
+# 服务端口
+server:
+  port: ${PORT:10000}
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: ${PROFILES_ACTIVE:dev},ec
+  security:
+    basic:
+      enabled: true
+    user:
+      name: caddy
+      password: caddy
+  cloud:
+    inetutils:
+      timeout-seconds: 10
+    config:
+      server:
+        git:
+#          uri: http://${GIT_HOST}:${GIT_PORT}/caddyRen/config.git
+          uri: ${GIT_URI}
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    virtual-host: ${RABBITMQ_VHOST}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+
+#eureka
+eureka:
+  client: #eureka客户端配置
+    healthcheck:
+      enabled: true #开启健康检查 eureka.client.healthcheck.enabled=true should only be set in application.yml. Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status
