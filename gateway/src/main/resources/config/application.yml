@@ -13,10 +13,18 @@ spring:
         locator:
           enabled: true
       routes:
+        - id: gateway
+          uri: lb://gateway
+          predicates:
+            - Path=/gateway/**
+          filters:
+            - StripPrefix=1
         - id: security-login
           uri: lb://security
           predicates:
-            - Path=/login,/index/*
+            - Path=/security/login,/security/index/*
+          filters:
+            - StripPrefix=1
 #        - id: security-swagger
 #          uri: http://localhost:8086
 #          predicates: # param(参数)和可选的regexp(正则表达式)断言判断（其是Java正则表达式
@@ -26,6 +34,18 @@ spring:
           predicates: # 断言 2022-06-22之后能访问 http://blackbox:9997/?m --> https://music.163.com
             - After=2022-06-22T00:00:00.000-23:00[Asia/Shanghai]
             - Query=m
+        - id: config-client
+          uri: lb://config-client
+          predicates:
+            - Path=/config-client/**
+          filters:
+            - StripPrefix=1
+        - id: config-center
+          uri: lb://config-server
+          predicates:
+            - Path=/config-center/**
+          filters:
+            - StripPrefix=1
 
 server:
   port: ${PORT:9997}
