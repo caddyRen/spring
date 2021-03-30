@@ -1,0 +1,12 @@
+dependencies {
+    api(project(":eureka-client"))
+    api(project(":spring-tomcat"))
+//    implementation(project(":spring-swagger"))
+    api("org.springframework.cloud:spring-cloud-starter-config")
+
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
