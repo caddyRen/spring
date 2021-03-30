@@ -1,4 +1,5 @@
 rootProject.name = 'spring'
+include 'config-client'
 include 'gateway'
 include 'security'
 include 'eureka'

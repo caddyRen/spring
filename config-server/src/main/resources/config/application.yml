@@ -1,4 +1,4 @@
-# 服务端口
+# 服务端口 https://docs.spring.io/spring-cloud-config/docs/2.2.7.RELEASE/reference/html/#_git_refresh_rate
 server:
   port: ${PORT:10000}
 
@@ -23,6 +23,7 @@ spring:
           uri: ${GIT_URI}
           username: ${GIT_USER}
           password: ${GIT_PASSWORD}
+          refresh-rate: 10 #10 seconds 刷新一次配置
   rabbitmq:
     host: ${RABBITMQ_HOST}
     port: ${RABBITMQ_PORT}

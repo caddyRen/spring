@@ -18,7 +18,7 @@ spring:
 server:
   port: ${PORT:8760}
 
-__#eureka
+#eureka
 eureka:
   client: #eureka客户端配置
     healthcheck:
