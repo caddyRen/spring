@@ -12,7 +12,11 @@
       profiles:
          active: swagger
     ```
-1. 定制化本地swagger文档方式
+1. 注入swagger global配置类
+   ```java
+   @SpringBootApplication(scanBasePackages = "org.bougainvillea.spring")
+   ```
+1. 定制化本项目swagger文档
     ```java
    import com.google.common.base.Predicates;
    import org.springframework.context.annotation.Bean;
@@ -34,45 +38,31 @@
    @EnableSwagger2
    public class MySwaggerConfig {
        private ApiInfo demoSpringbootApiInfo(){
-           return new ApiInfoBuilder()
-                   .title("Demo-Springboot API")
-                   .description("Demo-Springboot")
-                   .contact(new Contact("青青子衿 悠悠我心", null, null))
-                   .version("1.0.0")
-                   .build();
-       }
-   
-       @Bean
-       public Docket demoSpringbootApi(){
-           return new Docket(DocumentationType.SWAGGER_2)
-                   .groupName("demo-Springboot")
-                   .apiInfo(demoSpringbootApiInfo())
-                   .genericModelSubstitutes(DeferredResult.class)
-                   .useDefaultResponseMessages(false)
-                   .forCodeGeneration(false)
-                   .select()
-                   .apis(RequestHandlerSelectors.basePackage("indi.ikun.spring.demospringboot"))
-                   .paths(PathSelectors.any())
-                   .build();
-       }
-   
-       @Bean
-       public Docket v1Api(){
-           return new Docket(DocumentationType.SWAGGER_2)
-                   .groupName("demo-Springboot-v1")
-                   .apiInfo(demoSpringbootApiInfo())
-                   .genericModelSubstitutes(DeferredResult.class)
-                   .useDefaultResponseMessages(false)
-                   .forCodeGeneration(false)
-                   .select()
-                   .apis(
-                           Predicates.or(
-                                   RequestHandlerSelectors.basePackage("indi.ikun.spring.demospringboot.api"),
-                                   RequestHandlerSelectors.basePackage("indi.ikun.spring.demospringboot.api2")
-                           ))
-                   .paths(Predicates.not(PathSelectors.regex("/stop")))
-                   .build();
-       }
+        return new ApiInfoBuilder()
+                .title("user center")
+                .description("用户中心")
+                .contact(new Contact("青青子衿 悠悠我心","http://127.0.0.1" , "caddyren@qq.com"))
+                .version("1.0.0")
+                .build();
+    }
+
+    @Bean
+    public Docket v1Api(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("v1")
+                .apiInfo(demoSpringbootApiInfo())
+                .genericModelSubstitutes(DeferredResult.class)
+                .useDefaultResponseMessages(false)
+                .forCodeGeneration(false)
+                .select()
+                .apis(
+                        Predicates.or(
+                                RequestHandlerSelectors.basePackage("org.bougainvillea.spring.user.v1"),
+                                RequestHandlerSelectors.basePackage("org.bougainvillea.spring.user")
+                        ))
+                .paths(Predicates.not(PathSelectors.regex("/stop")))
+                .build();
+    }
    }
     
     ```

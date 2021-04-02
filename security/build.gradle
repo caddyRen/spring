@@ -1,12 +1,9 @@
+jar.enabled = true
+bootJar.enabled = false
 dependencies {
     implementation(project(":commons"))
-    implementation(project(":spring-depency"))
     implementation(project(":spring-tomcat"))
-    implementation(project(":database-depency"))
-    implementation(project(":spring-swagger"))
-    implementation(project(":eureka-client"))
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    api 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
 }
 dependencyManagement {

@@ -42,5 +42,59 @@ curl -H 'Content-Type:application/json' -X POST -d '{"username":"caddy","passwor
 curl -H 'token:eyJhbGciOiJIUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJSSk5MSalU0lFKrShQsjI0MzQzNTc3MzCqBQDs8q0MIAAAAA.yUOI5Lig0rJyRwEFVgn5E9xI-bPvAC1WqywVEhQQDVc' -X GET  http://127.0.0.1:8086/index/info
 curl -H 'token:eyJhbGciOiJIUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAKtWKi5NUrJSSk5MSalU0lFKrShQsjI0MzQwM7S0NDSvBQCuMpW2IAAAAA.fm2X2vj5qtp3mz5jWmiaFOmsn_bLsb9nJmpOvxJWI8Y' -X GET  http://127.0.0.1:8086/index/menu
 ```
+## 使用说明
+1. 引入security模块
+```groovy
+implementation(project(":security"))
+```
+2. 启动类开启注入security相关类
+```java
+@SpringBootApplication(scanBasePackages = "org.bougainvillea.spring")
+```
+3. 自定义 UserDetailService
+```java
+package org.bougainvillea.spring.user.v1.service.impl;
+
+import org.bougainvillea.spring.commons.entity.User;
+import org.bougainvillea.spring.security.entity.SecuUser;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * 自定义用户密码
+ */
+@Component("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 1. 查询用户
+        User user = User.builder()
+                .username(username)
+                .password("202cb962ac59075b964b07152d234b70")
+                .build();
+        if (user == null) {
+            //这里找不到必须抛异常
+            throw new UsernameNotFoundException("User " + username + " was not found in db");
+        }
+        // 2. 查询角色
+        //用户，角色，权限
+        //3. 查询权限
+        List<String> permissionValueList= Arrays.asList("user");
+
+        SecuUser secuUser=new SecuUser(user);
+        secuUser.setPermissionValueList(permissionValueList);
+
+        return secuUser;
+
+    }
+}
+
+```
 
 
