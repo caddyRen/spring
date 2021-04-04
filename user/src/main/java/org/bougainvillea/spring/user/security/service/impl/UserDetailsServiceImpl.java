@@ -38,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         User user = User.builder()
                 .username(username)
-                .password("202cb962ac59075b964b07152d234b70")
+                .password("202cb962ac59075b964b07152d234b70")//123
                 .build();
 
 //        User user = User.builder()
@@ -51,11 +51,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //用户，角色，权限
         //3. 查询权限
         List<String> permissionValueList= secuUserDao.getPermsByName(username);
-
         SecuUser secuUser=new SecuUser(user);
         secuUser.setCurrentUserInfo(user);
         secuUser.setPermissionValueList(permissionValueList);
-
         return secuUser;
 
     }
