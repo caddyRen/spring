@@ -1,11 +1,12 @@
-package org.bougainvillea.spring.security.filter;
+package org.bougainvillea.spring.user.security.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bougainvillea.spring.commons.entity.User;
 import org.bougainvillea.spring.commons.utils.Result;
-import org.bougainvillea.spring.security.entity.SecuUser;
-import org.bougainvillea.spring.security.secu.TokenManager;
-import org.bougainvillea.spring.security.utils.ResponseUtil;
+import org.bougainvillea.spring.redisdepency.utils.RedisUtils;
+import org.bougainvillea.spring.user.security.entity.SecuUser;
+import org.bougainvillea.spring.user.security.secu.TokenManager;
+import org.bougainvillea.spring.user.security.utils.ResponseUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -60,9 +61,11 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private TokenManager tokenManager;
     private AuthenticationManager authenticationManager;
+    private RedisUtils redisUtils;
 
-    public TokenLoginFilter(TokenManager tokenManager, AuthenticationManager authenticationManager) {
+    public TokenLoginFilter(TokenManager tokenManager, AuthenticationManager authenticationManager,RedisUtils redisUtils) {
         this.tokenManager = tokenManager;
+        this.redisUtils = redisUtils;
         this.authenticationManager = authenticationManager;
         this.setPostOnly(false);
         this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login","POST"));
@@ -96,9 +99,12 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         //认证成功得到认证成功后用户信息
         SecuUser user=(SecuUser) authResult.getPrincipal();
+        String username=user.getCurrentUserInfo().getUsername();
         //根据用户名生成token
-        String token = tokenManager.createToken(user.getCurrentUserInfo().getUsername());
+        String token = tokenManager.createToken(username);
         //可以存到缓存中，redis
+        redisUtils.set(username,token);
+        //...
         //返回token
         ResponseUtil.out(response,
                 Result.ok().data("token",token));
