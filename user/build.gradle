@@ -1,0 +1,16 @@
+dependencies {
+    implementation(project(":commons"))
+    implementation(project(":spring-depency"))
+    implementation(project(":spring-tomcat"))
+    implementation(project(":database-depency"))
+    implementation(project(":redis-depency"))
+    implementation(project(":spring-swagger"))
+    implementation(project(":eureka-client"))
+    api 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}

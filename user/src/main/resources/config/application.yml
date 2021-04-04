@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: user
+  profiles:
+    active: ${PROFILES_ACTIVE:dev},database,swagger,ec,redis
+  main:
+    banner-mode: log
+  lifecycle:
+    timeout-per-shutdown-phase: 30s #缓冲期
+  flyway: #flyway相关配置
+    locations: classpath:db/migration/mysql/dev
+    validate-on-migrate: true #迁移时是否校验默认true
+    baseline-on-migrate: false #存量数据初始化flyway基线,本地基线设置完,最好重新设置false,当迁移发现数据库非空且存在没有元数据的表时，自动执行基准迁移，新建schema_version表，当数据库已经有表，需要设置为true，并且脚本版本号要大于1
+
+# server 容器配置
+server:
+  port: ${PORT:20000}
+  shutdown: graceful #优雅停机,当web容器关闭时，web服务器将不再接收新请求，并将等待活动请求完成,等待时间timeout-per-shutdown-phase
+#  shutdown: immediate #立即关机
+  compression:
+    enabled: true
+  tomcat:
+    basedir: ${TOMCAT_LOG:logs/tomcat}
+    accesslog:
+      enabled: true
+
+# eureka
+eureka:
+  client: #eureka客户端配置
+    healthcheck:
+      enabled: true #开启健康检查 eureka.client.healthcheck.enabled=true should only be set in application.yml. Setting the value in bootstrap.yml causes undesirable side effects, such as registering in Eureka with an UNKNOWN status

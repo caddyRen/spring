@@ -1,0 +1,6 @@
+jar.enabled = true
+bootJar.enabled = false
+dependencies {
+    implementation(project(":commons"))
+    api 'org.springframework.boot:spring-boot-starter-redis:1.4.7.RELEASE'
+}

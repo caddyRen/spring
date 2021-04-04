@@ -19,8 +19,8 @@ spring:
             - Path=/gateway/**
           filters:
             - StripPrefix=1
-        - id: security-login
-          uri: lb://security
+        - id: user
+          uri: lb://user
           predicates:
             - Path=/security/login,/security/index/*
           filters:

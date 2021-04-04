@@ -16,8 +16,11 @@ spring:
 
 server:
   port: ${PORT}
-
-#eureka配置
+#It seems to be a socket read timeout exception,
+#it will retry later.
+#if it continues to happen and some eureka node occupied all the cpu time,
+#you should set property 'eureka.server.peer-node-read-timeout-ms' to a bigger value
+#eureka配置 eureka.server.peer-node-read-timeout-ms
 eureka:
   instance:
     registry:
@@ -31,4 +34,5 @@ eureka:
   server:
     enable-self-preservation: false #服务端开启自我保护模式。无论什么情况，服务端都会保持一定数量的服务。避免client与server的网络问题，而出现大量的服务被清除。本地开发设为false
     eviction-interval-timer-in-ms: 30000 #开启清除无效服务的定时任务，时间间隔。默认1分钟
+    peer-node-read-timeout-ms:
 

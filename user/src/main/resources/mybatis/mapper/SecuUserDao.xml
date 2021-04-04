@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.bougainvillea.spring.user.v1.dao.SecuUserDao">
+  <resultMap id="BaseResultMap" type="org.bougainvillea.spring.user.v1.po.UserInfo">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+    <select id="getUserByName" parameterType="java.lang.String" resultType="int">
+      select id
+      from secu_user
+      where name = #{username,jdbcType=VARCHAR}
+    </select>
+
+  <select id="getRolesByName" parameterType="java.lang.String" resultType="java.lang.String">
+    select name
+    from secu_role
+    where id in (
+        select rid from secu_user_role where uid =(
+          select id
+          from secu_user
+          where name = #{username,jdbcType=VARCHAR}
+          )
+      )
+  </select>
+  <select id="getPermsByName" parameterType="java.lang.String" resultType="java.lang.String">
+    select name
+    from secu_permission
+    where id in (
+      select cid from secu_role_perm where rid in (
+        select id
+        from secu_role
+        where id in (
+          select rid from secu_user_role where uid =(
+            select id
+            from secu_user
+            where name = #{username,jdbcType=VARCHAR}
+          )
+        )
+      )
+    )
+  </select>
+  <!--  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+<!--    select -->
+<!--    <include refid="Base_Column_List" />-->
+<!--    from secu_user-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </select>-->
+<!--  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+<!--    delete from secu_user-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </delete>-->
+<!--  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="generator.SecuUser" useGeneratedKeys="true">-->
+<!--    insert into secu_user (`name`)-->
+<!--    values (#{name,jdbcType=VARCHAR})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="generator.SecuUser" useGeneratedKeys="true">-->
+<!--    insert into secu_user-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="name != null">-->
+<!--        `name`,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="name != null">-->
+<!--        #{name,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
+<!--  <update id="updateByPrimaryKeySelective" parameterType="generator.SecuUser">-->
+<!--    update secu_user-->
+<!--    <set>-->
+<!--      <if test="name != null">-->
+<!--        `name` = #{name,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--    </set>-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
+<!--  <update id="updateByPrimaryKey" parameterType="generator.SecuUser">-->
+<!--    update secu_user-->
+<!--    set `name` = #{name,jdbcType=VARCHAR}-->
+<!--    where id = #{id,jdbcType=INTEGER}-->
+<!--  </update>-->
+</mapper>

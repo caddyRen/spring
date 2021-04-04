@@ -1,0 +1,22 @@
+mysql:
+  ip: ${MYSQL_IP:127.0.0.1}
+  port: ${MYSQL_PORT:3306}
+  database: ${MYSQL_DB:spring_security}
+  user: ${MYSQL_USER:caddy}
+  pwd: ${MYSQL_PWD:caddy@415}
+
+# eureka配置，
+HOSTNAME: blackbox # 本服务实例域名
+PORT: 20000 # 本服务实例端口
+GZ_IP: 127.0.0.1 # eureka 注册中心ip
+GZ_PORT: 8761 # eureka 注册中心端口
+SZ_IP: 127.0.0.1 # eureka 注册中心ip
+SZ_PORT: 8760 # eureka 注册中心端口
+# 管理接口 配置
+MPATH: /admin # management.endpoints.web.base-path
+VERSION: 0.0.1 # 本服务版本号
+APPDESC: 用户中心 # 本服务描述信息
+# 日志
+LOGLEV: INFO
+# enc() 加密配置文件
+KEY: bougainvillea
