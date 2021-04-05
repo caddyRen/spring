@@ -1,5 +1,7 @@
 package org.bougainvillea.spring.user.security.filter;
 
+import org.bougainvillea.spring.redisdepency.utils.RedisOperateData;
+import org.bougainvillea.spring.redisdepency.utils.RedisOperates;
 import org.bougainvillea.spring.redisdepency.utils.RedisUtils;
 import org.bougainvillea.spring.user.security.secu.TokenManager;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,8 +60,8 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter {
         if (token != null) {
             String username = tokenManager.getUserFromToken(token);
             //获取权限列表 从redis或者数据库
-            String to= (String)redisUtils.get(username);
-            System.out.println(to);
+            RedisOperateData data= redisUtils.get(RedisOperateData.builder().key(username).operates(RedisOperates.REDIS_STRING_OPERATE).build());
+            System.err.println(data.toString());
             List<String> permissionValueList = Arrays.asList("/index/logout", "/index/info");
             //List转Collection<? extends GrantedAuthority> authorities
             Collection<GrantedAuthority> authorities = new ArrayList<>();

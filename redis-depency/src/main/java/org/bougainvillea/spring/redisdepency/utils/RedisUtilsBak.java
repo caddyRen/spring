@@ -1,6 +1,5 @@
 package org.bougainvillea.spring.redisdepency.utils;
 
-import org.bougainvillea.spring.redisdepency.utils.executor.RedisExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
@@ -10,69 +9,22 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * todo redis 工具类
+ * 设计模式-责任链模式
+ *
+ * https://www.jianshu.com/p/c01dc8d935c0
+ */
 @Service
-public class RedisUtils {
+public class RedisUtilsBak {
 
     private RedisTemplate<String, Object> redisTemplate;
 
-    private RedisExecutor redisStringExecutor;
-    private RedisExecutor redisListExecutor;
-    private RedisExecutor redisHashExecutor;
-    private RedisExecutor redisSetExecutor;
-    private RedisExecutor redisZSetExecutor;
-    private RedisExecutor redisKeysExecutor;
-
     @Autowired
-    public RedisUtils(RedisTemplate<String, Object> redisTemplate,
-                      RedisExecutor redisStringExecutor,
-                      RedisExecutor redisListExecutor,
-                      RedisExecutor redisHashExecutor,
-                      RedisExecutor redisSetExecutor,
-                      RedisExecutor redisZSetExecutor,
-                      RedisExecutor redisKeysExecutor
-                        ) {
+    public RedisUtilsBak(RedisTemplate<String, Object> redisTemplate) {
         Assert.notNull(redisTemplate,"redisTemplate must be not null");
         this.redisTemplate = redisTemplate;
-        Assert.notNull(redisStringExecutor,"redisStringExecutor must be not null");
-        this.redisStringExecutor = redisStringExecutor;
-        Assert.notNull(redisListExecutor,"redisListExecutor must be not null");
-        this.redisListExecutor = redisListExecutor;
-        Assert.notNull(redisHashExecutor,"redisHashExecutor must be not null");
-        this.redisHashExecutor = redisHashExecutor;
-        Assert.notNull(redisSetExecutor,"redisSetExecutor must be not null");
-        this.redisSetExecutor = redisSetExecutor;
-        Assert.notNull(redisZSetExecutor,"redisZSetExecutor must be not null");
-        this.redisZSetExecutor = redisZSetExecutor;
-        Assert.notNull(redisKeysExecutor,"redisKeysExecutor must be not null");
-        this.redisKeysExecutor = redisKeysExecutor;
-        //设置责任链
-        redisStringExecutor.setNextExecutor(redisListExecutor);
-        redisListExecutor.setNextExecutor(redisHashExecutor);
-        redisHashExecutor.setNextExecutor(redisSetExecutor);
-        redisSetExecutor.setNextExecutor(redisZSetExecutor);
-        redisZSetExecutor.setNextExecutor(redisKeysExecutor);
-        redisKeysExecutor.setNextExecutor(redisStringExecutor);
     }
-
-    /**
-     * 写入缓存
-     *
-     */
-    public boolean set(RedisOperateData operateData){
-        redisKeysExecutor.writeRequest(operateData);
-        return true;
-    }
-
-    /**
-     * 读取缓存
-     *
-     */
-    public RedisOperateData get(RedisOperateData operateData) {
-        return redisStringExecutor.readRequest(operateData);
-    }
-
-
-
 
     /**
      * 写入缓存
