@@ -22,6 +22,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.util.Assert;
 
 import java.time.Duration;
 
@@ -29,8 +30,13 @@ import java.time.Duration;
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
+    private RedisProperties redisProperties;
+
     @Autowired
-    RedisProperties redisProperties;
+    public RedisConfig(RedisProperties redisProperties) {
+        Assert.notNull(redisProperties, "redisProperties must be not null");
+        this.redisProperties = redisProperties;
+    }
 
     @Bean
     public LettuceConnectionFactory lettuceConnectionFactory() {
@@ -53,9 +59,9 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .readFrom(ReadFrom.REPLICA_PREFERRED)
                 .build();
 
-        RedisClusterConfiguration configuration=new RedisClusterConfiguration(redisProperties.getCluster().getNodes());
+        RedisClusterConfiguration configuration = new RedisClusterConfiguration(redisProperties.getCluster().getNodes());
         configuration.setMaxRedirects(redisProperties.getCluster().getMaxRedirects());
-        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration,clientConfig);
+        LettuceConnectionFactory factory = new LettuceConnectionFactory(configuration, clientConfig);
         factory.setDatabase(0);
         factory.setShareNativeConnection(true);
         factory.resetConnection();
@@ -63,14 +69,13 @@ public class RedisConfig extends CachingConfigurerSupport {
     }
 
 
-
     /**
      * key string
      * value Object
      */
     @Bean
-    public RedisTemplate<String,Object> redisTemplate(LettuceConnectionFactory redisConnectionFactory){
-        RedisTemplate<String,Object> template = new RedisTemplate <>();
+    public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
         // key采用String的序列化方式
         template.setKeySerializer(new StringRedisSerializer());
@@ -88,8 +93,8 @@ public class RedisConfig extends CachingConfigurerSupport {
      * key value 都是string
      */
     @Bean
-    public StringRedisTemplate stringRedisTemplate(LettuceConnectionFactory redisConnectionFactory){
-        StringRedisTemplate strRedisTemplate=new StringRedisTemplate(redisConnectionFactory);
+    public StringRedisTemplate stringRedisTemplate(LettuceConnectionFactory redisConnectionFactory) {
+        StringRedisTemplate strRedisTemplate = new StringRedisTemplate(redisConnectionFactory);
         // key采用String的序列化方式
         strRedisTemplate.setKeySerializer(new StringRedisSerializer());
         // hash的key也采用String的序列化方式
@@ -104,7 +109,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     /**
      * json序列化
      */
-    private Jackson2JsonRedisSerializer<Object> getJackson2JsonRedisSerializer(){
+    private Jackson2JsonRedisSerializer<Object> getJackson2JsonRedisSerializer() {
         Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);

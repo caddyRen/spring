@@ -3,16 +3,27 @@ package org.bougainvillea.spring.redisdepency.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * todo redis 工具类
+ * 设计模式
+ * https://www.jianshu.com/p/c01dc8d935c0
+ */
 @Service
 public class RedisUtils {
 
+    private RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
-    private RedisTemplate<String,Object> redisTemplate;
+    public RedisUtils(RedisTemplate<String, Object> redisTemplate) {
+        Assert.notNull(redisTemplate,"redisTemplate must be not null");
+        this.redisTemplate = redisTemplate;
+    }
 
     /**
      * 写入缓存

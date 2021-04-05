@@ -13,6 +13,7 @@
          active: redis
     ```
 ## note
+- cluster 分布式集群
 - 在 Spring Boot 1.x 版本默认使用的是 jedis ，而在 Spring Boot 2.x 版本默认使用的就是Lettuce
 ```txt
 1. Jedis在实现上是直接连接的redis server，

@@ -1,0 +1,121 @@
+version: '3'
+# https://yaml.org/type/merge.html 锚点和引用 不支持array merge
+# https://docs.docker.com/compose/extends/ docker-compose.yml 默认会引用同目录下 ./docker-compose.override.yml 也可通过-f 指定文件
+x-image:
+  &image
+  image: eureka:0.0.1-SNAPSHOT
+  restart: "no"
+x-env:
+  &env
+  - &hostname HOSTNAME=172.17.0.1
+  - &gz GZ_IP=172.17.0.1
+  - &sz SZ_IP=172.17.0.1
+  - &loglev LOGLEV=WARN
+  - &key KEY=bougainvillea
+x-config:
+  &config
+  image: redis:6.2.1-alpine3.13
+  volumes:
+    - /disk/1tdisk/docker/redis/conf:/etc/redis
+  environment:
+    - TZ=Asia/Shanghai
+
+services:
+  redis6379:
+    << : *config
+    container_name: redis6379
+    command: redis-server /etc/redis/redis.conf
+    ports:
+      - "16379:16379"
+      - "6379:6379"
+  redis6380:
+    << : *config
+    container_name: redis6380
+    command: redis-server /etc/redis/redis_6380.conf  
+    ports:
+      - "16380:16380"
+      - "6380:6380"
+  redis6381:
+    << : *config
+    container_name: redis6381
+    command: redis-server /etc/redis/redis_6381.conf  
+    ports:
+      - "16381:16381"
+      - "6381:6381"
+  redis6382:
+    << : *config
+    container_name: redis6382
+    command: redis-server /etc/redis/redis_6382.conf  
+    ports:
+      - "16382:16382"
+      - "6382:6382"
+  redis6383:
+    << : *config
+    container_name: redis6383
+    command: redis-server /etc/redis/redis_6383.conf  
+    ports:
+      - "16383:16383"
+      - "6383:6383"
+  redis6384:
+    << : *config
+    container_name: redis6384
+    command: redis-server /etc/redis/redis_6384.conf  
+    ports:
+      - "16384:16384"
+      - "6384:6384"
+  eureka_8760:
+    << : *image
+    container_name: eureka_8760
+    ports:
+      - "8760:8760"
+    environment:
+      - *hostname
+      - PORT=8760
+      - *gz
+      - GZ_PORT=8761
+      - *sz
+      - SZ_PORT=8762
+      - *loglev
+      - *key
+  eureka_8761:
+    << : *image
+    container_name: eureka_8761
+    ports:
+      - "8761:8761"
+    environment:
+      - *hostname
+      - PORT=8761
+      - *gz
+      - GZ_PORT=8760
+      - *sz
+      - SZ_PORT=8762
+      - *loglev
+      - *key
+  eureka_8762:
+    << : *image
+    container_name: eureka_8762
+    ports:
+      - "8762:8762"
+    environment:
+      - *hostname
+      - PORT=8762
+      - *gz
+      - GZ_PORT=8760
+      - *sz
+      - SZ_PORT=8761
+      - *loglev
+      - *key
+  config_server:
+    image: config_server:0.0.1-SNAPSHOT
+    container_name: config_server
+    restart: "no"
+    ports:
+      - "10000:10000"
+    environment:
+      - PROFILES_ACTIVE=prod
+      - *hostname
+      - PORT=10000
+      - *loglev
+      - *key
+      - GIT_USER=renqiankun
+      - GIT_PASSWORD=LinzhibinMM@66

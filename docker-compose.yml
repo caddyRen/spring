@@ -1,0 +1,54 @@
+version: '3'
+# https://docs.docker.com/compose/extends/ 默认引用 ./docker-compose.override.yml
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - TZ=Asiz/Shanghai
+      - RABBITMQ_DEFAULT_USER=caddy
+      - RABBITMQ_DEFAULT_PASS=caddy
+  redis:
+    image: redis:latest
+    container_name: redis
+    command: redis-server --requirepass caddy
+    ports:
+      - "6385:6379"
+  mysql:
+    image: mysql:5.7
+    container_name: mysql5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      # - /disk/1tdisk/docker/mysql/conf/my.cnf:/etc/mysql/my.cnf
+      - /disk/1tdisk/docker/mysql/logs:/logs
+      - /disk/1tdisk/docker/mysql/data/mysql:/var/lib/mysql
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=qiankun415
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    volumes:
+      - /disk/1tdisk/docker/nextcloud:/var/www/html
+    ports:
+      - "8080:80"
+#----- redis simple cluster ------#
+  # tips need run : ./redis-cli --cluster create 172.17.0.1:6379 172.17.0.1:6380 172.17.0.1:6381 172.17.0.1:6382 172.17.0.1:6383 172.17.0.1:6384 --cluster-replicas 1 ------#
+  redis6379:
+  redis6380:
+  redis6381:
+  redis6382:
+  redis6383:
+  redis6384:
+#------ spring boot jar ------#
+  #------- eureka -------#
+  eureka_8760:
+  eureka_8761:
+  eureka_8762:
+  #------- spring cloud config center -------#
+  # tips: need rabbitmq container-#
+  config_server:
